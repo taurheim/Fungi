@@ -20,7 +20,6 @@ public class DoorLogic : MonoBehaviour {
         Player = GameObject.Find("FirstPersonCharacter");
         this.isOpen = true;
         this.moveSpeed = 0.5f;
-
         // Assuming intially closed
         this.closeDistance = Vector3.Distance(RightDoor.transform.position, LeftDoor.transform.position);
 
