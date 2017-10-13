@@ -23,6 +23,8 @@ public class ButtonPress : MonoBehaviour
 	
 	void Update ()
     {
+        
+
         if (Input.GetKeyDown(KeyCode.E) && !isBeingPressed)
         {
             RaycastHit hit;
@@ -31,6 +33,7 @@ public class ButtonPress : MonoBehaviour
 
                 if (hit.collider.tag == button.tag)
                 {
+                    Debug.Log("Button pressed");
                     isBeingPressed = true;
                     print(button.tag + " pressed");
                 }
@@ -67,5 +70,9 @@ public class ButtonPress : MonoBehaviour
         {
             button.Translate((Vector3.up * buttonSpeed) * Time.deltaTime);
         }
+    }
+
+    public bool getButtonStatus() {
+        return isBeingPressed;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DoorLogic : MonoBehaviour {
 
-    private bool isLocked;
+    private bool isLocked; // Unused atm, maybe unnecessary
     private bool isOpen;
     private float moveSpeed; // How fast door opens/closes (higher = faster)
     public float closeDistance;
@@ -16,7 +16,7 @@ public class DoorLogic : MonoBehaviour {
 
 	void Start () {
         isLocked = false;
-        this.isOpen = true;
+        this.isOpen = false;
         this.moveSpeed = 0.5f;
         // Assuming intially closed
         this.closeDistance = Vector3.Distance(RightDoor.transform.position, LeftDoor.transform.position);
@@ -34,12 +34,14 @@ public class DoorLogic : MonoBehaviour {
 
         // Auto start opening if player is nearby
         // This can be swapped out for other opening methods
+        /*
         if (this.checkPlayerInVicinity()) {
             this.isOpen = true;
         }
         else {
             this.isOpen = false;
         }
+        */
     }
 
     // Called every frame if door is opening, slowly opens door every frame
@@ -58,6 +60,13 @@ public class DoorLogic : MonoBehaviour {
         }
     }
 
+    public void startOpening() {
+        this.isOpen = true;
+    }
+
+    public void startClosing() {
+        this.isOpen = false;
+    }
 
     /* TODO
     - Check player vicinity less frequently (minimize lag)
