@@ -23,19 +23,20 @@ public class ButtonPress : MonoBehaviour
 	
 	void Update ()
     {
-        
+
+        //Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * 10, Color.green);
 
         if (Input.GetKeyDown(KeyCode.E) && !isBeingPressed)
         {
-            RaycastHit hit;
-            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 4.0f))
-            {
+            int layerMask = 1;  //Rays only hit objects on default layer
 
+            RaycastHit hit;
+            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 5.0f, layerMask))
+            {
                 if (hit.collider.tag == button.tag)
                 {
-                    Debug.Log("Button pressed");
                     isBeingPressed = true;
-                    print(button.tag + " pressed");
+                   //print(button.tag + " pressed");
                 }
             }
         }
