@@ -14,6 +14,8 @@ public class DoorLogic : MonoBehaviour {
     public GameObject LeftDoor;
     public GameObject Player;
 
+    public GameObject Icon;
+
 	void Start () {
         isLocked = false;
         this.isOpen = false;
@@ -61,10 +63,12 @@ public class DoorLogic : MonoBehaviour {
     }
 
     public void startOpening() {
+        this.Icon.SetActive(false);
         this.isOpen = true;
     }
 
     public void startClosing() {
+        this.Icon.SetActive(true);
         this.isOpen = false;
     }
 
