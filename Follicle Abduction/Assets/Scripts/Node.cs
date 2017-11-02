@@ -11,8 +11,7 @@ public class Node : MonoBehaviour {
 
 	public GameObject[] childNodes;
 
-	public GameObject[] toShow;
-	public GameObject[] toHide;
+	public string tagForHiddenObjects;
 
 	public GameObject progressBar;
 
@@ -21,7 +20,7 @@ public class Node : MonoBehaviour {
 	int percentComplete = 0;
 
 	void Start () {
-		
+		MapVisibility.setVisibilityForTag (tagForHiddenObjects, false);
 	}
 	
 	// Update is called once per frame
@@ -58,15 +57,7 @@ public class Node : MonoBehaviour {
 	}
 
 	void completeNode() {
-		// Show everything that should be shown
-		for(int i=0;i<toShow.Length;++i) {
-			toShow[i].SetActive(true);
-		}
-
-		// Hide everything that should be hidden
-		for(int i=0;i<toHide.Length;++i) {
-			toHide[i].SetActive(false);
-		}
+		MapVisibility.setVisibilityForTag (tagForHiddenObjects, true);
 
 		// Unlock all child nodes
 		for(int i=0;i<childNodes.Length; ++i) {

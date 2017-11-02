@@ -33,6 +33,7 @@ public class Patrol : MonoBehaviour {
 	}
 
 	void Start () {
+		print ("GUARD LOADED");
 		agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
 		NavigateToNextWaypoint();
 	}
