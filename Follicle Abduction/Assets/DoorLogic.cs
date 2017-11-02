@@ -12,11 +12,13 @@ public class DoorLogic : MonoBehaviour {
     // Select these in Unity UI
     public GameObject RightDoor;
     public GameObject LeftDoor;
-    public GameObject Player;
+
+    public GameObject player;
 
     public GameObject Icon;
 
 	void Start () {
+
         isLocked = false;
         this.isOpen = false;
         this.moveSpeed = 0.5f;
@@ -79,7 +81,7 @@ public class DoorLogic : MonoBehaviour {
 
     // Checks if player is close enough to open door
     bool checkPlayerInVicinity() {
-        if (Vector3.Distance(RightDoor.transform.position, Player.transform.position) < 5) {
+        if (Vector3.Distance(RightDoor.transform.position, player.transform.position) < 5) {
             return true;
         }
         else {

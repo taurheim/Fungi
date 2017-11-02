@@ -5,7 +5,9 @@ using UnityEngine;
 public class ButtonPress : MonoBehaviour
 {
     public Transform button;
-    public Camera playerCamera;
+
+	[SerializeField]
+    Camera playerCamera;
 
     private bool isBeingPressed;    // true if the button is in the process of moving from a press
 
