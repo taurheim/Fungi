@@ -65,12 +65,10 @@ public class DoorLogic : MonoBehaviour {
     }
 
     public void startOpening() {
-        this.Icon.SetActive(false);
         this.isOpen = true;
     }
 
     public void startClosing() {
-        this.Icon.SetActive(true);
         this.isOpen = false;
     }
 

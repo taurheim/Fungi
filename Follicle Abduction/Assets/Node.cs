@@ -20,12 +20,32 @@ public class Node : MonoBehaviour {
 
 	int percentComplete = 0;
 
+	private LineRenderer[] nodeLines;
+	
+	private float fadePerSecond = 0.5F;
+
 	void Start () {
+		// Draw a line from this node to all children
+		nodeLines = new LineRenderer[childNodes.Length];
 		
+		for(int i=0;i<nodeLines.Length;i++){
+			LineRenderer line = this.gameObject.AddComponent<LineRenderer>();
+			line.startWidth = 0.2F;
+			line.endWidth = 0.2F;
+			line.positionCount = 2;
+			line.SetPosition(0, gameObject.transform.position);
+			line.SetPosition(1, childNodes[i].transform.position);
+      		line.material = new Material (Shader.Find("Particles/Additive"));
+			line.startColor = Color.red;
+			line.endColor = Color.red;
+
+			nodeLines[i] = line;
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
 		if(isUnlocked) {
 			checkForHackKey();
 
@@ -73,8 +93,22 @@ public class Node : MonoBehaviour {
 			childNodes[i].GetComponent<Node>().isUnlocked = true;
 		}
 
+
+		// Mark all connections as green, fade them out
+		Color currentColor = progressBar.GetComponent<MeshRenderer>().material.color;
+		Color newColor = new Color(0F, 255F, 0F, currentColor.a - (fadePerSecond * Time.deltaTime));
+		Debug.Log(newColor.a);
+
+		foreach(LineRenderer line in nodeLines){
+			line.startColor = newColor;
+			line.endColor = newColor;
+		}
+		progressBar.GetComponent<MeshRenderer>().material.color = newColor;
+
 		// Finally, hide the node from view
-		gameObject.SetActive(false);
+		if(newColor.a <= 0) {
+			gameObject.SetActive(false);
+		}
 	}
 
 }
