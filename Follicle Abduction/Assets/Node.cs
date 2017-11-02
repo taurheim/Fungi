@@ -76,4 +76,5 @@ public class Node : MonoBehaviour {
 		// Finally, hide the node from view
 		gameObject.SetActive(false);
 	}
+
 }
