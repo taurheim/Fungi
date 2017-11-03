@@ -13,16 +13,12 @@ public class Alien : MonoBehaviour {
 		suspiciousness = 0;
 		captured = false;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (suspiciousness >= maxSuspiciousness) {
-			captured = true;
-		}
-	}
 
 	public void doSomethingSuspicious(int howSuspicious) {
 		suspiciousness += howSuspicious;
+		if (suspiciousness >= maxSuspiciousness) {
+			captured = true;
+		}
 	}
 
 	public int getSuspiciousness(){
