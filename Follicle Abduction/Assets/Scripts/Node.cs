@@ -2,23 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Node : MonoBehaviour {
+public interface INode {
+	void unlockNode();
+	void completeNode();
+	Vector3 getPosition();
+}
 
+public class Node : MonoBehaviour, INode {
+
+	// Used for the demo - this is the key to press to hack this node
 	public string hackKey;
 
+	// A locked node cannot be completed. Once unlocked, a node can be completed which gives access to whatever information that node contains
 	public bool isUnlocked = true;
 	public bool isCompleted = false;
 
-	public GameObject[] childNodes;
+	// Upon completion, all child nodes will unlock
+	public INode[] childNodes;
 
+	// Upon completion, show all objects with this tag.
 	public string tagForHiddenObjects;
 
+	// This is a reference to the progress bar of the node's completion
+	//TODO dynamically generate this
 	public GameObject progressBar;
 
-	bool isHacking;
+	// True if the node is actively being hacked
+	private bool isHacking;
 
 	int percentComplete = 0;
 
+	// Lines from this node to all of its children
 	private LineRenderer[] nodeLines;
 	
 	private float fadePerSecond = 0.5F;
@@ -36,7 +50,7 @@ public class Node : MonoBehaviour {
 			line.endWidth = 0.2F;
 			line.positionCount = 2;
 			line.SetPosition(0, gameObject.transform.position);
-			line.SetPosition(1, childNodes[i].transform.position);
+			line.SetPosition(1, childNodes[i].getPosition());
       		line.material = new Material (Shader.Find("Particles/Additive"));
 			line.startColor = Color.red;
 			line.endColor = Color.red;
@@ -47,7 +61,7 @@ public class Node : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		// If the node is locked, do nothing
 		if(isUnlocked) {
 			checkForHackKey();
 
@@ -62,7 +76,46 @@ public class Node : MonoBehaviour {
 			if(!isCompleted && percentComplete >= 100f) {
 				completeNode();
 			}
-		} else {
+		}
+	}
+
+	public void unlockNode() {
+		isUnlocked = true;
+	}
+
+	public Vector3 getPosition() {
+		return gameObject.transform.position;
+	}
+
+	public void completeNode() {
+		// Show all hidden objects
+		if(tagForHiddenObjects != null) {
+			Debug.Log(tagForHiddenObjects.Length);
+			MapVisibility.setVisibilityForTag (tagForHiddenObjects, true);
+		}
+
+		// Unlock all child nodes
+		for(int i=0;i<childNodes.Length;i++){
+			childNodes[i].unlockNode();
+		}
+
+		//TODO generate dynamically
+		if(progressBar != null){
+			// Mark all connections as green, fade them out
+			Color currentColor = progressBar.GetComponent<MeshRenderer>().material.color;
+			Color newColor = new Color(0F, 255F, 0F, currentColor.a - (fadePerSecond * Time.deltaTime));
+			Debug.Log(newColor.a);
+
+			foreach(LineRenderer line in nodeLines){
+				line.startColor = newColor;
+				line.endColor = newColor;
+			}
+			progressBar.GetComponent<MeshRenderer>().material.color = newColor;
+
+			// Finally, hide the node from view
+			if(newColor.a <= 0) {
+				gameObject.SetActive(false);
+			}
 		}
 	}
 
@@ -76,32 +129,6 @@ public class Node : MonoBehaviour {
 		// When we let go of the key, stop hacking
 		if(Input.GetKeyUp(hackKey)) {
 			isHacking = false;
-		}
-	}
-
-	void completeNode() {
-		MapVisibility.setVisibilityForTag (tagForHiddenObjects, true);
-
-		// Unlock all child nodes
-		for(int i=0;i<childNodes.Length; ++i) {
-			childNodes[i].GetComponent<Node>().isUnlocked = true;
-		}
-
-
-		// Mark all connections as green, fade them out
-		Color currentColor = progressBar.GetComponent<MeshRenderer>().material.color;
-		Color newColor = new Color(0F, 255F, 0F, currentColor.a - (fadePerSecond * Time.deltaTime));
-		Debug.Log(newColor.a);
-
-		foreach(LineRenderer line in nodeLines){
-			line.startColor = newColor;
-			line.endColor = newColor;
-		}
-		progressBar.GetComponent<MeshRenderer>().material.color = newColor;
-
-		// Finally, hide the node from view
-		if(newColor.a <= 0) {
-			gameObject.SetActive(false);
 		}
 	}
 
