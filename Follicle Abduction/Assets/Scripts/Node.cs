@@ -88,33 +88,38 @@ public class Node : MonoBehaviour, INode {
 	}
 
 	public void completeNode() {
-		// Show all hidden objects
-		if(tagForHiddenObjects != null) {
-			Debug.Log(tagForHiddenObjects.Length);
-			MapVisibility.setVisibilityForTag (tagForHiddenObjects, true);
-		}
+		// Can't complete without unlocking
+		if(isUnlocked) {
+			isCompleted = true;
 
-		// Unlock all child nodes
-		for(int i=0;i<childNodes.Length;i++){
-			childNodes[i].unlockNode();
-		}
-
-		//TODO generate dynamically
-		if(progressBar != null){
-			// Mark all connections as green, fade them out
-			Color currentColor = progressBar.GetComponent<MeshRenderer>().material.color;
-			Color newColor = new Color(0F, 255F, 0F, currentColor.a - (fadePerSecond * Time.deltaTime));
-			Debug.Log(newColor.a);
-
-			foreach(LineRenderer line in nodeLines){
-				line.startColor = newColor;
-				line.endColor = newColor;
+			// Show all hidden objects
+			if(tagForHiddenObjects != null) {
+				Debug.Log(tagForHiddenObjects.Length);
+				MapVisibility.setVisibilityForTag (tagForHiddenObjects, true);
 			}
-			progressBar.GetComponent<MeshRenderer>().material.color = newColor;
 
-			// Finally, hide the node from view
-			if(newColor.a <= 0) {
-				gameObject.SetActive(false);
+			// Unlock all child nodes
+			for(int i=0;i<childNodes.Length;i++){
+				childNodes[i].unlockNode();
+			}
+
+			//TODO generate dynamically
+			if(progressBar != null){
+				// Mark all connections as green, fade them out
+				Color currentColor = progressBar.GetComponent<MeshRenderer>().material.color;
+				Color newColor = new Color(0F, 255F, 0F, currentColor.a - (fadePerSecond * Time.deltaTime));
+				Debug.Log(newColor.a);
+
+				foreach(LineRenderer line in nodeLines){
+					line.startColor = newColor;
+					line.endColor = newColor;
+				}
+				progressBar.GetComponent<MeshRenderer>().material.color = newColor;
+
+				// Finally, hide the node from view
+				if(newColor.a <= 0) {
+					gameObject.SetActive(false);
+				}
 			}
 		}
 	}

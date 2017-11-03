@@ -15,6 +15,9 @@ public class NodeTests {
 			childNodes[i] = Substitute.For<INode>();
 		}
 		parentNode.childNodes = childNodes;
+
+		parentNode.isUnlocked = false;
+		parentNode.isCompleted = false;
 		return parentNode;
 	}
 
