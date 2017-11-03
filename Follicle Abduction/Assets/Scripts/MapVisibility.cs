@@ -24,4 +24,14 @@ public static class MapVisibility {
 			}
 		}
 	}
+
+	public static bool isVisibleOnMap(GameObject obj) {
+		foreach (Transform child in obj.transform) {
+			if (child.CompareTag ("mapIcon")) {
+				return child.GetComponent<Renderer> ().enabled;
+			}
+		}
+		return false;
+	}
+
 }
