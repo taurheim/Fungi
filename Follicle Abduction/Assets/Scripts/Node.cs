@@ -2,13 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface INode {
-	void unlockNode();
-	void completeNode();
-	Vector3 getPosition();
-}
-
-public class Node : MonoBehaviour, INode {
+public class Node : MonoBehaviour  {
 
 	// Used for the demo - this is the key to press to hack this node
 	public string hackKey;
@@ -18,7 +12,7 @@ public class Node : MonoBehaviour, INode {
 	public bool isCompleted = false;
 
 	// Upon completion, all child nodes will unlock
-	public INode[] childNodes;
+	public Node[] childNodes;
 
 	// Upon completion, show all objects with this tag.
 	public string tagForHiddenObjects;

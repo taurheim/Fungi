@@ -10,9 +10,9 @@ public class NodeTests {
 	public Node SetupWithChildren(int children){
 		GameObject parentGameObject = new GameObject();
 		Node parentNode = parentGameObject.AddComponent<Node>();
-		INode[] childNodes = new INode[children];
+		Node[] childNodes = new Node[children];
 		for(int i=0;i<children;i++){
-			childNodes[i] = Substitute.For<INode>();
+			childNodes[i] = Substitute.For<Node>();
 		}
 		parentNode.childNodes = childNodes;
 
@@ -61,7 +61,7 @@ public class NodeTests {
 		parentNode.unlockNode();
 		parentNode.completeNode();
 
-		foreach(INode childNode in parentNode.childNodes) {
+		foreach(Node childNode in parentNode.childNodes) {
 			childNode.Received().unlockNode();
 		}
 	}
