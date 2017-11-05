@@ -11,27 +11,15 @@ public static class MapVisibility {
 
 			foreach (GameObject obj in objs) {
 
-				MonoBehaviour.print (obj.name);
-				
-				foreach (Transform child in obj.transform) {
-					
-					if (child.CompareTag ("mapIcon")) {
-						
-						child.GetComponent<Renderer> ().enabled = visibility;
+				MapObject mapObj = obj.GetComponent<MapObject> ();
 
-					}
+				if (mapObj != null) {
+						
+					mapObj.setVisibility (visibility);
+
 				}
 			}
 		}
 	}
-
-	public static bool isVisibleOnMap(GameObject obj) {
-		foreach (Transform child in obj.transform) {
-			if (child.CompareTag ("mapIcon")) {
-				return child.GetComponent<Renderer> ().enabled;
-			}
-		}
-		return false;
-	}
-
+		
 }

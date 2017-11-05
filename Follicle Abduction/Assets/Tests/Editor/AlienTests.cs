@@ -7,6 +7,12 @@ public class AlienTests {
 
 	Alien alien;
 
+	[SetUp]
+	public void SetUp() {
+		//Map visibility is on by default
+		alien = new Alien ();
+	}
+
 	//Tests for suspiciousness levels
 	//Initial suspiciousness defaults to 0
 
@@ -35,12 +41,5 @@ public class AlienTests {
 		alien.doSomethingSuspicious (alien.maxSuspiciousness + 1);
 		Assert.True (alien.hasBeenCaptured());
 	}
-
-	//SetUp 
-
-	[SetUp]
-	public void SetUp() {
-		//Map visibility is on by default
-		alien = new Alien ();
-	}
+		
 }
