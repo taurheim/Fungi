@@ -116,6 +116,42 @@ public class PatrolTest {
         Assert.True(guard.GetComponent<Patrol>().currChaseTarget == null);
     }
 
+    [Test]
+    public void CaptureRestartsLevel() {
+        // Set up our target and guard (patroller) objects
+        GameObject target = new GameObject();
+        target.transform.position = new Vector3(0f, 0f, 0f);
+
+        // Place guard in front of target, and facing target
+        GameObject guard = new GameObject();
+        guard.transform.position = new Vector3(0.25f, 0f, 0f);
+        guard.transform.forward = new Vector3(-1f, 0f, 0f);
+
+
+        // Set up Patrol 
+        guard.AddComponent<Patrol>();
+        guard.GetComponent<Patrol>().detectRange = 2;
+        guard.GetComponent<Patrol>().detectAngle = 90;
+        guard.GetComponent<Patrol>().currChaseTarget = target;
+
+        Vector3 patrolDestination = new Vector3(10f, 0f, 0f);
+        guard.GetComponent<Patrol>().navMesh = new Vector3[] { patrolDestination };
+
+        guard.GetComponent<Patrol>().detectTargets = new GameObject[] { target };
+
+
+        Vector3 targetPositionBeforeCapture = target.transform.position;
+        guard.GetComponent<Patrol>().Capture(target);
+        Vector3 targetPositionAfterCapture = target.transform.position;
+
+
+
+        Object.Destroy(target);
+        Object.Destroy(guard);
+
+        Assert.False(targetPositionBeforeCapture == targetPositionAfterCapture);
+    }
+
 
 
 

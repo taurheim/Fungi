@@ -31,9 +31,8 @@ public class Patrol : MonoBehaviour {
     }
 
     void Start() {
-        if (agent != null) {
-            agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
-        }
+        agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
+  
         NavigateToNextWaypoint();
     }
 
@@ -105,11 +104,14 @@ public class Patrol : MonoBehaviour {
     }
 
     // After successfully catching up to player, capture
-    void Capture(GameObject target) {
+   public void Capture(GameObject target) {
 
         // Placeholder effect, not sure how to do gameover yet
         if (target.transform.parent != null) {
             target.transform.parent.gameObject.transform.position = new Vector3(-11.8f, -11.01f, 0.7f);
+        }
+        else {
+            target.transform.position = new Vector3(-11.8f, -11.01f, 0.7f);
         }
 
         currChaseTarget = null;
