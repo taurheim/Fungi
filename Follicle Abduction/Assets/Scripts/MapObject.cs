@@ -29,9 +29,9 @@ public class MapObject : MonoBehaviour {
 	}
 
 	public void setVisibility(bool visibility) {
-		if (mapIconRenderer != null) {
-			mapIconRenderer.enabled = visibility;
-		}
+		if (mapIconRenderer == null)
+			return;
+		mapIconRenderer.enabled = visibility;
 	}
 
 	public bool isVisible() {

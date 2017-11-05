@@ -14,7 +14,11 @@ public class AlienTests {
 	}
 
 	//Tests for suspiciousness levels
-	//Initial suspiciousness defaults to 0
+
+	[Test]
+	public void DefaultSuspiciousnessIsZero() {
+		Assert.True (alien.getSuspiciousness () == 0);
+	}
 
 	[Test]
 	public void DoesSomethingSuspicious() {
