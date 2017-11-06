@@ -2847,6 +2847,9 @@ MonoBehaviour:
   detectRange: 15
   detectTargets:
   - {fileID: 520914205}
+  currDestination: {x: 0, y: 0, z: 0}
+  currChaseTarget: {fileID: 0}
+  lastKnownTargetLoc: {x: 0, y: 0, z: 0}
 --- !u!4 &847705843
 Transform:
   m_ObjectHideFlags: 0
@@ -3800,6 +3803,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1258121581}
+  - component: {fileID: 1258121582}
   m_Layer: 0
   m_Name: GIC View
   m_TagString: Untagged
@@ -3824,6 +3828,18 @@ Transform:
   m_Father: {fileID: 1908000419}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1258121582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1258121580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a411087a67f64a448e2bccabc8c82c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSuspiciousness: 100
 --- !u!4 &1258487653 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4989385670517874, guid: a33bc2b2ada2b5944a436da6136cdaad,

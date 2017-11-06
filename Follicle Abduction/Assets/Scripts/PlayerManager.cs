@@ -68,7 +68,7 @@ public class PlayerManager : NetworkBehaviour {
 		
 	}
 
-	void setPlayerRoles()
+	public void setPlayerRoles()
 	{
 		if (GameObject.FindGameObjectsWithTag ("Player").Length == 2) 	//Both player objects exist
 		{
