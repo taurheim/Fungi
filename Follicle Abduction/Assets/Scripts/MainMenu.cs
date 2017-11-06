@@ -2,47 +2,95 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour {
+public class MainMenu : MonoBehaviour
+{
 
-	public Button startGame;
-	public Button quit;
+    public Button startGame;
+    public Button quit;
 
-	public Dropdown dropdown;
+    public Dropdown levelDropdown;
+    public Dropdown roleDropdown;
 
-	// Use this for initialization
-	void Start () 
-	{
-		startGame.onClick.AddListener (loadScene);
-		quit.onClick.AddListener (quitGame);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private string playerRole;
 
-	void loadScene()
-	{
-		if (dropdown.value == 0) 
-		{
-			SceneManager.LoadScene ("Demo_level");
-		}
-		else if (dropdown.value == 1) 
-		{
-			//load level 1
-		}
-		else if (dropdown.value == 2) 
-		{
-			//load level 2
-		}
-		else if (dropdown.value == 3) 
-		{
-			//load level 3
-		}
-	}
+    // Use this for initialization
+    void Start()
+    {
+        startGame.onClick.AddListener(selectedScene);
+        quit.onClick.AddListener(quitGame);
+    }
 
-	void quitGame()
-	{
-		Application.Quit ();
-	}
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    void selectedScene()
+    {
+        playerRole = roleDropdown.value.ToString();
+
+        if (levelDropdown.value == 0)
+        {
+            loadScene("Demo_level");
+        }
+        else if (levelDropdown.value == 1)
+        {
+            loadScene("Level1");
+        }
+        else if (levelDropdown.value == 2)
+        {
+            //load level 2
+        }
+        else if (levelDropdown.value == 3)
+        {
+            //load level 3
+        }
+    }
+
+    public bool loadScene(string scene)
+    {
+        if (scene.Equals("Demo_level"))
+        {
+            SceneManager.LoadScene("Demo_level");
+            return true;
+        }
+        else if (scene.Equals("Level1"))
+        {
+            SceneManager.LoadScene("Level1");
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+    void quitGame()
+    {
+        Application.Quit();
+    }
+
+
+    public void updateSettings()
+    {
+
+    }
+
+    public bool settingsUpdatedSuccessfully()
+    {
+        return false;
+    }
+
+    public void setPlayerRole(string role)
+    {
+        playerRole = role;
+    }
+
+    public string getPlayerRole()
+    {
+        return playerRole;
+    }
+
 }
