@@ -10,6 +10,7 @@ public class AlienSystemTests {
 	GameObject alien;
 	GameObject guard;
 	GameObject cameraNode;
+	GameObject wall;
 
 	[SetUp]
 	public void SetUp() {
@@ -19,6 +20,7 @@ public class AlienSystemTests {
 		human = (GameObject)Resources.Load ("FPSController");
 		alien = (GameObject)Resources.Load ("GIC View");
 		guard = (GameObject)Resources.Load ("Guard");
+		wall = (GameObject)Resources.Load ("Prefabs/Wall");
 		cameraNode = (GameObject)Resources.Load ("Camera Node");
 
 	}
@@ -31,7 +33,7 @@ public class AlienSystemTests {
 	}
 
 	[UnityTest]
-	public IEnumerator MapRendersSynchornizedPlayerMotion() {
+	public IEnumerator MapRendersSynchronizedPlayerMotion() {
 
 		//Get all the stuff we need
 		Camera mapCam = alien.GetComponentInChildren<Camera> ();
@@ -52,7 +54,7 @@ public class AlienSystemTests {
 	}
 
 	[UnityTest]
-	public IEnumerator MapRendersSynchornizedGuardMotion() {
+	public IEnumerator MapRendersSynchronizedGuardMotion() {
 
 		//Get all the stuff we need
 		Camera mapCam = alien.GetComponentInChildren<Camera> ();
@@ -76,15 +78,15 @@ public class AlienSystemTests {
 
 		//Get all the stuff we need
 		Camera mapCam = alien.GetComponentInChildren<Camera> ();
-		MapObject guardMapObj = guard.GetComponent<MapObject> ();
-		GameObject icon = guardMapObj.mapIcon;
+		MapObject wallMapObj = wall.GetComponent<MapObject> ();
+		GameObject icon = wallMapObj.mapIcon;
 		Node node = cameraNode.GetComponent<Node> ();
 		node.progressBar = null;
 
 		//Link up guard to camera: is hidden until cam is completed
 		node.tagForHiddenObjects = "securityCam1";
-		guard.tag = "securityCam1";
-		guardMapObj.setVisibility (false);
+		wall.tag = "securityCam1";
+		wallMapObj.setVisibility (false);
 		Assert.False (ObjectIsVisibleByCamera (mapCam, icon));
 
 		//Unlock & complete node

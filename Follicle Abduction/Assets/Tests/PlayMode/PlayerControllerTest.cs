@@ -13,7 +13,7 @@ public class PlayerControllerTest : MonoBehaviour {
 
 
 	//NOTE: THESE TESTS ARE CURRENTLY EXPECTED TO FAIL! 
-	//This is due to a currently incomplete movement modle which can not be properly tested
+	//This is due to a currently incomplete movement model which can not be properly tested
 	//using virtual inputs or mock loop inputs as they demand controller input.
 
 	[UnityTest]
@@ -93,5 +93,12 @@ public class PlayerControllerTest : MonoBehaviour {
 
 	}
 
+	[UnityTest]
+	public IEnumerator PlayerPressesButtonToCompletePuzzle() 
+	{
+		yield return null;
+		Assert.True (false);
+
+	}
 
 }

@@ -16,8 +16,12 @@ public class MainMenu : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        startGame.onClick.AddListener(selectedScene);
-        quit.onClick.AddListener(quitGame);
+		if (startGame != null) {
+			startGame.onClick.AddListener (selectedScene);
+		}
+		if (quit != null) {
+			quit.onClick.AddListener (quitGame);
+		}
     }
 
     // Update is called once per frame
