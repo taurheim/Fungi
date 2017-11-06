@@ -22,6 +22,17 @@ public class MenuTests
     }
 
     [Test]
+    public void LevelsInOrder()
+    {
+        MainMenu menu = SetupMainMenu();
+
+
+        string lvl = menu.getHighestAvailableLevel();
+
+        Assert.True(lvl.Equals("Level1"));
+    }
+
+    [Test]
     public void DemoLevelLoad()
     {
         MainMenu menu = SetupMainMenu();

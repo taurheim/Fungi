@@ -93,4 +93,9 @@ public class MainMenu : MonoBehaviour
         return playerRole;
     }
 
+    public string getHighestAvailableLevel()
+    {
+        return null;
+    }
+
 }
