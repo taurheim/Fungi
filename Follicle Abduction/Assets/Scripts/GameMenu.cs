@@ -8,7 +8,7 @@ public class GameMenu : NetworkBehaviour
 
     public GameObject waitingCamera;
 
-    public NetworkManagerHUD netManagerHUD;
+    public CustomNetworkingHUD netManagerHUD;
     public PlayerManager playerManager;
 
     bool gamePaused = false;

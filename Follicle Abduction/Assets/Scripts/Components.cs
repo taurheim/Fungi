@@ -8,8 +8,9 @@ public class Components : MonoBehaviour {
 	Behaviour[] components;
 
 
-	public Behaviour[] getComponents()
+	public Behaviour[] GetComponentList()
 	{
+		Debug.Log("Test");
 		return components;
 	}
 }

@@ -4,6 +4,9 @@ using System;
 
 public class NetworkClient
 {
+
+    public static bool active;
+
     public virtual string SendServerRequest(string request)
     {
         // Seems like our example server is offline, but this method is still testable

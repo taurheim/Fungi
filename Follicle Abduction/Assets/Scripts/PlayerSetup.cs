@@ -35,31 +35,18 @@ public class PlayerSetup : NetworkBehaviour {
 
 		if (isLocalPlayer) 
 		{
-			if (playerIsA) 
-			{
-				playerA_object = GameObject.FindGameObjectWithTag("playerA");
+			playerA_object = GameObject.FindGameObjectWithTag("playerA");
+			playerA_components = playerA_object.GetComponent<Components> ().GetComponentList();
+			playerB_object = GameObject.FindGameObjectWithTag("playerB");
+			playerB_components = playerB_object.GetComponent<Components> ().GetComponentList();
 
-				playerA_components = playerA_object.GetComponent<Components> ().getComponents();
-
-				for (int i = 0; i < playerA_components.Length; i++) 
-				{
-					playerA_components [i].enabled = true;
-					//Debug.Log ("enabled A");
-				}
-
-			} 
-			else if (playerIsB) 
-			{
-				playerB_object = GameObject.FindGameObjectWithTag("playerB");
-				playerB_components = playerB_object.GetComponent<Components> ().getComponents();
-
-				for (int i = 0; i < playerB_components.Length; i++) 
-				{
-					playerB_components [i].enabled = true;
-					//Debug.Log ("enabled B");
-				}
+			for (int i=0;i<playerA_components.Length;i++){
+				playerA_components[i].enabled = playerIsA;
 			}
 
+			for (int i=0;i<playerB_components.Length;i++){
+				playerB_components[i].enabled = playerIsB;
+			}
 		}
 	}
 

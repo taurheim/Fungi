@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
 
 public class MainMenu : MonoBehaviour
 {
@@ -56,12 +58,16 @@ public class MainMenu : MonoBehaviour
     {
         if (scene.Equals("Demo_level"))
         {
-            SceneManager.LoadScene("Demo_level");
+            Dictionary<string, string> levelParams = new Dictionary<string, string>() {
+                { "playerRole", getPlayerRole()},
+                { "isDebug", "true"}
+            };
+            LevelManager.Load("Demo_level", levelParams);
             return true;
         }
         else if (scene.Equals("Level1"))
         {
-            SceneManager.LoadScene("Level1");
+            LevelManager.Load("Level1");
             return true;
         }
         else
