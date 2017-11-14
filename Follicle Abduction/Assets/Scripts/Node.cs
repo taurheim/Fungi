@@ -36,21 +36,7 @@ public class Node : MonoBehaviour  {
 		MapVisibility.setVisibilityForTag (tagForHiddenObjects, false);
 
 		// Draw a line from this node to all children
-		nodeLines = new LineRenderer[childNodes.Length];
-		
-		for(int i=0;i<nodeLines.Length;i++){
-			LineRenderer line = this.gameObject.AddComponent<LineRenderer>();
-			line.startWidth = 0.2F;
-			line.endWidth = 0.2F;
-			line.positionCount = 2;
-			line.SetPosition(0, gameObject.transform.position);
-			line.SetPosition(1, childNodes[i].getPosition());
-      		line.material = new Material (Shader.Find("Particles/Additive"));
-			line.startColor = Color.red;
-			line.endColor = Color.red;
-
-			nodeLines[i] = line;
-		}
+		drawLinesToChildren();
 	}
 	
 	// Update is called once per frame
@@ -129,6 +115,54 @@ public class Node : MonoBehaviour  {
 		if(Input.GetKeyUp(hackKey)) {
 			isHacking = false;
 		}
+	}
+
+	void drawLinesToChildren() {
+		// The maximum number of lines is 2*child nodes
+		nodeLines = new LineRenderer[childNodes.Length*2];
+		
+		for(int i=0;i<childNodes.Length;i++){
+			Node childNode = childNodes[i];
+			Vector3 parentPosition = this.getPosition();
+			Vector3 childPosition = childNode.getPosition();
+
+			// TODO magic #s, strings, duplication
+			// TODO maybe make this in a range instead of exact?
+			// TODO is there a better way than creating a new game object every time? Can we store them somewhere?
+			if(parentPosition.x == childPosition.x || parentPosition.y == childPosition.y) {
+				// Only need one line
+				GameObject lineObject = new GameObject();
+				lineObject.layer = LayerMask.NameToLayer("Minimap");
+				nodeLines[i] = makeLine(lineObject, parentPosition, childPosition);
+			} else {
+				// Vertical line
+				// TODO draw different lines first and second based on positions?
+				// TODO make sure lines don't cross?
+				GameObject verticalLineObject = new GameObject();
+				GameObject horizontalLineObject = new GameObject();
+				verticalLineObject.layer = LayerMask.NameToLayer("Minimap");
+				horizontalLineObject.layer = LayerMask.NameToLayer("Minimap");
+				// Vertical then horizontal
+				Vector3 midPoint = new Vector3(parentPosition.x, childPosition.y, childPosition.z);
+				nodeLines[i] = makeLine(verticalLineObject, parentPosition, midPoint);
+				nodeLines[i+1]  = makeLine(horizontalLineObject, midPoint, childPosition);
+			}
+		}
+	}
+
+	LineRenderer makeLine(GameObject obj, Vector3 startPosition, Vector3 endPosition) {
+		// TODO move all this to constants at the top
+		LineRenderer line = obj.AddComponent<LineRenderer>();
+		line.startWidth = 0.2F;
+		line.endWidth = 0.2F;
+		line.positionCount = 2;
+		line.SetPosition(0, startPosition);
+		line.SetPosition(1, endPosition);
+		line.material = new Material (Shader.Find("Particles/Additive"));
+		line.startColor = Color.red;
+		line.endColor = Color.red;
+
+		return line;
 	}
 
 }
