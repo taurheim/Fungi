@@ -3623,6 +3623,11 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114743804286887600, guid: a33bc2b2ada2b5944a436da6136cdaad,
+        type: 2}
+      propertyPath: state
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a33bc2b2ada2b5944a436da6136cdaad, type: 2}
   m_IsPrefabParent: 0
@@ -6108,9 +6113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e359579db563b44182ba2c5a8449aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
   hackKey: x
-  isUnlocked: 1
-  isCompleted: 0
   childNodes: []
   tagForHiddenObjects: securityCam1
   progressBar: {fileID: 844771451}
