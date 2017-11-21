@@ -42,12 +42,19 @@ public class Node : MonoBehaviour  {
 		// Draw a line from this node to all children
 		drawLinesToChildren();
 	}
+
+	void OnMouseDown() {
+		isHacking = true;
+	}
+
+	void OnMouseUp() {
+		isHacking = false;
+	}
 	
 	// Update is called once per frame
 	void Update () {
 		// If the node is locked, do nothing
 		if(state == NodeState.UNLOCKED) {
-			checkForHackKey();
 
 			if(isHacking && percentComplete < 100f) {
 				percentComplete++;
@@ -63,14 +70,14 @@ public class Node : MonoBehaviour  {
 		} else if(state == NodeState.COMPLETED) {
 			// Mark all connections as green, fade them out
 			Color currentColor = progressBar.GetComponent<MeshRenderer>().material.color;
-			Color newColor = new Color(0F, 255F, 0F, currentColor.a - (fadePerSecond * Time.deltaTime));
-			Debug.Log(newColor.a);
+			Color newColor = new Color(0F, 1.0F, 0F, currentColor.a - (fadePerSecond * Time.deltaTime));
 
 			foreach(LineRenderer line in nodeLines){
 				line.startColor = newColor;
 				line.endColor = newColor;
 			}
 			progressBar.GetComponent<MeshRenderer>().material.color = newColor;
+			GetComponent<MeshRenderer>().enabled = false;
 
 			// Finally, hide the node from view
 			if(newColor.a <= 0) {
@@ -102,19 +109,6 @@ public class Node : MonoBehaviour  {
 			for(int i=0;i<childNodes.Length;i++){
 				childNodes[i].unlockNode();
 			}
-		}
-	}
-
-	//TODO determine if this is actually the best way of doing this. Maybe polling for the key with a timer on increments is better?
-	// If we press the key, start hacking
-	void checkForHackKey() {
-		if (Input.GetKeyDown(hackKey)){
-			isHacking = true;
-		}
-
-		// When we let go of the key, stop hacking
-		if(Input.GetKeyUp(hackKey)) {
-			isHacking = false;
 		}
 	}
 
