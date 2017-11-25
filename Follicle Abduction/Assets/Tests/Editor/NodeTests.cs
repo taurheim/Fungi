@@ -16,43 +16,38 @@ public class NodeTests {
 		}
 		parentNode.childNodes = childNodes;
 
-		parentNode.isUnlocked = false;
-		parentNode.isCompleted = false;
+		parentNode.state = NodeState.LOCKED;
+
 		return parentNode;
 	}
 
 	[Test]
 	public void UnlockNode() {
 		Node parentNode = SetupWithChildren(0);
-		Assert.False(parentNode.isUnlocked);
-		Assert.False(parentNode.isCompleted);
+		Assert.Equals(parentNode.state, NodeState.LOCKED);
 
 		parentNode.unlockNode();
 
-		Assert.True(parentNode.isUnlocked);
-		Assert.False(parentNode.isCompleted);
+		Assert.Equals(parentNode.state, NodeState.UNLOCKED);
 	}
 
 	[Test]
 	public void CompleteNode() {
 		Node parentNode = SetupWithChildren(0);
-		Assert.False(parentNode.isUnlocked);
-		Assert.False(parentNode.isCompleted);
+		Assert.Equals(parentNode.state, NodeState.LOCKED);
 
 		parentNode.unlockNode();
 		parentNode.completeNode();
 
-		Assert.True(parentNode.isUnlocked);
-		Assert.True(parentNode.isCompleted);
+		Assert.Equals(parentNode.state, NodeState.COMPLETED);
 	}
 
 	[Test]
 	public void CantCompleteLockedNode() {
 		Node parentNode = SetupWithChildren(0);
+		Assert.Equals(parentNode.state, NodeState.LOCKED);
 		parentNode.completeNode();
-
-		Assert.False(parentNode.isCompleted);
-		Assert.False(parentNode.isUnlocked);
+		Assert.Equals(parentNode.state, NodeState.LOCKED);
 	}
 
 	[Test]
