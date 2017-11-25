@@ -46,7 +46,7 @@ public class MainMenu : MonoBehaviour
         }
         else if (levelDropdown.value == 2)
         {
-            //load level 2
+            loadScene("LevelA");
         }
         else if (levelDropdown.value == 3)
         {
@@ -70,6 +70,16 @@ public class MainMenu : MonoBehaviour
             LevelManager.Load("Level1");
             return true;
         }
+        else if (scene.Equals("LevelA"))
+        {
+            Dictionary<string, string> levelParams = new Dictionary<string, string>() {
+                { "playerRole", getPlayerRole()},
+                { "isDebug", "true"}
+            };
+            LevelManager.Load("LevelA", levelParams);
+            return true;
+        }
+
         else
         {
             return false;
