@@ -7,6 +7,7 @@ public class DoorLogic : MonoBehaviour {
     private bool isLocked; // Unused atm, maybe unnecessary
     private bool isOpen;
 
+
     // Select these in Unity UI
     public GameObject door;
 
@@ -18,6 +19,7 @@ public class DoorLogic : MonoBehaviour {
 	void Start () {
         isLocked = false;
         this.isOpen = false;
+
     }
 	
 	void Update () {
