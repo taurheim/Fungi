@@ -47,7 +47,7 @@ public class Patrol : MonoBehaviour {
         if (currChaseTarget != null) {
 
             // If target is within reach, capture and resume patrolling
-            if (Vector3.Distance(this.transform.position, currChaseTarget.transform.position) < 2) {
+            if (Vector3.Distance(this.transform.position, currChaseTarget.transform.position) < 2.5) {
                 Capture(currChaseTarget);
                 ResumePatrol();
             }
@@ -59,9 +59,8 @@ public class Patrol : MonoBehaviour {
             }
 
             // If patroller reaches last known location, give up and return to patrolling
-            else if (Vector3.Distance(this.transform.position, lastKnownTargetLoc) < 1.5) {
+            else if (Vector3.Distance(this.transform.position, lastKnownTargetLoc) < 2) {
                 ResumePatrol();
-                this.transform.position = new Vector3(0, 0, 0);
             }
 
             // If sight of target has been lost, move towards last known location

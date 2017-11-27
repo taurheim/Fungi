@@ -569,6 +569,21 @@ Prefab:
       propertyPath: navMesh.Array.data[6].z
       value: 29.01
       objectReference: {fileID: 0}
+    - target: {fileID: 114654279767767806, guid: 720132074ec4ff14caa3c877ee09a400,
+        type: 2}
+      propertyPath: detectAngle
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 114654279767767806, guid: 720132074ec4ff14caa3c877ee09a400,
+        type: 2}
+      propertyPath: detectRange
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 195640911966357650, guid: 720132074ec4ff14caa3c877ee09a400,
+        type: 2}
+      propertyPath: m_AngularSpeed
+      value: 150
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 720132074ec4ff14caa3c877ee09a400, type: 2}
   m_IsPrefabParent: 0
