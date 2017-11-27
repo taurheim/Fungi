@@ -55,7 +55,6 @@ public class PlayerManager : NetworkBehaviour {
 		bool isDebug = LevelManager.getParam("isDebug") == "true";
 
 		if(isDebug) {
-			Debug.Log("Loading game as " + role);
 			GameObject playerAObject = GameObject.FindGameObjectWithTag(playerA_tag);
 			GameObject playerBObject = GameObject.FindGameObjectWithTag(playerB_tag);
 
