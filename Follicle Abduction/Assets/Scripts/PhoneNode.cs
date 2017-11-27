@@ -39,17 +39,29 @@ public class PhoneNode : MonoBehaviour {
 	}
 
 	void Ring() {
-		source.PlayOneShot (ring);
-		ringing = true;
-		foreach (Patrol guard in guards) {
-			guard.AddSecondaryTarget (transform.parent.gameObject);
+		if (!ringing) {
+			source.PlayOneShot (ring);
+			ringing = true;
+			foreach (Patrol guard in guards) {
+				GameObject parent = transform.parent.gameObject;
+				print (guard);
+				if (parent) {
+					guard.AddSecondaryTarget (parent);
+				}
+			}
 		}
 	}
 
 	void StopRinging () {
-		ringing = false;
-		foreach (Patrol guard in guards) {
-			guard.RemoveSecondaryTarget (transform.parent.gameObject);
+		if (ringing) {
+			ringing = false;
+			foreach (Patrol guard in guards) {
+				GameObject parent = transform.parent.gameObject;
+				print (parent);
+				if (parent) {
+					guard.RemoveSecondaryTarget (parent);
+				}
+			}
 		}
 	}
 }

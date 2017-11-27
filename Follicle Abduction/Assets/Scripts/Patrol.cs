@@ -18,11 +18,15 @@ public class Patrol : MonoBehaviour {
 
     // Array of target objects to look for and try to capture
     public GameObject[] detectTargets;
-	public ArrayList secondaryTargets; //distracting environmental things that can't be captured (ringing phones, music, etc.)
+	public List <GameObject> secondaryTargets = new List<GameObject> (); //distracting environmental things that can't be captured (ringing phones, music, etc.)
 
     public Vector3 currDestination;
     public GameObject currChaseTarget;
     public Vector3 lastKnownTargetLoc;
+
+    public GameObject artModel;
+    private string currAnimation;
+    public Vector3 sendToOnCapture;
 
     void NavigateToNextWaypoint() {
 
@@ -33,44 +37,52 @@ public class Patrol : MonoBehaviour {
 
     void Start() {
         agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
-		secondaryTargets = new ArrayList ();
+		secondaryTargets = new List<GameObject> ();
+        currAnimation = "";
         NavigateToNextWaypoint();
+        artModel.GetComponent<Animation>().Play("walk_cycle", PlayMode.StopAll);
+
     }
 
     void Update() {
         // If currently chasing a target
         if (currChaseTarget != null) {
 
-            // If target is within reach, capture and resume patrolling
-			if (Vector3.Distance (this.transform.position, currChaseTarget.transform.position) < 2) {
-				if (currChaseTarget.CompareTag ("playerA")) {
+			if (currChaseTarget.CompareTag ("playerA")) {
+				if (Vector3.Distance (this.transform.position, currChaseTarget.transform.position) < 2.5f) {
 					Capture (currChaseTarget);
 					ResumePatrol ();
-				} else {
-					//do nothing! just stay put
 				}
-			} 
-			//If a secondaryTarget (not player) we assume it is a sound? so dont need detect... will clean up this later
-			else if (!currChaseTarget.CompareTag ("playerA")) {
-				lastKnownTargetLoc = currChaseTarget.transform.position;
-				currDestination = currChaseTarget.transform.position;
+
+	            // Check if target is still in sight, if so, note location and keep chasing
+	            else if (Detect (currChaseTarget)) {
+					lastKnownTargetLoc = currChaseTarget.transform.position;
+					currDestination = currChaseTarget.transform.position;
+				}
+
+				// If patroller reaches last known location, give up and return to patrolling
+				else if (Vector3.Distance(this.transform.position, lastKnownTargetLoc) < 2) {
+					ResumePatrol();
+				}
+
+				// If sight of target has been lost, move towards last known location
+				else {
+					currDestination = lastKnownTargetLoc;
+				}
+			} else {
+				//If a secondaryTarget (not player) we assume it is a sound? so dont need detect... will clean up this later
+				if (Vector3.Distance (this.transform.position, currChaseTarget.transform.position) < 5.0f) {
+					agent.isStopped = true;
+					agent.speed = 0.0f;
+					artModel.GetComponent<Animation>().Play("look_around", PlayMode.StopAll);
+				}
+				else {
+					lastKnownTargetLoc = currChaseTarget.transform.position;
+					currDestination = currChaseTarget.transform.position;
+				}
 			}
 
-            // Check if target is still in sight, if so, note location and keep chasing
-            else if (Detect(currChaseTarget)) {
-                lastKnownTargetLoc = currChaseTarget.transform.position;
-                currDestination = currChaseTarget.transform.position;
-            }
-
-            // If patroller reaches last known location, give up and return to patrolling
-            else if (Vector3.Distance(this.transform.position, lastKnownTargetLoc) < 1.5) {
-                ResumePatrol();
-            }
-
-            // If sight of target has been lost, move towards last known location
-            else {
-                currDestination = lastKnownTargetLoc;
-            }
+            
         }
 
         // If not currently chasing, simply patrol to next waypoint
@@ -96,12 +108,14 @@ public class Patrol : MonoBehaviour {
 
         // Might have to reduce how often this is called (only when destination changes)
         MoveToDestination();
+        
     }
 
     void MoveToDestination() {
         if (agent != null) {
             agent.isStopped = false;
             agent.SetDestination(currDestination);
+            
         }
     }
 
@@ -124,10 +138,11 @@ public class Patrol : MonoBehaviour {
    public void Capture(GameObject target) {
 	        // Placeholder effect, not sure how to do gameover yet
         if (target.transform.parent != null) {
-            target.transform.parent.gameObject.transform.position = new Vector3(-11.8f, -11.01f, 0.7f);
+            target.transform.parent.gameObject.transform.position = sendToOnCapture;
+            target.transform.position = sendToOnCapture;
         }
         else {
-            target.transform.position = new Vector3(-11.8f, -11.01f, 0.7f);
+            target.transform.position = sendToOnCapture;
         }
         currChaseTarget = null;
     }
@@ -139,6 +154,8 @@ public class Patrol : MonoBehaviour {
         // Increase agility, zoomzoom
         agent.angularSpeed = 500;
         agent.speed = 5f;
+        artModel.GetComponent<Animation>().Play("run_cycle", PlayMode.StopAll);
+        //setAnimation();
     }
 
     void ResumePatrol() {
@@ -150,11 +167,27 @@ public class Patrol : MonoBehaviour {
         if (agent != null) {
             agent.angularSpeed = 120;
             agent.speed = 3.5f;
+            artModel.GetComponent<Animation>().Play("walk_cycle", PlayMode.StopAll);
+        }
+    }
+
+    // Sets current animation based on navMesh speed
+    void setAnimation() {
+        if (0 < agent.velocity.magnitude && agent.velocity.magnitude < 5 && currAnimation != "walk_cycle") {
+            artModel.GetComponent<Animation>().Play("walk_cycle", PlayMode.StopAll);
+            currAnimation = "walk_cycle";
+        }
+        else if (5 <= agent.velocity.magnitude && currAnimation != "run_cycle") {
+            artModel.GetComponent<Animation>().Play("run_cycle", PlayMode.StopAll);
+            currAnimation = "run_cycle";
+        }
+        else if (currAnimation != "look_around") {
+            artModel.GetComponent<Animation>().Play("look_around", PlayMode.StopAll);
+            currAnimation = "look_around";
         }
     }
 
 	public void AddSecondaryTarget(GameObject newTarget) {
-		print (secondaryTargets);
 		secondaryTargets.Add (newTarget);
 	}
 
@@ -165,4 +198,5 @@ public class Patrol : MonoBehaviour {
 		}
 		secondaryTargets.Remove (target);
 	}
+		
 }
