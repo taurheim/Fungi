@@ -38,7 +38,7 @@ public class ButtonPress : MonoBehaviour
                 if (hit.collider.tag == button.tag)
                 {
                     isBeingPressed = true;
-                   //print(button.tag + " pressed");
+                    Debug.Log(button.tag + " pressed");
                 }
             }
         }
