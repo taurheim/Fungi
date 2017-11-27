@@ -44,10 +44,18 @@ public class Node : MonoBehaviour  {
 	}
 
 	void OnMouseDown() {
-		isHacking = true;
+		StartHacking();
 	}
 
 	void OnMouseUp() {
+		StopHacking();
+	}
+
+	public void StartHacking() {
+		isHacking = true;
+	}
+
+	public void StopHacking() {
 		isHacking = false;
 	}
 	
