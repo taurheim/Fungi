@@ -18,6 +18,7 @@ public class Patrol : MonoBehaviour {
 
     // Array of target objects to look for and try to capture
     public GameObject[] detectTargets;
+	public ArrayList secondaryTargets; //distracting environmental things that can't be captured (ringing phones, music, etc.)
 
     public Vector3 currDestination;
     public GameObject currChaseTarget;
@@ -32,7 +33,7 @@ public class Patrol : MonoBehaviour {
 
     void Start() {
         agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
-  
+		secondaryTargets = new ArrayList ();
         NavigateToNextWaypoint();
     }
 
@@ -41,10 +42,19 @@ public class Patrol : MonoBehaviour {
         if (currChaseTarget != null) {
 
             // If target is within reach, capture and resume patrolling
-            if (Vector3.Distance(this.transform.position, currChaseTarget.transform.position) < 2) {
-                Capture(currChaseTarget);
-                ResumePatrol();
-            }
+			if (Vector3.Distance (this.transform.position, currChaseTarget.transform.position) < 2) {
+				if (currChaseTarget.CompareTag ("playerA")) {
+					Capture (currChaseTarget);
+					ResumePatrol ();
+				} else {
+					//do nothing! just stay put
+				}
+			} 
+			//If a secondaryTarget (not player) we assume it is a sound? so dont need detect... will clean up this later
+			else if (!currChaseTarget.CompareTag ("playerA")) {
+				lastKnownTargetLoc = currChaseTarget.transform.position;
+				currDestination = currChaseTarget.transform.position;
+			}
 
             // Check if target is still in sight, if so, note location and keep chasing
             else if (Detect(currChaseTarget)) {
@@ -70,11 +80,18 @@ public class Patrol : MonoBehaviour {
             }
 
             // Look for all targets in target array, if any found, begin chase
+			bool detectedPrimaryTarget = false;
             foreach (GameObject target in detectTargets) {
                 if (Detect(target)) {
                     Chase(target);
+					detectedPrimaryTarget = true;
                 }
             }
+			if (!detectedPrimaryTarget) {
+				foreach (GameObject target in secondaryTargets) {
+					Chase (target);
+				}
+			}
         }
 
         // Might have to reduce how often this is called (only when destination changes)
@@ -105,15 +122,13 @@ public class Patrol : MonoBehaviour {
 
     // After successfully catching up to player, capture
    public void Capture(GameObject target) {
-
-        // Placeholder effect, not sure how to do gameover yet
+	        // Placeholder effect, not sure how to do gameover yet
         if (target.transform.parent != null) {
             target.transform.parent.gameObject.transform.position = new Vector3(-11.8f, -11.01f, 0.7f);
         }
         else {
             target.transform.position = new Vector3(-11.8f, -11.01f, 0.7f);
         }
-
         currChaseTarget = null;
     }
 
@@ -137,4 +152,17 @@ public class Patrol : MonoBehaviour {
             agent.speed = 3.5f;
         }
     }
+
+	public void AddSecondaryTarget(GameObject newTarget) {
+		print (secondaryTargets);
+		secondaryTargets.Add (newTarget);
+	}
+
+	public void RemoveSecondaryTarget(GameObject target) {
+		if (target == currChaseTarget) {
+			currChaseTarget = null;
+			ResumePatrol ();
+		}
+		secondaryTargets.Remove (target);
+	}
 }
