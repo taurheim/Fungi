@@ -19,6 +19,6 @@ public class Symbol_Match_Door_Puzzle : MonoBehaviour {
 	// Check if the correct button is pressed, if so, open the door
 	void Update () {
         //Debug.Log(CorrectButtonScript.getButtonStatus());
-        if (CorrectButtonScript.getButtonStatus()) { DoorScript.startOpening(); }
+        //(CorrectButtonScript.getButtonStatus()) { DoorScript.startOpening(); }
 	}
 }

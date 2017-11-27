@@ -23,6 +23,10 @@ public class Patrol : MonoBehaviour {
     public GameObject currChaseTarget;
     public Vector3 lastKnownTargetLoc;
 
+    public GameObject artModel;
+    private string currAnimation;
+    public Vector3 sendToOnCapture;
+
     void NavigateToNextWaypoint() {
 
         // Choose a new waypoint
@@ -32,8 +36,10 @@ public class Patrol : MonoBehaviour {
 
     void Start() {
         agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
-  
+        currAnimation = "";
         NavigateToNextWaypoint();
+        artModel.GetComponent<Animation>().Play("walk_cycle", PlayMode.StopAll);
+
     }
 
     void Update() {
@@ -41,7 +47,7 @@ public class Patrol : MonoBehaviour {
         if (currChaseTarget != null) {
 
             // If target is within reach, capture and resume patrolling
-            if (Vector3.Distance(this.transform.position, currChaseTarget.transform.position) < 2) {
+            if (Vector3.Distance(this.transform.position, currChaseTarget.transform.position) < 2.5f) {
                 Capture(currChaseTarget);
                 ResumePatrol();
             }
@@ -53,7 +59,7 @@ public class Patrol : MonoBehaviour {
             }
 
             // If patroller reaches last known location, give up and return to patrolling
-            else if (Vector3.Distance(this.transform.position, lastKnownTargetLoc) < 1.5) {
+            else if (Vector3.Distance(this.transform.position, lastKnownTargetLoc) < 2) {
                 ResumePatrol();
             }
 
@@ -79,12 +85,14 @@ public class Patrol : MonoBehaviour {
 
         // Might have to reduce how often this is called (only when destination changes)
         MoveToDestination();
+        
     }
 
     void MoveToDestination() {
         if (agent != null) {
             agent.isStopped = false;
             agent.SetDestination(currDestination);
+            
         }
     }
 
@@ -108,10 +116,11 @@ public class Patrol : MonoBehaviour {
 
         // Placeholder effect, not sure how to do gameover yet
         if (target.transform.parent != null) {
-            target.transform.parent.gameObject.transform.position = new Vector3(-11.8f, -11.01f, 0.7f);
+            target.transform.parent.gameObject.transform.position = sendToOnCapture;
+            target.transform.position = sendToOnCapture;
         }
         else {
-            target.transform.position = new Vector3(-11.8f, -11.01f, 0.7f);
+            target.transform.position = sendToOnCapture;
         }
 
         currChaseTarget = null;
@@ -124,6 +133,8 @@ public class Patrol : MonoBehaviour {
         // Increase agility, zoomzoom
         agent.angularSpeed = 500;
         agent.speed = 5f;
+        artModel.GetComponent<Animation>().Play("run_cycle", PlayMode.StopAll);
+        //setAnimation();
     }
 
     void ResumePatrol() {
@@ -135,6 +146,23 @@ public class Patrol : MonoBehaviour {
         if (agent != null) {
             agent.angularSpeed = 120;
             agent.speed = 3.5f;
+            artModel.GetComponent<Animation>().Play("walk_cycle", PlayMode.StopAll);
+        }
+    }
+
+    // Sets current animation based on navMesh speed
+    void setAnimation() {
+        if (0 < agent.velocity.magnitude && agent.velocity.magnitude < 5 && currAnimation != "walk_cycle") {
+            artModel.GetComponent<Animation>().Play("walk_cycle", PlayMode.StopAll);
+            currAnimation = "walk_cycle";
+        }
+        else if (5 <= agent.velocity.magnitude && currAnimation != "run_cycle") {
+            artModel.GetComponent<Animation>().Play("run_cycle", PlayMode.StopAll);
+            currAnimation = "run_cycle";
+        }
+        else if (currAnimation != "look_around") {
+            artModel.GetComponent<Animation>().Play("look_around", PlayMode.StopAll);
+            currAnimation = "look_around";
         }
     }
 }
