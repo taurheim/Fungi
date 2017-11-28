@@ -26,7 +26,7 @@ public class ClickableRenderTexture : MonoBehaviour {
 				GameObject collidedWith = portalHit.collider.gameObject;
 
 				if(collidedWith.GetComponent<Node>()){
-					collidedWith.GetComponent<Node>().StartHacking();
+					collidedWith.GetComponent<Node>().HandleMouseDown();
 				}
 			}
 		}
@@ -49,7 +49,7 @@ public class ClickableRenderTexture : MonoBehaviour {
 				GameObject collidedWith = portalHit.collider.gameObject;
 
 				if(collidedWith.GetComponent<Node>()){
-					collidedWith.GetComponent<Node>().StopHacking();
+					collidedWith.GetComponent<Node>().HandleMouseUp();
 				}
 			}
 		}

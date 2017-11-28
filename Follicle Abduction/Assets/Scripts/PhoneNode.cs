@@ -2,40 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PhoneNode : MonoBehaviour {
+public class PhoneNode : Node {
 
 	public AudioClip ring;
+	public Patrol[] guards;
 
-	private Patrol[] guards;
 	private AudioSource source;
-	private Node node;
 	private GameObject phone;
 	private bool ringing;
 
 	// Use this for initialization
 	void Start () {
-		node = GetComponent<Node> ();
 		source = GetComponent<AudioSource> ();
-		guards = Object.FindObjectsOfType<Patrol> ();
 		ringing = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		//temp while waiting for ray-picking to work
-		if ((node.state == NodeState.UNLOCKED) && (Input.GetKeyUp (KeyCode.P))) {
-			Ring ();
-		} else if (ringing) {
-			if (!source.isPlaying) {
-				StopRinging ();
-			}
+		if (ringing && !source.isPlaying) {
+			StopRinging ();
+		}
+		if (Input.GetKeyUp (KeyCode.P)) { //for debugging in human mode!
+			StartAction ();
 		}
 	}
 
-	void OnMouseDown() {
-		if (node.state == NodeState.UNLOCKED) {
-			source.PlayOneShot (ring);
+	public override void StartAction() {
+		if (state == NodeState.UNLOCKED) {
+			Ring ();
 		}
+	}
+
+	public override void EndAction() {
+		return;
 	}
 
 	void Ring() {
