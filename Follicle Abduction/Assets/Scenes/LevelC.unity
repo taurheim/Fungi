@@ -1041,7 +1041,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4211950844049504, guid: 720132074ec4ff14caa3c877ee09a400, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 60.5
+      value: 62
       objectReference: {fileID: 0}
     - target: {fileID: 4211950844049504, guid: 720132074ec4ff14caa3c877ee09a400, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1049,7 +1049,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4211950844049504, guid: 720132074ec4ff14caa3c877ee09a400, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 38.3
+      value: 42.5
       objectReference: {fileID: 0}
     - target: {fileID: 4211950844049504, guid: 720132074ec4ff14caa3c877ee09a400, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1218,6 +1218,11 @@ Prefab:
         type: 2}
       propertyPath: navMesh.Array.data[1].z
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 114654279767767806, guid: 720132074ec4ff14caa3c877ee09a400,
+        type: 2}
+      propertyPath: navMesh.Array.data[1].y
+      value: -14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 720132074ec4ff14caa3c877ee09a400, type: 2}

@@ -36,6 +36,7 @@ public class RadioNode : Node {
 			StopPlayingCorrectSong ();
 		}
 		if(showingInputField) {
+			
 			InputField field = inputField.GetComponent<InputField> ();
 			if (Input.GetKeyUp (KeyCode.Return)) {
 				print ("hit enter");
@@ -47,10 +48,14 @@ public class RadioNode : Node {
 				}
 			} else if (Input.GetKeyDown (KeyCode.Backspace)) {
 				print("backspace key");
-				field.text = field.text.Remove (field.text.Length - 1);
+				if (field.text.Length > 0) {
+					field.text = field.text.Remove (field.text.Length - 1);
+				}
+
 			} else {
 				field.text += Input.inputString;
 			}
+			print ("TEXT FIELD: " + field.text);
 		} else if (Input.GetKeyDown (KeyCode.R)) { //for debugging in human mode!
 			PlayCorrectSong ();
 		}
