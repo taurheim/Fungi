@@ -10,7 +10,6 @@ public class Components : MonoBehaviour {
 
 	public Behaviour[] GetComponentList()
 	{
-		Debug.Log("Test");
 		return components;
 	}
 }
