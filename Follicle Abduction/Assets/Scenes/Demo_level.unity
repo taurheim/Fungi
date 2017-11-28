@@ -2883,6 +2883,7 @@ MonoBehaviour:
   correctSong: {fileID: 8300000, guid: 66e9fa3f5e0c04afcb004fea621a961b, type: 3}
   wrongSong: {fileID: 8300000, guid: 5980558661b874f58970f46cdf14fe04, type: 3}
   songLovingGuards: []
+  inputField: {fileID: 1286413498}
 --- !u!82 &903601782
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3969,7 +3970,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1286413499
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3978,7 +3979,7 @@ RectTransform:
   m_GameObject: {fileID: 1286413498}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -71}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.67024696, y: 1, z: 1}
   m_Children:
   - {fileID: 1725043605}
   - {fileID: 1632295611}
@@ -3987,7 +3988,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -65, y: -148}
+  m_AnchoredPosition: {x: 167, y: -115}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1286413500
@@ -5318,6 +5319,11 @@ Prefab:
       propertyPath: m_AssetId.i14
       value: 164
       objectReference: {fileID: 0}
+    - target: {fileID: 114654279767767806, guid: 720132074ec4ff14caa3c877ee09a400,
+        type: 2}
+      propertyPath: detectTargets.Array.data[0]
+      value: 
+      objectReference: {fileID: 1920488953}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 720132074ec4ff14caa3c877ee09a400, type: 2}
   m_IsPrefabParent: 0
@@ -5517,7 +5523,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enter text...
+  m_Text: Enter song name.
 --- !u!222 &1725043607
 CanvasRenderer:
   m_ObjectHideFlags: 0

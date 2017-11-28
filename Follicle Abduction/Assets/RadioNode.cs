@@ -15,6 +15,7 @@ public class RadioNode : Node {
 	private GameObject radio;
 	private bool playing;
 	private bool choseCorrectSong;
+	private bool showingInputField;
 
 
 	// Use this for initialization
@@ -25,6 +26,7 @@ public class RadioNode : Node {
 		InputField field = inputField.GetComponent<InputField>();
 		field.onValueChanged.AddListener(delegate {ValueChangeCheck(); });
 		field.interactable = true;
+		showingInputField = false;
 	}
 
 	// Invoked when the value of the text field changes.
@@ -38,6 +40,9 @@ public class RadioNode : Node {
 		//temp while waiting for ray-picking to work
 		if (playing && !source.isPlaying) {
 			StopPlayingCorrectSong ();
+		}
+		if(showingInputField) {
+			//
 		}
 	}
 
@@ -60,6 +65,7 @@ public class RadioNode : Node {
 			InputField field = inputField.GetComponent<InputField>();
 			field.ActivateInputField ();
 			field.interactable = true;
+			showingInputField = true;
 		}
 	}
 

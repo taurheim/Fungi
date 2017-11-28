@@ -24,11 +24,14 @@ public class PhoneNode : Node {
 		if (ringing && !source.isPlaying) {
 			StopRinging ();
 		}
+		if (Input.GetKeyUp (KeyCode.P)) {
+			StartAction ();
+		}
 	}
 
 	public override void StartAction() {
 		if (state == NodeState.UNLOCKED) {
-			source.PlayOneShot (ring);
+			Ring ();
 		}
 	}
 
