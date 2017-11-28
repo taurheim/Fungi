@@ -724,8 +724,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1751375240013264}
-  m_LocalRotation: {x: -0, y: 0.9999991, z: -0, w: -0.0013309359}
-  m_LocalPosition: {x: -1.5, y: -14, z: 49}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.651739, y: -14, z: 49.004765}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4782993850225218}
@@ -1309,7 +1309,7 @@ MonoBehaviour:
   childNodes: []
   tagForHiddenObjects: 
   data:
-  - '"Fur Elise is the best song ever"'
+  - I am an alien, grrr!
   selected: 0
   progressBar: {fileID: 0}
   outline: {fileID: 1230380321994674}
@@ -1358,6 +1358,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navMesh:
   - {x: -1.5, y: -14, z: 49}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 1.51, y: -14, z: 60.1}
+  - {x: 1.51, y: -14, z: 29.01}
+  - {x: 16.37, y: -14, z: 29.01}
   detectAngle: 90
   detectRange: 8
   detectTargets:
