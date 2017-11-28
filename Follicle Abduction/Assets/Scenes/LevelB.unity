@@ -4685,7 +4685,6 @@ GameObject:
   - component: {fileID: 798161932}
   - component: {fileID: 798161935}
   - component: {fileID: 798161934}
-  - component: {fileID: 798161933}
   m_Layer: 0
   m_Name: GIC View Camera
   m_TagString: Untagged
@@ -4729,13 +4728,6 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
---- !u!81 &798161933
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 798161931}
-  m_Enabled: 1
 --- !u!92 &798161934
 Behaviour:
   m_ObjectHideFlags: 0
