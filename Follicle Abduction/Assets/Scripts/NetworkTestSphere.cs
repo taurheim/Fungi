@@ -7,7 +7,6 @@ public class NetworkTestSphere : NetworkBehaviour {
 
 	public Material mat1,mat2;
 
-	[SyncVar]
 	int currentMat = 1;
 
 	// Use this for initialization
