@@ -35,7 +35,7 @@ public class RadioNode : Node {
 		if (playing && !source.isPlaying) {
 			StopPlayingCorrectSong ();
 		}
-		if(showingInputField) {
+		if(showingInputField && isServer) {
 			
 			InputField field = inputField.GetComponent<InputField> ();
 			if (Input.GetKeyUp (KeyCode.Return)) {
