@@ -385,7 +385,6 @@ GameObject:
   - component: {fileID: 60747308}
   - component: {fileID: 60747307}
   - component: {fileID: 60747306}
-  - component: {fileID: 60747305}
   m_Layer: 8
   m_Name: waitingCamera
   m_TagString: Untagged
@@ -393,13 +392,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &60747305
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 60747304}
-  m_Enabled: 1
 --- !u!92 &60747306
 Behaviour:
   m_ObjectHideFlags: 0
@@ -6371,7 +6363,6 @@ GameObject:
   - component: {fileID: 614358029}
   - component: {fileID: 614358032}
   - component: {fileID: 614358031}
-  - component: {fileID: 614358030}
   m_Layer: 0
   m_Name: GIC View Camera
   m_TagString: Untagged
@@ -6415,13 +6406,6 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
---- !u!81 &614358030
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 614358028}
-  m_Enabled: 1
 --- !u!92 &614358031
 Behaviour:
   m_ObjectHideFlags: 0
