@@ -6,9 +6,6 @@ public class ButtonPress : MonoBehaviour
 {
 	public Collider collider;
 
-	[SerializeField]
-	Camera playerCamera;
-
 	ButtonAnimation buttonAnimation;
 
 	private bool isPressed; 
@@ -28,6 +25,8 @@ public class ButtonPress : MonoBehaviour
 			int layerMask = 1;  //Rays only hit objects on default layer
 
 			RaycastHit hit;
+			GameObject player = GameObject.FindGameObjectWithTag("playerA");
+			Camera playerCamera = player.GetComponent<Camera>();
 			if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 5.0f, layerMask))
 			{
 				if (hit.collider == collider)
