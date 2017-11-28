@@ -19,7 +19,6 @@ public class PhoneNode : Node {
 	
 	// Update is called once per frame
 	void Update () {
-		//temp while waiting for ray-picking to work
 		if (ringing && !source.isPlaying) {
 			StopRinging ();
 		}
@@ -42,6 +41,7 @@ public class PhoneNode : Node {
 		if (!ringing) {
 			source.PlayOneShot (ring);
 			ringing = true;
+			print ("ringing");
 			foreach (Patrol guard in guards) {
 				GameObject parent = transform.parent.gameObject;
 				print (guard);

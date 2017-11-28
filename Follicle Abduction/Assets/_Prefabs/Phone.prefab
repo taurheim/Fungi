@@ -1084,6 +1084,8 @@ GameObject:
   - component: {fileID: 23634934085732232}
   - component: {fileID: 114155137105885956}
   - component: {fileID: 82363180312410418}
+  - component: {fileID: 114477970236202646}
+  - component: {fileID: 114843665510322138}
   m_Layer: 11
   m_Name: Phone Node
   m_TagString: Untagged
@@ -3137,6 +3139,17 @@ MonoBehaviour:
   ring: {fileID: 8300000, guid: c670e541e48be45eeaef4f4be7709750, type: 3}
   guards:
   - {fileID: 0}
+--- !u!114 &114477970236202646
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1755787485832910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0095bd8ebf148e747b193e348f2fc0d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114795751263600606
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3149,6 +3162,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   phone: {fileID: 1554649331761796}
+--- !u!114 &114843665510322138
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1755787485832910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 146
+    i1: 107
+    i2: 219
+    i3: 104
+    i4: 166
+    i5: 50
+    i6: 68
+    i7: 59
+    i8: 89
+    i9: 235
+    i10: 95
+    i11: 72
+    i12: 157
+    i13: 134
+    i14: 98
+    i15: 163
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!135 &135313213222620400
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -417,6 +417,8 @@ GameObject:
   - component: {fileID: 23997922351377690}
   - component: {fileID: 82886868637252410}
   - component: {fileID: 114608059626917650}
+  - component: {fileID: 114348551044328780}
+  - component: {fileID: 114989057986252622}
   m_Layer: 11
   m_Name: Radio Node
   m_TagString: Untagged
@@ -512,7 +514,7 @@ Transform:
   m_GameObject: {fileID: 1829683523433832}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 4, z: 5}
+  m_LocalScale: {x: 10, y: 4, z: 10}
   m_Children:
   - {fileID: 4473184503060934}
   - {fileID: 224219252279386826}
@@ -1643,6 +1645,38 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 1
+--- !u!114 &114348551044328780
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1829683523433832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 217
+    i1: 133
+    i2: 160
+    i3: 77
+    i4: 94
+    i5: 225
+    i6: 244
+    i7: 85
+    i8: 9
+    i9: 58
+    i10: 75
+    i11: 131
+    i12: 188
+    i13: 170
+    i14: 244
+    i15: 39
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114440241986592432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1765,6 +1799,17 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114989057986252622
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1829683523433832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0095bd8ebf148e747b193e348f2fc0d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &222238529136656692
 CanvasRenderer:
   m_ObjectHideFlags: 1

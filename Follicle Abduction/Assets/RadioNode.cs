@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public class RadioNode : Node {
 
@@ -40,7 +41,9 @@ public class RadioNode : Node {
 				print ("hit enter");
 				if (field.text == correctSongName) {
 					print ("correct song!");
-					choseCorrectSong = true;
+					ChooseSong (true);
+				} else {
+					ChooseSong (false);
 				}
 			} else if (Input.GetKeyDown (KeyCode.Backspace)) {
 				print("backspace key");
@@ -51,6 +54,24 @@ public class RadioNode : Node {
 		} else if (Input.GetKeyDown (KeyCode.R)) { //for debugging in human mode!
 			PlayCorrectSong ();
 		}
+	}
+
+	void ChooseSong(bool correct) {
+		if(isServer) {
+			RpcChooseSong(correct);
+		} else {
+			CmdChooseSong(correct);
+		}
+	}
+
+	[ClientRpc]
+	void RpcChooseSong(bool correct) {
+		choseCorrectSong = correct;
+	}
+
+	[Command]
+	void CmdChooseSong(bool correct) {
+		RpcChooseSong (correct);
 	}
 
 	public override void StartAction() {

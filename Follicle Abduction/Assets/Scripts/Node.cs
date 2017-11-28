@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public enum NodeState { 
 	LOCKED, 	// Cannot be accessed
@@ -8,7 +9,7 @@ public enum NodeState {
 	COMPLETED	// Completed
 };
 
-public class Node : MonoBehaviour  {
+public class Node : NetworkBehaviour {
 
 	public NodeState state = NodeState.LOCKED;
 
@@ -59,11 +60,27 @@ public class Node : MonoBehaviour  {
 	}
 
 	public void HandleMouseDown() {
+		if(isServer) {
+			RpcHandleMouseDown();
+			print ("server mouse");
+		} else {
+			CmdHandleMouseDown();
+			print ("client mouse");
+		}
+	}
+
+	[ClientRpc]
+	void RpcHandleMouseDown() {
 		if (selected) {
 			StartAction ();
 		} else {
 			Object.FindObjectOfType<ConsoleManager> ().Select (this);
 		}
+	}
+
+	[Command]
+	void CmdHandleMouseDown() {
+		RpcHandleMouseDown ();
 	}
 
 	public void HandleMouseUp() {
