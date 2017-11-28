@@ -50,6 +50,13 @@ public class ButtonPress : MonoBehaviour
 
 	public bool getButtonStatus() 
 	{
+
 		return isPressed;
+        
 	}
+
+    public void stopPress()
+    {
+        isPressed = false;
+    }
 }

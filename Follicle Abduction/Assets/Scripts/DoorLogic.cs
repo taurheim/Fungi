@@ -24,13 +24,15 @@ public class DoorLogic : MonoBehaviour {
 	
 	void Update () {
         if (button.GetComponent<ButtonPress>().getButtonStatus() && !this.isOpen) {
+            button.GetComponent<ButtonPress>().stopPress();
             this.open();
         }
-        /*
+        
         else if (button.GetComponent<ButtonPress>().getButtonStatus() && this.isOpen) {
+            button.GetComponent<ButtonPress>().stopPress();
             this.close();
         }
-        */
+        
     }
 
     // Called every frame if door is opening, slowly opens door every frame
