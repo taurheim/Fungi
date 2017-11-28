@@ -21,23 +21,19 @@ public class PhoneNode : Node {
 	// Update is called once per frame
 	void Update () {
 		//temp while waiting for ray-picking to work
-		if ((state == NodeState.UNLOCKED) && (Input.GetKeyUp (KeyCode.P))) {
-			Ring ();
-		} else if (ringing) {
-			if (!source.isPlaying) {
-				StopRinging ();
-			}
+		if (ringing && !source.isPlaying) {
+			StopRinging ();
 		}
 	}
 
-	public override void HandleMouseDown() {
-		print ("CLICKED PHONE");
+	public override void StartAction() {
+
 		if (state == NodeState.UNLOCKED) {
 			source.PlayOneShot (ring);
 		}
 	}
 
-	public override void HandleMouseUp() {
+	public override void EndAction() {
 		return;
 	}
 

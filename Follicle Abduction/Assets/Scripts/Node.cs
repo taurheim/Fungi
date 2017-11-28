@@ -21,6 +21,12 @@ public class Node : MonoBehaviour  {
 	// Upon completion, show all objects with this tag.
 	public string tagForHiddenObjects;
 
+	// Data held by the node made visible by selection
+	public string[] data;
+
+	// Is it currently selected?
+	public bool selected;
+
 	// This is a reference to the progress bar of the node's completion
 	//TODO dynamically generate this
 	public GameObject progressBar;
@@ -30,6 +36,8 @@ public class Node : MonoBehaviour  {
 
 	int percentComplete = 0;
 
+	public GameObject outline;
+
 	// Lines from this node to all of its children
 	private LineRenderer[] nodeLines;
 	
@@ -38,7 +46,6 @@ public class Node : MonoBehaviour  {
 	void Start () {
 		//Hide map icons with given tag
 		MapVisibility.setVisibilityForTag (tagForHiddenObjects, false);
-
 		// Draw a line from this node to all children
 		drawLinesToChildren();
 	}
@@ -51,12 +58,42 @@ public class Node : MonoBehaviour  {
 		HandleMouseUp();
 	}
 
-	public virtual void HandleMouseDown() {
+	public void HandleMouseDown() {
+		if (selected) {
+			StartAction ();
+		} else {
+			Object.FindObjectOfType<ConsoleManager> ().Select (this);
+		}
+	}
+
+	public void HandleMouseUp() {
+		if (selected) {
+			EndAction ();
+		}
+	}
+
+	public virtual void StartAction() {
 		isHacking = true;
 	}
 
-	public virtual void HandleMouseUp() {
+	public virtual void EndAction() {
 		isHacking = false;
+	}
+
+	public void Select() {
+		selected = true;
+		if (outline) {
+			print ("select");
+			outline.SetActive (true);
+		}
+	}
+
+	public void Deselect() {
+		selected = false;
+		if (outline) {
+			print ("deselect");
+			outline.SetActive (false);
+		}
 	}
 	
 	// Update is called once per frame
