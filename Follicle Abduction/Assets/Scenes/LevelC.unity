@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.39090726, g: 0.46436846, b: 0.554047, a: 1}
+  m_IndirectSpecularColor: {r: 0.3909017, g: 0.46438307, b: 0.5540639, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -4180,9 +4180,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerA_tag: playerA
   playerB_tag: playerB
-  waitingCamera: {fileID: 1147562007}
-  alienCam1: {fileID: 1147562007}
-  alienCam2: {fileID: 1791577769}
+  waitingCamera: {fileID: 0}
+  alienCam1: {fileID: 1147562008}
+  alienCam2: {fileID: 2064956740}
   netManagerHUD: {fileID: 1321464100}
   spawnLocation: {x: -19, y: -13, z: 42}
   playerPrefab: {fileID: 1941569765007020, guid: d94fdde74fb49f543b72409d40c8c3aa,
@@ -4497,7 +4497,7 @@ Transform:
   - {fileID: 1553890973}
   - {fileID: 316081317}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &555265199
 Prefab:
@@ -10282,7 +10282,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 35
+  m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1369322747
 Prefab:
@@ -13688,11 +13688,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1791577769 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1200587825319756, guid: ab8e9419bc61dca48b204271f109ee02,
-    type: 2}
-  m_PrefabInternal: {fileID: 2064956739}
 --- !u!1 &1814819441 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100042, guid: 8ee4da2f96aeb7a4d85ec6275e8d49ef, type: 3}
@@ -15492,6 +15487,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ab8e9419bc61dca48b204271f109ee02, type: 2}
   m_IsPrefabParent: 0
+--- !u!20 &2064956740 stripped
+Camera:
+  m_PrefabParentObject: {fileID: 20422307832649812, guid: ab8e9419bc61dca48b204271f109ee02,
+    type: 2}
+  m_PrefabInternal: {fileID: 2064956739}
 --- !u!1 &2065377135
 GameObject:
   m_ObjectHideFlags: 0
