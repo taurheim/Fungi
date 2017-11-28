@@ -24,6 +24,16 @@ public class npcWalk : MonoBehaviour {
 
         // Choose a new waypoint
         currentWaypoint = (currentWaypoint + 1) % navMesh.Length;
+        /*
+            if (currentWaypoint == 2 && !Out)
+        {
+            transform.position = new Vector3(-33, -14, 27);
+        }
+        if (currentWaypoint == 2 && Out)
+        {
+            transform.position = new Vector3(-3, -14, 43);
+        }
+        */
         currDestination = navMesh[currentWaypoint];
     }
 
@@ -50,7 +60,7 @@ public class npcWalk : MonoBehaviour {
             currentWaypoint = 1;
         }
         NavigateToNextWaypoint();
-        artModel.GetComponent<Animation>().Play("walk_cycle", PlayMode.StopAll);
+        //artModel.GetComponent<Animation>().Play("walk_cycle", PlayMode.StopAll);
     }
 	
 	// Update is called once per frame
@@ -61,17 +71,9 @@ public class npcWalk : MonoBehaviour {
         {
             NavigateToNextWaypoint();
             
-            if (currentWaypoint == 2 && !Out)
-            {
-                transform.position = new Vector3(-33, -14, 27);
-            }
-            if (currentWaypoint == 2 && Out)
-            {
-                transform.position = new Vector3(-3, -14, 43);
-            }
         }
         MoveToDestination();
-        artModel.GetComponent<Animation>().Play("walk_cycle");
+        //artModel.GetComponent<Animation>().Play("walk_cycle");
 
     }
 
