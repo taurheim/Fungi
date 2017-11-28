@@ -71,7 +71,7 @@ public class Patrol : MonoBehaviour {
 				}
 			} else {
 				//If a secondaryTarget (not player) we assume it is a sound? so dont need detect... will clean up this later
-				if (Vector3.Distance (this.transform.position, currChaseTarget.transform.position) < 8.0f) {
+				if (Vector3.Distance (this.transform.position, currChaseTarget.transform.position) < 5.0f) {
 					print ("REACHED DESTINATION!");
 					agent.isStopped = true;
 					agent.speed = 0.0f;
@@ -87,6 +87,7 @@ public class Patrol : MonoBehaviour {
 		// If not currently chasing, simply patrol to next waypoint
 		else {
 			if (Vector3.Distance(transform.position, navMesh[currentWaypoint]) < StoppingDistance) {
+				artModel.GetComponent<Animation>().Play("look_around", PlayMode.StopAll);
 				NavigateToNextWaypoint();
 			}
 
