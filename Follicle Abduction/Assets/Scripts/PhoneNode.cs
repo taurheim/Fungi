@@ -27,7 +27,6 @@ public class PhoneNode : Node {
 	}
 
 	public override void StartAction() {
-
 		if (state == NodeState.UNLOCKED) {
 			source.PlayOneShot (ring);
 		}

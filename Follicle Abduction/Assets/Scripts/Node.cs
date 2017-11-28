@@ -80,7 +80,7 @@ public class Node : MonoBehaviour  {
 		isHacking = false;
 	}
 
-	public void Select() {
+	public virtual void Select() {
 		selected = true;
 		if (outline) {
 			print ("select");
@@ -88,7 +88,7 @@ public class Node : MonoBehaviour  {
 		}
 	}
 
-	public void Deselect() {
+	public virtual void Deselect() {
 		selected = false;
 		if (outline) {
 			print ("deselect");
