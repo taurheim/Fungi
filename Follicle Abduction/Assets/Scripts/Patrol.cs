@@ -114,7 +114,7 @@ public class Patrol : MonoBehaviour {
 		if (agent != null) {
 			agent.isStopped = false;
 			agent.SetDestination(currDestination);
-
+			setAnimation ();
 		}
 	}
 
