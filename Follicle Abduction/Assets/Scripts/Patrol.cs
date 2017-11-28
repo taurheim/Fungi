@@ -91,9 +91,10 @@ public class Patrol : MonoBehaviour {
 
 			// Look for all targets in target array, if any found, begin chase
 			bool detectedPrimaryTarget = false;
-			foreach (GameObject target in detectTargets) {
-				if (Detect(target)) {
-					Chase(target);
+            detectTargets = GameObject.FindGameObjectsWithTag("playerA");
+            foreach (GameObject target in detectTargets) {
+                if (Detect(target)) {
+                    Chase(target);
 					detectedPrimaryTarget = true;
 				}
 			}

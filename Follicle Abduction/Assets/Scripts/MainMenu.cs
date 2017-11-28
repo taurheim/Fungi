@@ -15,6 +15,8 @@ public class MainMenu : MonoBehaviour
 
     private string playerRole;
 
+    public bool isDebug = false;
+
     // Use this for initialization
     void Start()
     {
@@ -61,7 +63,7 @@ public class MainMenu : MonoBehaviour
         {
             Dictionary<string, string> levelParams = new Dictionary<string, string>() {
                 { "playerRole", getPlayerRole()},
-                { "isDebug", "true"}
+                { "isDebug", isDebug.ToString()}
             };
             LevelManager.Load("LevelC", levelParams);
             return true;
@@ -75,7 +77,7 @@ public class MainMenu : MonoBehaviour
         {
             Dictionary<string, string> levelParams = new Dictionary<string, string>() {
                 { "playerRole", getPlayerRole()},
-                { "isDebug", "true"}
+                { "isDebug", isDebug.ToString()}
             };
             LevelManager.Load("LevelAA", levelParams);
             return true;
@@ -83,7 +85,7 @@ public class MainMenu : MonoBehaviour
         else if (scene.Equals("LevelB")) {
             Dictionary<string, string> levelParams = new Dictionary<string, string>() {
                 { "playerRole", getPlayerRole()},
-                { "isDebug", "true"}
+                { "isDebug", isDebug.ToString()}
             };
             LevelManager.Load("LevelB", levelParams);
             return true;

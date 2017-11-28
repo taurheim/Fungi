@@ -14,6 +14,8 @@ public class CustomNetworkingHUD : MonoBehaviour {
 
 	bool showServer = false;
 
+	bool debugStarted = false;
+
 	void Awake() {
 		manager = GetComponent<NetworkManager>();
 	}
@@ -22,10 +24,11 @@ public class CustomNetworkingHUD : MonoBehaviour {
 	{
 
 		// Start the game if we're in debug mode
-		bool isDebug = LevelManager.getParam("isDebug") == "true";
+		bool isDebug = LevelManager.getParam("isDebug") == "True";
 
-		if(isDebug) {
+		if(isDebug && !debugStarted) {
 			manager.StartHost();
+			debugStarted = true;
 			return;
 		}
 
@@ -58,6 +61,9 @@ public class CustomNetworkingHUD : MonoBehaviour {
 
 	void OnGUI()
 	{
+		// Start the game if we're in debug mode
+		bool isDebug = LevelManager.getParam("isDebug") == "True";
+		if(isDebug || !showGUI) return;
 
 		int xpos = 10 + offsetX;
 		int ypos = 40 + offsetY;

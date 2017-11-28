@@ -1745,14 +1745,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1755787485832910}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 20.02, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 5.03, z: 0}
+  m_LocalScale: {x: 10, y: 5, z: 10}
   m_Children:
   - {fileID: 4739851598968982}
   m_Father: {fileID: 4801709868490268}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4403464857533280
 Transform:
   m_ObjectHideFlags: 1
@@ -2288,7 +2288,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1237708580411750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.17, y: -26.12, z: 33.82181}
+  m_LocalPosition: {x: 3.17, y: -11.52, z: 34.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4878539645102218}
@@ -2344,7 +2344,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1554649331761796}
   m_LocalRotation: {x: 0, y: -0.86602545, z: 0, w: 0.49999994}
-  m_LocalPosition: {x: 0, y: 15.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4169026492110270}
@@ -2769,7 +2769,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 409c5788a23214a64927323fa8337046, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3135,6 +3135,8 @@ MonoBehaviour:
   progressBar: {fileID: 0}
   outline: {fileID: 1056461092801754}
   ring: {fileID: 8300000, guid: c670e541e48be45eeaef4f4be7709750, type: 3}
+  guards:
+  - {fileID: 0}
 --- !u!114 &114795751263600606
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3158,4 +3160,4 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 3
-  m_Center: {x: 0, y: 15, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
