@@ -21,6 +21,12 @@ public class Node : MonoBehaviour  {
 	// Upon completion, show all objects with this tag.
 	public string tagForHiddenObjects;
 
+	// Data held by the node made visible by selection
+	public string[] data;
+
+	// Is it currently selected?
+	public bool selected;
+
 	// This is a reference to the progress bar of the node's completion
 	//TODO dynamically generate this
 	public GameObject progressBar;
@@ -52,11 +58,27 @@ public class Node : MonoBehaviour  {
 	}
 
 	public virtual void HandleMouseDown() {
-		isHacking = true;
+		if (selected) {
+			isHacking = true;
+		} else {
+			Object.FindObjectOfType<ConsoleManager> ().Select (this);
+		}
 	}
 
 	public virtual void HandleMouseUp() {
-		isHacking = false;
+		if (selected) {
+			isHacking = false;
+		}
+	}
+
+	public void Select() {
+		selected = true;
+		this.transform.localEulerAngles = new Vector3 (0, 45, 0); //temp debug lol
+	}
+
+	public void Deselect() {
+		selected = false;
+		this.transform.localEulerAngles = new Vector3 (0, 0, 0);
 	}
 	
 	// Update is called once per frame
