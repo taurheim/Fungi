@@ -26,13 +26,14 @@ public class PhoneNode : Node {
 		}
 	}
 
-	public override void HandleMouseDown() {
+	public override void StartAction() {
+
 		if (state == NodeState.UNLOCKED) {
 			source.PlayOneShot (ring);
 		}
 	}
 
-	public override void HandleMouseUp() {
+	public override void EndAction() {
 		return;
 	}
 

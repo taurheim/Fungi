@@ -36,6 +36,8 @@ public class Node : MonoBehaviour  {
 
 	int percentComplete = 0;
 
+	public GameObject outline;
+
 	// Lines from this node to all of its children
 	private LineRenderer[] nodeLines;
 	
@@ -44,7 +46,6 @@ public class Node : MonoBehaviour  {
 	void Start () {
 		//Hide map icons with given tag
 		MapVisibility.setVisibilityForTag (tagForHiddenObjects, false);
-
 		// Draw a line from this node to all children
 		drawLinesToChildren();
 	}
@@ -57,28 +58,42 @@ public class Node : MonoBehaviour  {
 		HandleMouseUp();
 	}
 
-	public virtual void HandleMouseDown() {
+	public void HandleMouseDown() {
 		if (selected) {
-			isHacking = true;
+			StartAction ();
 		} else {
 			Object.FindObjectOfType<ConsoleManager> ().Select (this);
 		}
 	}
 
-	public virtual void HandleMouseUp() {
+	public void HandleMouseUp() {
 		if (selected) {
-			isHacking = false;
+			EndAction ();
 		}
+	}
+
+	public virtual void StartAction() {
+		isHacking = true;
+	}
+
+	public virtual void EndAction() {
+		isHacking = false;
 	}
 
 	public void Select() {
 		selected = true;
-		this.transform.localEulerAngles = new Vector3 (0, 45, 0); //temp debug lol
+		if (outline) {
+			print ("select");
+			outline.SetActive (true);
+		}
 	}
 
 	public void Deselect() {
 		selected = false;
-		this.transform.localEulerAngles = new Vector3 (0, 0, 0);
+		if (outline) {
+			print ("deselect");
+			outline.SetActive (false);
+		}
 	}
 	
 	// Update is called once per frame
