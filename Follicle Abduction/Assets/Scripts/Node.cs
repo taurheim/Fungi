@@ -90,11 +90,11 @@ public class Node : NetworkBehaviour {
 	}
 
 	public virtual void StartAction() {
-		isHacking = true;
+		//isHacking = true;
 	}
 
 	public virtual void EndAction() {
-		isHacking = false;
+		//isHacking = false;
 	}
 
 	public virtual void Select() {
