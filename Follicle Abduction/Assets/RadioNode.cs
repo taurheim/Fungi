@@ -24,15 +24,8 @@ public class RadioNode : Node {
 		playing = false;
 		choseCorrectSong = false;
 		InputField field = inputField.GetComponent<InputField>();
-		field.onValueChanged.AddListener(delegate {ValueChangeCheck(); });
 		field.interactable = true;
 		showingInputField = false;
-	}
-
-	// Invoked when the value of the text field changes.
-	public void ValueChangeCheck()
-	{
-		Debug.Log("Value Changed");
 	}
 	
 	// Update is called once per frame
@@ -42,7 +35,21 @@ public class RadioNode : Node {
 			StopPlayingCorrectSong ();
 		}
 		if(showingInputField) {
-			//
+			InputField field = inputField.GetComponent<InputField> ();
+			if (Input.GetKeyUp (KeyCode.Return)) {
+				print ("hit enter");
+				if (field.text == correctSongName) {
+					print ("correct song!");
+					choseCorrectSong = true;
+				}
+			} else if (Input.GetKeyDown (KeyCode.Backspace)) {
+				print("backspace key");
+				field.text = field.text.Remove (field.text.Length - 1);
+			} else {
+				field.text += Input.inputString;
+			}
+		} else if (Input.GetKeyDown (KeyCode.R)) { //for debugging in human mode!
+			PlayCorrectSong ();
 		}
 	}
 
@@ -88,12 +95,13 @@ public class RadioNode : Node {
 
 	void PlayCorrectSong() {
 		if (!playing) {
+			source.Stop ();
 			source.PlayOneShot (correctSong);
 			playing = true;
 			foreach (Patrol guard in songLovingGuards) {
-				GameObject parent = transform.parent.gameObject;
-				print (guard);
+				GameObject parent = transform.parent.gameObject;;
 				if (parent) {
+					print ("adding secondary target");
 					guard.AddSecondaryTarget (parent);
 				}
 			}

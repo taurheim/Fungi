@@ -23,7 +23,7 @@ public class PhoneNode : Node {
 		if (ringing && !source.isPlaying) {
 			StopRinging ();
 		}
-		if (Input.GetKeyUp (KeyCode.P)) {
+		if (Input.GetKeyUp (KeyCode.P)) { //for debugging in human mode!
 			StartAction ();
 		}
 	}
