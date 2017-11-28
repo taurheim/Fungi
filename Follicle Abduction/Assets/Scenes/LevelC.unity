@@ -3447,6 +3447,12 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: be63ae4a8dbf08d4a9c648a4715bd530, type: 3}
+--- !u!114 &446340939 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114654279767767806, guid: 720132074ec4ff14caa3c877ee09a400,
+    type: 2}
+  m_PrefabInternal: {fileID: 1758300776}
+  m_Script: {fileID: 11500000, guid: 2f3f7c2703625ee4697171141116cf6b, type: 3}
 --- !u!1001 &449154912
 Prefab:
   m_ObjectHideFlags: 0
@@ -6478,6 +6484,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114155137105885956, guid: 926bdb68a632443b59eb5f489d8662a3,
+        type: 2}
+      propertyPath: guards.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4801709868490268, guid: 926bdb68a632443b59eb5f489d8662a3, type: 2}
       propertyPath: m_LocalPosition.x
       value: 3.17
@@ -6523,6 +6534,11 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 5.03
       objectReference: {fileID: 0}
+    - target: {fileID: 114155137105885956, guid: 926bdb68a632443b59eb5f489d8662a3,
+        type: 2}
+      propertyPath: guards.Array.data[0]
+      value: 
+      objectReference: {fileID: 446340939}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 926bdb68a632443b59eb5f489d8662a3, type: 2}
   m_IsPrefabParent: 0

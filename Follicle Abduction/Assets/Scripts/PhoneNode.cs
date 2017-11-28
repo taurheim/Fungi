@@ -5,8 +5,8 @@ using UnityEngine;
 public class PhoneNode : Node {
 
 	public AudioClip ring;
+	public Patrol[] guards;
 
-	private Patrol[] guards;
 	private AudioSource source;
 	private GameObject phone;
 	private bool ringing;
@@ -14,7 +14,6 @@ public class PhoneNode : Node {
 	// Use this for initialization
 	void Start () {
 		source = GetComponent<AudioSource> ();
-		guards = Object.FindObjectsOfType<Patrol> ();
 		ringing = false;
 	}
 	
