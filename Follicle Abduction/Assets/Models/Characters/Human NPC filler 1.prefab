@@ -725,7 +725,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1828591768074562}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -31.87, y: -14, z: 51.71}
+  m_LocalPosition: {x: -17.78, y: -14, z: 51.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4467404586818754}
@@ -1335,9 +1335,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navMesh:
-  - {x: -3, y: -14, z: 37.66}
-  - {x: -3, y: -14, z: 51.71}
-  - {x: -33, y: -14, z: 37.66}
+  - {x: -33, y: -14, z: 51.71}
+  - {x: -33, y: -14, z: 42}
   Out: 1
   currDestination: {x: 0, y: 0, z: 0}
   artModel: {fileID: 0}
@@ -1365,6 +1364,7 @@ MonoBehaviour:
   detectRange: 10
   detectTargets:
   - {fileID: 0}
+  secondaryTargets: []
   currDestination: {x: 0, y: 0, z: 0}
   currChaseTarget: {fileID: 0}
   lastKnownTargetLoc: {x: 0, y: 0, z: 0}

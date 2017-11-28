@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.009256138, g: 0.009483897, b: 0.009256138, a: 1}
+  m_IndirectSpecularColor: {r: 0.009406347, g: 0.009492566, b: 0.009406347, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1095,6 +1095,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4079515114247456, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
       propertyPath: m_LocalPosition.x
       value: -2.869999
@@ -1135,6 +1140,26 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[2].x
+      value: -33
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[2].y
+      value: -14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[2].z
+      value: 37.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[1].z
+      value: 42
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
@@ -4967,7 +4992,7 @@ MonoBehaviour:
   alienCam1: {fileID: 614358029}
   alienCam2: {fileID: 1400798041}
   netManagerHUD: {fileID: 1321464100}
-  spawnLocation: {x: -3.5, y: -9.7, z: 45.5}
+  spawnLocation: {x: -18.99, y: -12, z: 41}
   playerPrefab: {fileID: 1941569765007020, guid: d94fdde74fb49f543b72409d40c8c3aa,
     type: 2}
 --- !u!114 &496644331
@@ -7083,6 +7108,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4079515114247456, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
       propertyPath: m_LocalPosition.x
       value: -14.499998
@@ -7131,6 +7161,26 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[2].x
+      value: -33
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[2].y
+      value: -14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[2].z
+      value: 37.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[1].z
+      value: 42
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
@@ -8555,9 +8605,14 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4079515114247456, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -23.89
+      value: -24.72
       objectReference: {fileID: 0}
     - target: {fileID: 4079515114247456, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
       propertyPath: m_LocalPosition.y
@@ -8603,6 +8658,26 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[2].x
+      value: -33
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[2].y
+      value: -14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[2].z
+      value: 37.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[1].z
+      value: 42
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
@@ -9616,9 +9691,14 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4079515114247456, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -9.12
+      value: -8.6
       objectReference: {fileID: 0}
     - target: {fileID: 4079515114247456, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
       propertyPath: m_LocalPosition.y
@@ -9696,6 +9776,26 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[2].x
+      value: -33
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[2].y
+      value: -14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[2].z
+      value: 37.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[1].z
+      value: 42
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
@@ -9797,6 +9897,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4079515114247456, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
       propertyPath: m_LocalPosition.x
       value: -4.52
@@ -9837,6 +9942,26 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[2].x
+      value: -33
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[2].y
+      value: -14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[2].z
+      value: 37.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[1].z
+      value: 42
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
@@ -12482,6 +12607,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4079515114247456, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
       propertyPath: m_LocalPosition.x
       value: -2.9699974
@@ -12562,6 +12692,26 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[2].x
+      value: -33
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[2].y
+      value: -14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[2].z
+      value: 37.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[1].z
+      value: 42
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
@@ -13290,7 +13440,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4079515114247456, guid: 1a6af771fb904aa4c8e222babfd9f9ed, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -24.15
+      value: -22.15
       objectReference: {fileID: 0}
     - target: {fileID: 4079515114247456, guid: 1a6af771fb904aa4c8e222babfd9f9ed, type: 2}
       propertyPath: m_LocalPosition.y
@@ -16935,6 +17085,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4079515114247456, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
       propertyPath: m_LocalPosition.x
       value: -32.93
@@ -16983,6 +17138,26 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[2].x
+      value: -33
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[2].y
+      value: -14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[2].z
+      value: 37.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[1].z
+      value: 42
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
@@ -18130,41 +18305,6 @@ Prefab:
     - target: {fileID: 1828591768074562, guid: 1a6af771fb904aa4c8e222babfd9f9ed, type: 2}
       propertyPath: m_Name
       value: Human NPC filler out (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 1a6af771fb904aa4c8e222babfd9f9ed,
-        type: 2}
-      propertyPath: navMesh.Array.data[0].x
-      value: -33
-      objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 1a6af771fb904aa4c8e222babfd9f9ed,
-        type: 2}
-      propertyPath: navMesh.Array.data[0].z
-      value: 51.71
-      objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 1a6af771fb904aa4c8e222babfd9f9ed,
-        type: 2}
-      propertyPath: navMesh.Array.data[1].x
-      value: -33
-      objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 1a6af771fb904aa4c8e222babfd9f9ed,
-        type: 2}
-      propertyPath: navMesh.Array.data[1].z
-      value: 42
-      objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 1a6af771fb904aa4c8e222babfd9f9ed,
-        type: 2}
-      propertyPath: navMesh.Array.data[2].z
-      value: 51.71
-      objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 1a6af771fb904aa4c8e222babfd9f9ed,
-        type: 2}
-      propertyPath: navMesh.Array.data[2].x
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 1a6af771fb904aa4c8e222babfd9f9ed,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1a6af771fb904aa4c8e222babfd9f9ed, type: 2}
@@ -19835,6 +19975,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4079515114247456, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
       propertyPath: m_LocalPosition.x
       value: -29.47
@@ -19845,7 +19990,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4079515114247456, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 37.66
+      value: 37.28
       objectReference: {fileID: 0}
     - target: {fileID: 4079515114247456, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
       propertyPath: m_LocalRotation.x
@@ -19915,6 +20060,26 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[2].x
+      value: -33
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[2].y
+      value: -14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[2].z
+      value: 37.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+        type: 2}
+      propertyPath: navMesh.Array.data[1].z
+      value: 42
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
