@@ -26,7 +26,8 @@ public class ButtonPress : MonoBehaviour
 
 			RaycastHit hit;
 			GameObject player = GameObject.FindGameObjectWithTag("playerA");
-			if (Physics.Raycast(player.transform.position, player.transform.forward, out hit, 5.0f, layerMask))
+			Camera playerCamera = player.GetComponent<Camera>();
+			if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 5.0f, layerMask))
 			{
 				if (hit.collider == collider)
 				{
