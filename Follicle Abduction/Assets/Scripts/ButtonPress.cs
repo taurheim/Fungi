@@ -4,78 +4,52 @@ using UnityEngine;
 
 public class ButtonPress : MonoBehaviour
 {
-    public Transform button;
+	public Collider collider;
 
 	[SerializeField]
-    Camera playerCamera;
+	Camera playerCamera;
 
-    private bool isBeingPressed;    // true if the button is in the process of moving from a press
+	ButtonAnimation buttonAnimation;
 
-    private float buttonSpeed; 
-    private float buttonMoveDistance;
-    private Vector3 initialButtonPosition;
+	private bool isPressed; 
 
 	void Start ()
-    {
-        isBeingPressed = false;
-        buttonSpeed = 0.3f;
-        buttonMoveDistance = 0.07f;
-        initialButtonPosition = button.localPosition;
+	{
+		buttonAnimation = GetComponent<ButtonAnimation> ();
 	}
-	
+
 	void Update ()
-    {
+	{
 
-        //Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * 10, Color.green);
+		//Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * 10, Color.green);
 
-        if (Input.GetKeyDown(KeyCode.E) && !isBeingPressed)
-        {
-            int layerMask = 1;  //Rays only hit objects on default layer
+		if (Input.GetKeyDown(KeyCode.E))
+		{
+			int layerMask = 1;  //Rays only hit objects on default layer
 
-            RaycastHit hit;
-            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 5.0f, layerMask))
-            {
-                if (hit.collider.tag == button.tag)
-                {
-                    isBeingPressed = true;
-                    Debug.Log(button.tag + " pressed");
-                }
-            }
-        }
+			RaycastHit hit;
+			if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 5.0f, layerMask))
+			{
+				if (hit.collider == collider)
+				{
+					push ();
+				}
+			}
+		}
 
-        if(isBeingPressed)
-        {
-            buttonPress();
-        }
-        else
-        {
-            buttonRelease();
-        }
 
 	}
 
-    void buttonPress()
-    {
-        if ((button.localPosition.x - initialButtonPosition.x) < buttonMoveDistance)
-        {
-            button.Translate((Vector3.down * buttonSpeed) * Time.deltaTime);
-        }
-        else
-        {
-            isBeingPressed = false;
-        }
-      
-    }
+	void push()
+	{
+		isPressed = true;
+		buttonAnimation.push ();
 
-    void buttonRelease()
-    {
-        if ((button.localPosition.x - initialButtonPosition.x) > 0)
-        {
-            button.Translate((Vector3.up * buttonSpeed) * Time.deltaTime);
-        }
-    }
+	}
 
-    public bool getButtonStatus() {
-        return isBeingPressed;
-    }
+
+	public bool getButtonStatus() 
+	{
+		return isPressed;
+	}
 }
