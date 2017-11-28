@@ -8,7 +8,7 @@ public class GameMenu : NetworkBehaviour
 
     public string playerA_tag, playerB_tag;
 
-    public GameObject waitingCamera;
+    public Camera waitingCamera;
     // I'm going to hate myself
     public Camera alienCam1, alienCam2;
 
@@ -58,6 +58,9 @@ public class GameMenu : NetworkBehaviour
             } else {
                 alienCam1.enabled = false;
                 alienCam2.enabled = false;
+            }
+            if(waitingCamera) {
+                waitingCamera.enabled = false;
             }
         } else if(connections == 2){
             hideMenu();
