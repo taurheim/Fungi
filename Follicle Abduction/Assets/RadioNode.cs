@@ -9,7 +9,7 @@ public class RadioNode : Node {
 	public AudioClip correctSong;
 	public AudioClip wrongSong;
 	public Patrol[] songLovingGuards;
-	private GameObject inputField;
+	public GameObject inputField;
 
 	private AudioSource source;
 	private GameObject radio;
@@ -22,8 +22,15 @@ public class RadioNode : Node {
 		source = GetComponent<AudioSource> ();
 		playing = false;
 		choseCorrectSong = false;
-		inputField = GameObject.Find("InputField");
-		print (inputField);
+		InputField field = inputField.GetComponent<InputField>();
+		field.onValueChanged.AddListener(delegate {ValueChangeCheck(); });
+		field.interactable = true;
+	}
+
+	// Invoked when the value of the text field changes.
+	public void ValueChangeCheck()
+	{
+		Debug.Log("Value Changed");
 	}
 	
 	// Update is called once per frame
@@ -50,6 +57,9 @@ public class RadioNode : Node {
 			print ("select");
 			outline.SetActive (true);
 			inputField.SetActive (true);
+			InputField field = inputField.GetComponent<InputField>();
+			field.ActivateInputField ();
+			field.interactable = true;
 		}
 	}
 
