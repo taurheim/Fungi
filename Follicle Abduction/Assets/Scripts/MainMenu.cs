@@ -4,6 +4,9 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
+/*
+    Main game menu. Allows for settings, level selection, and debug mode to be toggled.
+ */
 public class MainMenu : MonoBehaviour
 {
 

@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    Used to animate doors based on state
+ */
 public class DoorAnimation : MonoBehaviour {
 
     Animation animations;
 
+    // If true, will open the door when the scene loads
     [SerializeField]
     bool startOpen = false;
 
@@ -20,8 +24,6 @@ public class DoorAnimation : MonoBehaviour {
         {
             instantOpen();
         }
-
-        //close();
     }
 	
 	public void open()
@@ -45,6 +47,6 @@ public class DoorAnimation : MonoBehaviour {
     void instantOpen()
     {
         animations.Play("instantOpen", PlayMode.StopAll);
-        isOpen = true;     
+        isOpen = true;
     }
 }

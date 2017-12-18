@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// From:
-// https://forum.unity.com/threads/unity-beginner-loadlevel-with-arguments.180925/
+/*
+    Handles level loading. Allows for parameters to be passed in while loading a level
+    From: https://forum.unity.com/threads/unity-beginner-loadlevel-with-arguments.180925/
+ */
 
 public static class LevelManager {
  

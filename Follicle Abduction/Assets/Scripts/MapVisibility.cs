@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+	Util method to set visibility for objects with given tag.
+ */
 public static class MapVisibility {
 
 	public static void setVisibilityForTag(string tag, bool visibility) {

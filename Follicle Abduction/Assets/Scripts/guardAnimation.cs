@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    Handle animations for the guards based on state.
+ */
 public class guardAnimation : MonoBehaviour {
 
     Animation animations;

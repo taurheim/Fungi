@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 
+/*
+	Synchronize player state across the network, enabled and disable necessary objects.
+ */
 public class PlayerSetup : NetworkBehaviour {
 
 	bool playerIsA = false;		// player A - The human

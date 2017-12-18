@@ -2,12 +2,15 @@
 using System;
 using System.Collections;
 
+/*
+	Make object float up and down above the ground
+ */
 public class Float : MonoBehaviour
 {
 	float originalY;
 
-	public float floatStrength = 1; // You can change this in the Unity Editor to 
-	// change the range of y positions that are possible.
+	// How much the object will fluctuate up and down (lower will stay more stationary)
+	public float floatStrength = 1;
 
 	void Start()
 	{

@@ -2,9 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+	Forwards clicks through a render texture.
+
+	A render texture presents a camera's view on as a texture. By intercepting the clicks on the texture and
+	raycasting them forward, we can simulate clicking. Specifically, clicking will call the
+
+	Node.HandleMouseDown() method on whatever node is clicked through the render texture.
+ */
 public class ClickableRenderTexture : MonoBehaviour {
 
-	// Yay code duplication! Clean this up.
+	// TODO cleanup the duplication here
 	public Camera securityCamera; 
 	public Camera mainCamera;
 

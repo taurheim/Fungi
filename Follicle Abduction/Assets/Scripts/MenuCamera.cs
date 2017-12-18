@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    Make the camera for the main menu look awesome
+ */
 public class MenuCamera : MonoBehaviour {
 
     Camera mainCamera;

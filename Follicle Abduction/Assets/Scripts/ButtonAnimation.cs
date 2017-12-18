@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+	Add to component to handle button push animations
+ */
 public class ButtonAnimation : MonoBehaviour {
 
 	Animation animations;
-
-	//bool pushed = false;
 
 	void Start () 
 	{
@@ -15,7 +16,6 @@ public class ButtonAnimation : MonoBehaviour {
 
 	public void push()
 	{
-
 		animations.Play("pushed");
 
 	}

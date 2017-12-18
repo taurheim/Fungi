@@ -2,19 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+	Human player, handles pickups.
+ */
 public class PlayerA : MonoBehaviour {
 
-	private int pickups;
-
-	// Use this for initialization
-	void Start () {
-		pickups = 0;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	private int pickups = 0;
 
 	void OnTriggerEnter (Collider other) {
 		if (other.gameObject.CompareTag("pickup")) {

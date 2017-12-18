@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 
+/*
+	Manages and synchronizes player state and role.
+	TODO this class requires a significant rewrite.
+ */
 public class PlayerManager : NetworkBehaviour {
 
 	public string playerA_tag;
 	public string playerB_tag;
 
 	private bool setupComplete = false;
-
-
-	// TODO remove all this crap
-	// start crap
 	
 	PlayerSetup playerA;
 	PlayerSetup playerB;

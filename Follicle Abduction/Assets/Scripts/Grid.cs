@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+	Editor tool to help making levels easier by snapping objects to a grid
+ */
 public class Grid : MonoBehaviour {
 
 	public int cellSize;

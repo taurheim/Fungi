@@ -9,6 +9,10 @@ public enum NodeState {
 	COMPLETED	// Completed
 };
 
+/*
+	A map node for the alien. Can be in 3 states that are modified by the alien clicking on the icon. Nodes can have children which
+	they will be connected to programmatically. For more information see design doc.
+ */
 public class Node : NetworkBehaviour {
 
 	public NodeState state = NodeState.LOCKED;

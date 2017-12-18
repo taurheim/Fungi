@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+/*
+	Custom implementation of the NetworkManagerHUD. Mostly just an import of the Unity source for
+	NetworkManagerHUD, but this will eventually build the HUD that Follicle Abduction uses.
+
+	NOTE: Most of this code is uncommented because it is a direct copy from the Unity source from:
+	https://forum.unity.com/threads/networkmanagerhud-source.333482/
+ */
+
 [AddComponentMenu("Network/NetworkManagerHUD")]
 [RequireComponent(typeof(NetworkManager))]
 public class CustomNetworkingHUD : MonoBehaviour {

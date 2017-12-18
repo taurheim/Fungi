@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ButtonPress : MonoBehaviour
 {
-	public Collider collider;
+	public Collider buttonHitbox;
 
 	ButtonAnimation buttonAnimation;
 
@@ -17,9 +17,6 @@ public class ButtonPress : MonoBehaviour
 
 	void Update ()
 	{
-
-		//Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * 10, Color.green);
-
 		if (Input.GetKeyDown(KeyCode.E))
 		{
 			int layerMask = 1;  //Rays only hit objects on default layer
@@ -29,7 +26,7 @@ public class ButtonPress : MonoBehaviour
 			Camera playerCamera = player.GetComponent<Camera>();
 			if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 5.0f, layerMask))
 			{
-				if (hit.collider == collider)
+				if (hit.collider == buttonHitbox)
 				{
 					push ();
 				}
@@ -43,7 +40,6 @@ public class ButtonPress : MonoBehaviour
 	{
 		isPressed = true;
 		buttonAnimation.push ();
-
 	}
 
 

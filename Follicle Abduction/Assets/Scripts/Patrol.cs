@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+	Attach to guards to detect player and attempt to follow them when detected.
+ */
 public class Patrol : MonoBehaviour {
 
 	public Vector3[] navMesh;

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+	Custom behaviour for the phone.
+ */
 public class Phone : MonoBehaviour {
 
 	private Node node;

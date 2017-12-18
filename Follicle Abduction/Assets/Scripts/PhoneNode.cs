@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+	Node attached to the phone to allow the alien to control it. Implements Node.
+ */
 public class PhoneNode : Node {
 
 	public AudioClip ring;

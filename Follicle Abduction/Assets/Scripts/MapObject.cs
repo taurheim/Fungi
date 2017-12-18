@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+	Handles visiblity/toggle for objects that are shown on the map(alien view).
+ */
 public class MapObject : MonoBehaviour {
 
 	public GameObject mapIcon;

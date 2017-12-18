@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+	Edit mode script to allow for levels to be built using a snap-to-grid method.
+ */
 [ExecuteInEditMode]
 public class SnapToGrid : MonoBehaviour {
 

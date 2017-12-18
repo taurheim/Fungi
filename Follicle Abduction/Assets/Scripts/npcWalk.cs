@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+    Allow for entity to have waypoints which are sequentially visited. Entity will attempt to move through all positions in
+    navMesh before looping backwards.
+ */
 public class npcWalk : MonoBehaviour {
 
     public Vector3[] navMesh;

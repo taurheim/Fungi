@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+	Used for the level creator script
+ */
 [ExecuteInEditMode]
 public class UnitScaleWall : MonoBehaviour {
 

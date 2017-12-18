@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 
+/*
+	Used in the network test to handle player movement. 
+ */
 public class PlayerMove : NetworkBehaviour
 {
     void Update()

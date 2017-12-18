@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+/*
+	Used in the networking test scene. Allow both players to modify the material of the sphere.
+ */
 public class NetworkTestSphere : NetworkBehaviour {
 
 	public Material mat1,mat2;
 
 	int currentMat = 1;
 
-	// Use this for initialization
-	void Start () {
-
-	}
-	
-	// Update is called once per frame
 	void Update () {
 		if(currentMat == 1){
 			GetComponent<MeshRenderer>().material = mat1;

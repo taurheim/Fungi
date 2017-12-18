@@ -2,21 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+	State manager for the console (alien) view. For now remembers which node is currently selected
+ */
 public class ConsoleManager : MonoBehaviour {
 
 	private Node selectedNode;
 	public TextMesh nodeData;
-
-
-	// Use this for initialization
-	void Start () {
-		selectedNode = null;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	public void Select(Node node) {
 		if (selectedNode) {

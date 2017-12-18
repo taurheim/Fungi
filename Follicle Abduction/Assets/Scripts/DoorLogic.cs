@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    Manager for the door opening/door closing logic
+ */
 public class DoorLogic : MonoBehaviour {
 
     private bool isLocked; // Unused atm, maybe unnecessary
     private bool isOpen;
 
-
-    // Select these in Unity UI
     public GameObject door;
 
-    public GameObject player;
-
-    public GameObject Icon;
     public GameObject button;
 
 	void Start () {

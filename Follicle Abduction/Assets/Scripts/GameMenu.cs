@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+/*
+    Custom game menu. Handles networking & connections.
+    This screen shows up after a level is selected, and acts as a lobby while the other player connects.
+ */
 public class GameMenu : NetworkBehaviour
 {
-
-    public string playerA_tag, playerB_tag;
-
+    // TODO these cameras could be referenced in a better way
     public Camera waitingCamera;
-    // I'm going to hate myself
+
     public Camera alienCam1, alienCam2;
 
     public CustomNetworkingHUD netManagerHUD;
@@ -20,8 +22,6 @@ public class GameMenu : NetworkBehaviour
 
     [SyncVar]
     int connections = 0;
-
-    bool setupComplete = false;
 
     public Vector3 spawnLocation;
 
@@ -36,7 +36,7 @@ public class GameMenu : NetworkBehaviour
     // While we're in the connection menu
     void Update()
     {
-        if(setupComplete) return;
+        if(!netManagerHUD.showGUI) return;
 
         if(isServer){
 			if (NetworkServer.connections.Count != connections) 
@@ -51,7 +51,7 @@ public class GameMenu : NetworkBehaviour
 
         if(isDebug) {
 			Debug.Log("We're in debug mode - don't wait for more connections");
-            setupGameForRole(role);
+            hideMenu();
             GameObject player = (GameObject)Instantiate (playerPrefab, spawnLocation, Quaternion.identity);
             if(role == "1"){
                 player.GetComponentInChildren<Camera>().enabled = false;
@@ -68,35 +68,13 @@ public class GameMenu : NetworkBehaviour
     }
 
     void hideMenu() {
-        setupComplete = true;
         netManagerHUD.showGUI = false;
-    }
-
-    void setupGameForRole(string role){
-        setupComplete = true;
-        /* 
-//        GameObject playerAObject = GameObject.FindGameObjectWithTag(playerA_tag);
-//        GameObject playerBObject = GameObject.FindGameObjectWithTag(playerB_tag);
-
-//        playerAObject.GetComponent<Camera>().enabled = role == "0";
-//        playerBObject.GetComponent<Camera>().enabled = role == "1";
-return;
-        // TODO I hate this
-        foreach(Behaviour behaviour in playerAObject.GetComponent<Components>().GetComponentList()) {
-            behaviour.enabled = role == "0";
-        }
-
-        foreach(Behaviour behaviour in playerBObject.GetComponent<Components>().GetComponentList()) {
-            if(behaviour) {
-                behaviour.enabled = role == "1";
-            }
-        }
-        setupComplete = true;*/
     }
 
     public void pauseGame()
     {
-        //implement ability to pause game
+        //TODO Pausing the game for real
+        gamePaused = true;
     }
 
     public bool isGamePaused()
@@ -104,7 +82,6 @@ return;
         return gamePaused;
     }
 
-    // I'm shit
     public void NotifyPlayerAdded(NetworkConnection connection, short playerControllerId) {
         Debug.Log("Player has connected!");
         GameObject player = (GameObject)Instantiate (playerPrefab, spawnLocation, Quaternion.identity);
@@ -118,14 +95,9 @@ return;
         Debug.Log("Two players connected! Start game now!");
         if(isServer){
             Debug.Log("I'm the alien!");
-            setupGameForRole("1");
         } else {
             Debug.Log("I'm the human!");
-            setupGameForRole("0");
         }
-    }
-
-    void SpawnPlayer() {
-        
+        hideMenu();
     }
 }
