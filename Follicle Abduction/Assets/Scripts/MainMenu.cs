@@ -62,35 +62,30 @@ public class MainMenu : MonoBehaviour
 
     public bool loadScene(string scene)
     {
-        if (scene.Equals("LevelC"))
+        if (scene.Equals("Level 1"))
         {
             Dictionary<string, string> levelParams = new Dictionary<string, string>() {
                 { "playerRole", getPlayerRole()},
                 { "isDebug", isDebug.ToString()}
             };
-            LevelManager.Load("LevelC", levelParams);
+            LevelManager.Load("Level_1", levelParams);
             return true;
         }
-        else if (scene.Equals("Level1"))
-        {
-            LevelManager.Load("Level1");
-            return true;
-        }
-        else if (scene.Equals("LevelAA"))
+        else if (scene.Equals("Level 2"))
         {
             Dictionary<string, string> levelParams = new Dictionary<string, string>() {
                 { "playerRole", getPlayerRole()},
                 { "isDebug", isDebug.ToString()}
             };
-            LevelManager.Load("LevelAA", levelParams);
+            LevelManager.Load("Level_2", levelParams);
             return true;
         }
-        else if (scene.Equals("LevelB")) {
+        else if (scene.Equals("Level 3")) {
             Dictionary<string, string> levelParams = new Dictionary<string, string>() {
                 { "playerRole", getPlayerRole()},
                 { "isDebug", isDebug.ToString()}
             };
-            LevelManager.Load("LevelB", levelParams);
+            LevelManager.Load("Level_3", levelParams);
             return true;
         }
 
