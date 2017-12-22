@@ -11,6 +11,7 @@ public class DemoCustomNetworkManager : NetworkManager {
 
 	public Vector3 spawnLocation;
 
+    /*
 	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId) {
 		if(conn.hostId == 0){
 			GameObject player = (GameObject) Instantiate (playerPrefab, spawnLocation, Quaternion.identity);
@@ -21,4 +22,5 @@ public class DemoCustomNetworkManager : NetworkManager {
 			}
 		}
 	}
+    */
 }

@@ -3000,8 +3000,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 325317101}
-  player: {fileID: 0}
-  Icon: {fileID: 0}
   button: {fileID: 697387943}
 --- !u!65 &325317104
 BoxCollider:
@@ -5091,6 +5089,11 @@ Prefab:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114591475704538576, guid: 37e3ce07cabd24597822bc3af491376e,
+        type: 2}
+      propertyPath: buttonHitbox
+      value: 
+      objectReference: {fileID: 478599347}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37e3ce07cabd24597822bc3af491376e, type: 2}
   m_IsPrefabParent: 0
@@ -5102,6 +5105,11 @@ Transform:
 --- !u!1 &478599346 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1110391960409114, guid: 37e3ce07cabd24597822bc3af491376e,
+    type: 2}
+  m_PrefabInternal: {fileID: 478599344}
+--- !u!64 &478599347 stripped
+MeshCollider:
+  m_PrefabParentObject: {fileID: 64798211985791452, guid: 37e3ce07cabd24597822bc3af491376e,
     type: 2}
   m_PrefabInternal: {fileID: 478599344}
 --- !u!1001 &494598045
@@ -5207,8 +5215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ef7fda3f5354c938a97c7e4fc0df38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerA_tag: playerA
-  playerB_tag: playerB
   waitingCamera: {fileID: 60747308}
   alienCam1: {fileID: 614358029}
   alienCam2: {fileID: 1400798041}
@@ -6794,8 +6800,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 640102156}
-  player: {fileID: 0}
-  Icon: {fileID: 0}
   button: {fileID: 478599346}
 --- !u!65 &640102159
 BoxCollider:
@@ -9470,9 +9474,19 @@ Prefab:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114591475704538576, guid: 37e3ce07cabd24597822bc3af491376e,
+        type: 2}
+      propertyPath: buttonHitbox
+      value: 
+      objectReference: {fileID: 961679012}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37e3ce07cabd24597822bc3af491376e, type: 2}
   m_IsPrefabParent: 0
+--- !u!64 &961679012 stripped
+MeshCollider:
+  m_PrefabParentObject: {fileID: 64798211985791452, guid: 37e3ce07cabd24597822bc3af491376e,
+    type: 2}
+  m_PrefabInternal: {fileID: 961679011}
 --- !u!1 &963536072 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 6939d61b581071941927bf62aa86feda, type: 3}

@@ -361,7 +361,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 34908337}
-  m_LocalRotation: {x: 0.27324158, y: -0.38109618, z: 0.8199482, w: -0.3283136}
+  m_LocalRotation: {x: 0.27324155, y: -0.38109612, z: 0.8199481, w: -0.32831356}
   m_LocalPosition: {x: -16.296694, y: 18.43674, z: -20.89448}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1227,8 +1227,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 104217835}
-  player: {fileID: 0}
-  Icon: {fileID: 0}
   button: {fileID: 389021584}
 --- !u!65 &104217838
 BoxCollider:
@@ -3556,7 +3554,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 337186066}
-  m_LocalRotation: {x: 0.27324158, y: -0.38109618, z: 0.8199482, w: -0.3283136}
+  m_LocalRotation: {x: 0.27324155, y: -0.38109612, z: 0.8199481, w: -0.32831356}
   m_LocalPosition: {x: -16.296694, y: 18.43674, z: -20.89448}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3671,8 +3669,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 341743128}
-  player: {fileID: 0}
-  Icon: {fileID: 0}
   button: {fileID: 1213344546}
 --- !u!65 &341743131
 BoxCollider:
@@ -4012,6 +4008,11 @@ Prefab:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114591475704538576, guid: 37e3ce07cabd24597822bc3af491376e,
+        type: 2}
+      propertyPath: buttonHitbox
+      value: 
+      objectReference: {fileID: 389021585}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37e3ce07cabd24597822bc3af491376e, type: 2}
   m_IsPrefabParent: 0
@@ -4023,6 +4024,11 @@ Transform:
 --- !u!1 &389021584 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1110391960409114, guid: 37e3ce07cabd24597822bc3af491376e,
+    type: 2}
+  m_PrefabInternal: {fileID: 389021582}
+--- !u!64 &389021585 stripped
+MeshCollider:
+  m_PrefabParentObject: {fileID: 64798211985791452, guid: 37e3ce07cabd24597822bc3af491376e,
     type: 2}
   m_PrefabInternal: {fileID: 389021582}
 --- !u!1 &389962727 stripped
@@ -4766,8 +4772,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ef7fda3f5354c938a97c7e4fc0df38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerA_tag: playerA
-  playerB_tag: playerB
   waitingCamera: {fileID: 60747308}
   alienCam1: {fileID: 1604694263}
   alienCam2: {fileID: 798161932}
@@ -4992,12 +4996,22 @@ Prefab:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114591475704538576, guid: 37e3ce07cabd24597822bc3af491376e,
+        type: 2}
+      propertyPath: buttonHitbox
+      value: 
+      objectReference: {fileID: 509951161}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37e3ce07cabd24597822bc3af491376e, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &509951160 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4769790838563478, guid: 37e3ce07cabd24597822bc3af491376e,
+    type: 2}
+  m_PrefabInternal: {fileID: 509951159}
+--- !u!64 &509951161 stripped
+MeshCollider:
+  m_PrefabParentObject: {fileID: 64798211985791452, guid: 37e3ce07cabd24597822bc3af491376e,
     type: 2}
   m_PrefabInternal: {fileID: 509951159}
 --- !u!1 &516235644 stripped
@@ -6460,7 +6474,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 706921162}
-  m_LocalRotation: {x: -0.27324158, y: 0.38109618, z: -0.8199482, w: -0.3283136}
+  m_LocalRotation: {x: -0.27324155, y: 0.38109612, z: -0.8199481, w: -0.32831356}
   m_LocalPosition: {x: 7.5499897, y: -2.3200073, z: 31.300001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -10209,12 +10223,22 @@ Prefab:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114591475704538576, guid: 37e3ce07cabd24597822bc3af491376e,
+        type: 2}
+      propertyPath: buttonHitbox
+      value: 
+      objectReference: {fileID: 1002414802}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37e3ce07cabd24597822bc3af491376e, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1002414801 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4769790838563478, guid: 37e3ce07cabd24597822bc3af491376e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1002414800}
+--- !u!64 &1002414802 stripped
+MeshCollider:
+  m_PrefabParentObject: {fileID: 64798211985791452, guid: 37e3ce07cabd24597822bc3af491376e,
     type: 2}
   m_PrefabInternal: {fileID: 1002414800}
 --- !u!1001 &1003786092
@@ -12867,6 +12891,11 @@ Prefab:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114591475704538576, guid: 37e3ce07cabd24597822bc3af491376e,
+        type: 2}
+      propertyPath: buttonHitbox
+      value: 
+      objectReference: {fileID: 1213344547}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37e3ce07cabd24597822bc3af491376e, type: 2}
   m_IsPrefabParent: 0
@@ -12878,6 +12907,11 @@ Transform:
 --- !u!1 &1213344546 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1110391960409114, guid: 37e3ce07cabd24597822bc3af491376e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1213344544}
+--- !u!64 &1213344547 stripped
+MeshCollider:
+  m_PrefabParentObject: {fileID: 64798211985791452, guid: 37e3ce07cabd24597822bc3af491376e,
     type: 2}
   m_PrefabInternal: {fileID: 1213344544}
 --- !u!1 &1215180481
@@ -14302,12 +14336,22 @@ Prefab:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114591475704538576, guid: 37e3ce07cabd24597822bc3af491376e,
+        type: 2}
+      propertyPath: buttonHitbox
+      value: 
+      objectReference: {fileID: 1312800634}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37e3ce07cabd24597822bc3af491376e, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1312800633 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4769790838563478, guid: 37e3ce07cabd24597822bc3af491376e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1312800632}
+--- !u!64 &1312800634 stripped
+MeshCollider:
+  m_PrefabParentObject: {fileID: 64798211985791452, guid: 37e3ce07cabd24597822bc3af491376e,
     type: 2}
   m_PrefabInternal: {fileID: 1312800632}
 --- !u!1 &1321087009 stripped

@@ -43,19 +43,15 @@ public class MainMenu : MonoBehaviour
 
         if (levelDropdown.value == 0)
         {
-            loadScene("LevelC");
+            loadScene("Level 1");
         }
         else if (levelDropdown.value == 1)
         {
-            loadScene("Level1");
+            loadScene("Level 2");
         }
         else if (levelDropdown.value == 2)
         {
-            loadScene("LevelAA");
-        }
-        else if (levelDropdown.value == 3)
-        {
-            loadScene("LevelB");
+            loadScene("Level 3");
         }
 
     }
