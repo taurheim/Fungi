@@ -5,19 +5,22 @@ using UnityEngine;
 /*
 	Custom behaviour for the phone.
  */
-public class Phone : MonoBehaviour {
+public class Phone : MonoBehaviour
+{
 
 	private Node node;
 	public GameObject phone;
 	private bool touchingPlayer;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		node = GetComponentInChildren<Node> ();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		if (touchingPlayer) {
 			print (node.state);
 			if (Input.GetKeyDown (KeyCode.E) && (node.state == NodeState.LOCKED)) {
@@ -26,7 +29,8 @@ public class Phone : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collider other) {
+	void OnTriggerEnter (Collider other)
+	{
 		print (other.tag);
 		if (other.CompareTag ("playerA")) {
 			touchingPlayer = true;
@@ -34,13 +38,15 @@ public class Phone : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerExit(Collider other) {
+	void OnTriggerExit (Collider other)
+	{
 		if (other.CompareTag ("playerA")) {
 			touchingPlayer = false;
 		}
 	}
 
-	void TurnOn() {
+	void TurnOn ()
+	{
 		print ("TURNING ON!");
 		//make some turning-on sound
 		node.unlockNode ();

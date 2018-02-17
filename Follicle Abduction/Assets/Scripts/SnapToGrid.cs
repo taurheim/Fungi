@@ -6,24 +6,27 @@ using UnityEngine;
 	Edit mode script to allow for levels to be built using a snap-to-grid method.
  */
 [ExecuteInEditMode]
-public class SnapToGrid : MonoBehaviour {
+public class SnapToGrid : MonoBehaviour
+{
 
 	public float grid = 0.5f;
 	float x = 0f, y = 0f, z = 0f;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		if (grid > 0f) {
 			float reciprocalGrid = 1f / grid;
 			x = Mathf.Round (transform.position.x * reciprocalGrid) / reciprocalGrid;
 			z = Mathf.Round (transform.position.z * reciprocalGrid) / reciprocalGrid;
 
-			transform.position = new Vector3 (x,transform.position.y,z );
+			transform.position = new Vector3 (x, transform.position.y, z);
 		}
 	}
 }
