@@ -5,29 +5,34 @@ using UnityEngine;
 /*
 	Editor tool to help making levels easier by snapping objects to a grid
  */
-public class Grid : MonoBehaviour {
+public class Grid : MonoBehaviour
+{
 
 	public int cellSize;
 	public int n;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		
 	}
 
-	void OnDrawGizmos () {
+	void OnDrawGizmos ()
+	{
 		DrawGrid ();
 	}
 
-	private void DrawGrid(){
+	private void DrawGrid ()
+	{
 		int size = cellSize * n;
 		int currentPoint;
-		for (int i = 0; i <= n; i ++){
+		for (int i = 0; i <= n; i++) {
 			currentPoint = cellSize * i;
 			Vector3 startX = new Vector3 (currentPoint, 0, 0);
 			Vector3 endX = new Vector3 (currentPoint, 0, size);

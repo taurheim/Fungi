@@ -5,18 +5,19 @@ using UnityEngine;
 /*
 	Add to component to handle button push animations
  */
-public class ButtonAnimation : MonoBehaviour {
+public class ButtonAnimation : MonoBehaviour
+{
 
 	Animation animations;
 
-	void Start () 
+	void Start ()
 	{
-		animations = GetComponent<Animation>();
+		animations = GetComponent<Animation> ();
 	}
 
-	public void push()
+	public void push ()
 	{
-		animations.Play("pushed");
+		animations.Play ("pushed");
 
 	}
 }

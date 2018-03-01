@@ -7,11 +7,12 @@ using UnityEngine.Networking;
 	Used in the demo networking scene. Implementation of NetworkManager that auto-assigns client authority to all users
 	who join.
  */
-public class DemoCustomNetworkManager : NetworkManager {
+public class DemoCustomNetworkManager : NetworkManager
+{
 
 	public Vector3 spawnLocation;
 
-    /*
+	/*
 	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId) {
 		if(conn.hostId == 0){
 			GameObject player = (GameObject) Instantiate (playerPrefab, spawnLocation, Quaternion.identity);

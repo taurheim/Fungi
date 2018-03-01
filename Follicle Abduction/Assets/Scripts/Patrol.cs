@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 /*
 	Attach to guards to detect player and attempt to follow them when detected.
  */
-public class Patrol : MonoBehaviour {
+public class Patrol : MonoBehaviour
+{
 
 	public Vector3[] navMesh;
 
@@ -21,7 +22,8 @@ public class Patrol : MonoBehaviour {
 
 	// Array of target objects to look for and try to capture
 	public GameObject[] detectTargets;
-	public List <GameObject> secondaryTargets = new List<GameObject> (); //distracting environmental things that can't be captured (ringing phones, music, etc.)
+	public List <GameObject> secondaryTargets = new List<GameObject> ();
+	//distracting environmental things that can't be captured (ringing phones, music, etc.)
 
 	public Vector3 currDestination;
 	public GameObject currChaseTarget;
@@ -31,23 +33,26 @@ public class Patrol : MonoBehaviour {
 	private string currAnimation;
 	public Vector3 sendToOnCapture;
 
-	void NavigateToNextWaypoint() {
+	void NavigateToNextWaypoint ()
+	{
 
 		// Choose a new waypoint
 		currentWaypoint = (currentWaypoint + 1) % navMesh.Length;
-		currDestination = navMesh[currentWaypoint];
+		currDestination = navMesh [currentWaypoint];
 	}
 
-	void Start() {
-		agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
+	void Start ()
+	{
+		agent = this.GetComponent<UnityEngine.AI.NavMeshAgent> ();
 		secondaryTargets = new List<GameObject> ();
 		currAnimation = "";
-		NavigateToNextWaypoint();
-		artModel.GetComponent<Animation>().Play("walk_cycle", PlayMode.StopAll);
+		NavigateToNextWaypoint ();
+		artModel.GetComponent<Animation> ().Play ("walk_cycle", PlayMode.StopAll);
 
 	}
 
-	void Update() {
+	void Update ()
+	{
 		// If currently chasing a target
 		if (currChaseTarget != null) {
 
@@ -64,8 +69,8 @@ public class Patrol : MonoBehaviour {
 				}
 
 				// If patroller reaches last known location, give up and return to patrolling
-				else if (Vector3.Distance(this.transform.position, lastKnownTargetLoc) < 2.0f) {
-					ResumePatrol();
+				else if (Vector3.Distance (this.transform.position, lastKnownTargetLoc) < 2.0f) {
+					ResumePatrol ();
 				}
 
 				// If sight of target has been lost, move towards last known location
@@ -78,9 +83,8 @@ public class Patrol : MonoBehaviour {
 					print ("REACHED DESTINATION!");
 					agent.isStopped = true;
 					agent.speed = 0.0f;
-					artModel.GetComponent<Animation>().Play("look_around", PlayMode.StopAll);
-				}
-				else {
+					artModel.GetComponent<Animation> ().Play ("look_around", PlayMode.StopAll);
+				} else {
 					lastKnownTargetLoc = currChaseTarget.transform.position;
 					currDestination = currChaseTarget.transform.position;
 				}
@@ -89,17 +93,17 @@ public class Patrol : MonoBehaviour {
 
 		// If not currently chasing, simply patrol to next waypoint
 		else {
-			if (Vector3.Distance(transform.position, navMesh[currentWaypoint]) < StoppingDistance) {
-				artModel.GetComponent<Animation>().Play("look_around", PlayMode.StopAll);
-				NavigateToNextWaypoint();
+			if (Vector3.Distance (transform.position, navMesh [currentWaypoint]) < StoppingDistance) {
+				artModel.GetComponent<Animation> ().Play ("look_around", PlayMode.StopAll);
+				NavigateToNextWaypoint ();
 			}
 
 			// Look for all targets in target array, if any found, begin chase
 			bool detectedPrimaryTarget = false;
-            detectTargets = GameObject.FindGameObjectsWithTag("playerA");
-            foreach (GameObject target in detectTargets) {
-                if (Detect(target)) {
-                    Chase(target);
+			detectTargets = GameObject.FindGameObjectsWithTag ("playerA");
+			foreach (GameObject target in detectTargets) {
+				if (Detect (target)) {
+					Chase (target);
 					detectedPrimaryTarget = true;
 				}
 			}
@@ -111,31 +115,31 @@ public class Patrol : MonoBehaviour {
 		}
 
 		// Might have to reduce how often this is called (only when destination changes)
-		MoveToDestination();
+		MoveToDestination ();
 
 	}
 
-	void MoveToDestination() {
+	void MoveToDestination ()
+	{
 		if (agent != null) {
 			agent.isStopped = false;
-			agent.SetDestination(currDestination);
+			agent.SetDestination (currDestination);
 		}
 	}
 
 	// Check for target within cone of sight
-	public bool Detect(GameObject target) {
+	public bool Detect (GameObject target)
+	{
 
 		// Check if target is within detect range
-		if (Vector3.Distance(target.transform.position, this.transform.position) <= detectRange) {
+		if (Vector3.Distance (target.transform.position, this.transform.position) <= detectRange) {
 
 			// Check if target is within detect angle
-			if (Vector3.Angle(this.transform.forward, target.transform.position - this.transform.position) < detectAngle) {
+			if (Vector3.Angle (this.transform.forward, target.transform.position - this.transform.position) < detectAngle) {
 				RaycastHit hit;
-				if (Physics.Raycast(this.transform.position, target.transform.position - this.transform.position, out hit, detectRange))
-				{
+				if (Physics.Raycast (this.transform.position, target.transform.position - this.transform.position, out hit, detectRange)) {
 					Debug.Log (hit.collider.tag);
-					if (hit.transform.tag == target.tag)
-					{
+					if (hit.transform.tag == target.tag) {
 						return true;
 					}
 				}
@@ -146,63 +150,66 @@ public class Patrol : MonoBehaviour {
 	}
 
 	// After successfully catching up to player, capture
-	public void Capture(GameObject target) {
+	public void Capture (GameObject target)
+	{
 		// Placeholder effect, not sure how to do gameover yet
 		if (target.transform.parent != null) {
 			target.transform.parent.gameObject.transform.position = sendToOnCapture;
 			target.transform.position = sendToOnCapture;
-		}
-		else {
+		} else {
 			target.transform.position = sendToOnCapture;
 		}
 		currChaseTarget = null;
 	}
 
-	void Chase(GameObject target) {
+	void Chase (GameObject target)
+	{
 		currChaseTarget = target;
 		currDestination = target.transform.position;
 
 		// Increase agility, zoomzoom
 		agent.angularSpeed = 500;
 		agent.speed = 5f;
-		artModel.GetComponent<Animation>().Play("run_cycle", PlayMode.StopAll);
+		artModel.GetComponent<Animation> ().Play ("run_cycle", PlayMode.StopAll);
 		//setAnimation();
 	}
 
-	void ResumePatrol() {
+	void ResumePatrol ()
+	{
 		currChaseTarget = null;
 
-		currDestination = navMesh[currentWaypoint];
+		currDestination = navMesh [currentWaypoint];
 
 		// Return to normal patrol speed
 		if (agent != null) {
 			agent.angularSpeed = 120;
 			agent.speed = 3.5f;
-			artModel.GetComponent<Animation>().Play("walk_cycle", PlayMode.StopAll);
+			artModel.GetComponent<Animation> ().Play ("walk_cycle", PlayMode.StopAll);
 		}
 	}
 
 	// Sets current animation based on navMesh speed
-	void setAnimation() {
+	void setAnimation ()
+	{
 		if (0 < agent.velocity.magnitude && agent.velocity.magnitude < 5 && currAnimation != "walk_cycle") {
-			artModel.GetComponent<Animation>().Play("walk_cycle", PlayMode.StopAll);
+			artModel.GetComponent<Animation> ().Play ("walk_cycle", PlayMode.StopAll);
 			currAnimation = "walk_cycle";
-		}
-		else if (5 <= agent.velocity.magnitude && currAnimation != "run_cycle") {
-			artModel.GetComponent<Animation>().Play("run_cycle", PlayMode.StopAll);
+		} else if (5 <= agent.velocity.magnitude && currAnimation != "run_cycle") {
+			artModel.GetComponent<Animation> ().Play ("run_cycle", PlayMode.StopAll);
 			currAnimation = "run_cycle";
-		}
-		else if (currAnimation != "look_around") {
-			artModel.GetComponent<Animation>().Play("look_around", PlayMode.StopAll);
+		} else if (currAnimation != "look_around") {
+			artModel.GetComponent<Animation> ().Play ("look_around", PlayMode.StopAll);
 			currAnimation = "look_around";
 		}
 	}
 
-	public void AddSecondaryTarget(GameObject newTarget) {
+	public void AddSecondaryTarget (GameObject newTarget)
+	{
 		secondaryTargets.Add (newTarget);
 	}
 
-	public void RemoveSecondaryTarget(GameObject target) {
+	public void RemoveSecondaryTarget (GameObject target)
+	{
 		if (target == currChaseTarget) {
 			currChaseTarget = null;
 			ResumePatrol ();

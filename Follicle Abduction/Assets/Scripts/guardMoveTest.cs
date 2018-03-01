@@ -2,73 +2,66 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class guardMoveTest : MonoBehaviour {
+public class guardMoveTest : MonoBehaviour
+{
 
-    public float walkSpeed;
-    public float runSpeed;
+	public float walkSpeed;
+	public float runSpeed;
 
-    private Transform guard;
+	private Transform guard;
 
-    private Animation animations;
+	private Animation animations;
 
-    bool running = false;
-    bool walking = false;
-    bool looking = false;
-    public bool startlookingAround;
-    public bool startRunning;
+	bool running = false;
+	bool walking = false;
+	bool looking = false;
+	public bool startlookingAround;
+	public bool startRunning;
 
-    void Start ()
-    {
-        guard = GetComponent<Transform>();
-        animations = GetComponent<Animation>();
+	void Start ()
+	{
+		guard = GetComponent<Transform> ();
+		animations = GetComponent<Animation> ();
 
-        if (startlookingAround)
-        {
-            lookAround();
-        }
-        else if (startRunning)
-        {
-            runForward();
-        }
-        else
-        {
-            walkForward();
-        }
+		if (startlookingAround) {
+			lookAround ();
+		} else if (startRunning) {
+			runForward ();
+		} else {
+			walkForward ();
+		}
 
-    }
+	}
 
-    void Update ()
-    {
-        if (walking)
-        {
-            Vector3 forward = walkSpeed * guard.forward * Time.deltaTime;
-            guard.Translate(forward, Space.World);
-        }
-        else if (running)
-        {
-            Vector3 forward = runSpeed * guard.forward * Time.deltaTime;
-            guard.Translate(forward, Space.World);
-        }
-    }
+	void Update ()
+	{
+		if (walking) {
+			Vector3 forward = walkSpeed * guard.forward * Time.deltaTime;
+			guard.Translate (forward, Space.World);
+		} else if (running) {
+			Vector3 forward = runSpeed * guard.forward * Time.deltaTime;
+			guard.Translate (forward, Space.World);
+		}
+	}
 
-    void walkForward()
-    {
-        animations.Play("walk_cycle", PlayMode.StopAll);
+	void walkForward ()
+	{
+		animations.Play ("walk_cycle", PlayMode.StopAll);
 
-        walking = true;
-    }
+		walking = true;
+	}
 
-    void runForward()
-    {
-        animations.Play("run_cycle", PlayMode.StopAll);
+	void runForward ()
+	{
+		animations.Play ("run_cycle", PlayMode.StopAll);
 
-        running = true;
-    }
+		running = true;
+	}
 
-    void lookAround()
-    {
-        animations.Play("look_around", PlayMode.StopAll);
+	void lookAround ()
+	{
+		animations.Play ("look_around", PlayMode.StopAll);
 
-        looking = true;
-    }
+		looking = true;
+	}
 }

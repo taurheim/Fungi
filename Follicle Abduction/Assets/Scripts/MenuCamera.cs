@@ -5,24 +5,25 @@ using UnityEngine;
 /*
     Make the camera for the main menu look awesome
  */
-public class MenuCamera : MonoBehaviour {
+public class MenuCamera : MonoBehaviour
+{
 
-    Camera mainCamera;
+	Camera mainCamera;
 
-    [SerializeField]
-    float speed = 1;
+	[SerializeField]
+	float speed = 1;
 
 	// Use this for initialization
 	void Start ()
-    {
-        mainCamera = GetComponent<Camera>();
+	{
+		mainCamera = GetComponent<Camera> ();
 	}
 	
 	// Update is called once per frame
 	void Update ()
-    {
-        Vector3 angle = Vector3.zero;
-        angle.x += Time.deltaTime * speed;
-        mainCamera.transform.Rotate(angle);
+	{
+		Vector3 angle = Vector3.zero;
+		angle.x += Time.deltaTime * speed;
+		mainCamera.transform.Rotate (angle);
 	}
 }

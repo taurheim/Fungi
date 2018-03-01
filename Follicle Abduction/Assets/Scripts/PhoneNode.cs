@@ -5,7 +5,8 @@ using UnityEngine;
 /*
 	Node attached to the phone to allow the alien to control it. Implements Node.
  */
-public class PhoneNode : Node {
+public class PhoneNode : Node
+{
 
 	public AudioClip ring;
 	public Patrol[] guards;
@@ -15,13 +16,15 @@ public class PhoneNode : Node {
 	private bool ringing;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		source = GetComponent<AudioSource> ();
 		ringing = false;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		if (ringing && !source.isPlaying) {
 			StopRinging ();
 		}
@@ -30,17 +33,20 @@ public class PhoneNode : Node {
 		}
 	}
 
-	public override void StartAction() {
+	public override void StartAction ()
+	{
 		if (state == NodeState.UNLOCKED) {
 			Ring ();
 		}
 	}
 
-	public override void EndAction() {
+	public override void EndAction ()
+	{
 		return;
 	}
 
-	void Ring() {
+	void Ring ()
+	{
 		if (!ringing) {
 			source.PlayOneShot (ring);
 			ringing = true;
@@ -55,7 +61,8 @@ public class PhoneNode : Node {
 		}
 	}
 
-	void StopRinging () {
+	void StopRinging ()
+	{
 		if (ringing) {
 			ringing = false;
 			foreach (Patrol guard in guards) {
