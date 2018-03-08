@@ -11,7 +11,7 @@ public enum NodeState
 	// Available to be hacked
 	COMPLETED
 	// Completed}
-;
+};
 
 /*
 	A map node for the alien. Can be in 3 states that are modified by the alien clicking on the icon. Nodes can have children which
