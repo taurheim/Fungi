@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 /*
 	Used in the networking test scene. Allow both players to modify the material of the sphere.
  */
-public class NetworkTestSphere : NetworkBehaviour
+public class NetworkTestSphere : NetworkedObject
 {
 
 	public Material mat1, mat2;
@@ -24,11 +24,11 @@ public class NetworkTestSphere : NetworkBehaviour
 
 	void OnMouseDown ()
 	{
-		if (isServer) {
-			RpcSwapMaterials ();
-		} else {
-			CmdSwapMaterials ();
-		}
+		NetworkInteract();
+	}
+
+	protected override void Interact() {
+		SwapMaterials();
 	}
 
 	void SwapMaterials ()
@@ -38,19 +38,5 @@ public class NetworkTestSphere : NetworkBehaviour
 		} else {
 			currentMat = 1;
 		}
-	}
-
-	[Command]
-	void CmdSwapMaterials ()
-	{
-		Debug.Log ("Running command");
-		RpcSwapMaterials ();
-	}
-
-	[ClientRpc]
-	void RpcSwapMaterials ()
-	{
-		Debug.Log ("Running RPC");
-		SwapMaterials ();
 	}
 }

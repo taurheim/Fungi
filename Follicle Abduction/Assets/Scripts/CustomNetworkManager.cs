@@ -19,25 +19,4 @@ public class CustomNetworkManager : NetworkManager
 			menu.NotifyPlayerAdded (conn, playerControllerId);
 		}
 	}
-	/* 
-    public override void OnServerAddPlayer (NetworkConnection conn, short playerControllerId)
-    {
-        Debug.Log("OnServerAddPlayer");
-        NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
-    }
- 
- 
- 
-    public override void OnClientSceneChanged(NetworkConnection conn)
-    {
-        Debug.Log("OnClientSceneChanged");
-        ClientScene.AddPlayer(conn, 0);
-    }
- 
-    public override void OnClientConnect(NetworkConnection conn)
-    {
-        //base.OnClientConnect(conn);
-    }
- */
- 
 }
