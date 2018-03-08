@@ -152,13 +152,7 @@ public class Patrol : MonoBehaviour
 	// After successfully catching up to player, capture
 	public void Capture (GameObject target)
 	{
-		// Placeholder effect, not sure how to do gameover yet
-		if (target.transform.parent != null) {
-			target.transform.parent.gameObject.transform.position = sendToOnCapture;
-			target.transform.position = sendToOnCapture;
-		} else {
-			target.transform.position = sendToOnCapture;
-		}
+		target.GetComponent<HumanPlayer>().ResetPosition();
 		currChaseTarget = null;
 	}
 
