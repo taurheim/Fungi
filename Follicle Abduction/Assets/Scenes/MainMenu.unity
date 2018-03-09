@@ -651,6 +651,7 @@ MonoBehaviour:
   joinScreen: {fileID: 778603610}
   levelSelect: {fileID: 1090071408}
   hostScreen: {fileID: 848543729}
+  settingsScreen: {fileID: 0}
 --- !u!1 &110852471
 GameObject:
   m_ObjectHideFlags: 0
@@ -4045,7 +4046,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &934546772
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5160,6 +5161,9 @@ MonoBehaviour:
   border1: {fileID: 418973876}
   border2: {fileID: 1014331301}
   border3: {fileID: 764641283}
+  selectedLevel: 0
+  roleSelectLocal: {fileID: 317988669}
+  roleSelectPartner: {fileID: 1256865036}
 --- !u!1 &1115806341
 GameObject:
   m_ObjectHideFlags: 0
@@ -7439,7 +7443,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1609308054
 RectTransform:
   m_ObjectHideFlags: 0

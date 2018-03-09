@@ -15,13 +15,13 @@ public class HostScreen : MonoBehaviour {
         back.onClick.AddListener(backButton);
 	}
 	
-	void backButton()
+	public void backButton()
     {
         menuManager.hideHostScreen();
         menuManager.displayStartScreen();
     }
 
-    void onClientConnected()
+    public void onClientConnected()
     {
         menuManager.hideHostScreen();
         menuManager.displayLevelSelect();

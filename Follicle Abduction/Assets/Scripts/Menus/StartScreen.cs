@@ -22,24 +22,24 @@ public class StartScreen : MonoBehaviour {
         quit.onClick.AddListener(quitButton);
     }
 
-    void hostButton()
+    public void hostButton()
     {
         menuManager.hideStartScreen();
         menuManager.displayHostScreen();
     }
 
-    void joinButton()
+    public void joinButton()
     {
         menuManager.hideStartScreen();
         menuManager.displayJoinScreen();
     }
 
-    void settingsButton()
+    public void settingsButton()
     {
 
     }
 
-    void quitButton()
+    public void quitButton()
     {
         Application.Quit();
     }
