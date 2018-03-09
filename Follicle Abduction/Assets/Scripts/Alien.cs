@@ -13,6 +13,8 @@ public class Alien : MonoBehaviour
 	private int suspiciousness;
 	private bool captured;
 
+	public Node currentNode;
+
 	void Start ()
 	{
 		suspiciousness = 0;
@@ -35,5 +37,21 @@ public class Alien : MonoBehaviour
 	public bool hasBeenCaptured ()
 	{
 		return captured;
+	}
+
+	public void moveLeft() {
+
+	}
+
+	public void moveRight() {
+
+	}
+
+	public void moveUp() {
+
+	}
+
+	public void moveDown() {
+
 	}
 }
