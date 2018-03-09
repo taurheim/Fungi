@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
 using UnityEngine.TestTools;
 using NUnit.Framework;
@@ -66,5 +66,35 @@ public class NodeTests {
 		Node parentNode = SetupWithChildren(0);
 		parentNode.unlockNode();
 		parentNode.completeNode();
+	}
+
+	[Test]
+	public void SelectNode() {
+		Node parentNode = SetupWithChildren(0);
+		parentNode.Select();
+		Assert.True(parentNode.selected);
+	}
+
+	class MockNode : Node {
+		public bool wasUsed = false;
+		public override void StartAction() {
+			wasUsed = true;
+		}
+	}
+
+	[Test]
+	public void UseNode() {
+		MockNode node = new MockNode();
+		node.unlockNode();
+		node.completeNode();
+		node.useNode();
+		Assert.True(node.wasUsed);
+	}
+
+	[Test]
+	public void CantUseIncompleteNode() {
+		MockNode node = new MockNode();
+		node.useNode();
+		Assert.False(node.wasUsed);
 	}
 }

@@ -86,7 +86,7 @@ public class Node : NetworkBehaviour
 	void RpcHandleMouseDown ()
 	{
 		if (selected) {
-			StartAction ();
+			useNode();
 		} else {
 			Object.FindObjectOfType<ConsoleManager> ().Select (this);
 		}
@@ -196,6 +196,10 @@ public class Node : NetworkBehaviour
 				childNodes [i].unlockNode ();
 			}
 		}
+	}
+
+	public void useNode() {
+		StartAction();
 	}
 
 	void drawLinesToChildren ()
