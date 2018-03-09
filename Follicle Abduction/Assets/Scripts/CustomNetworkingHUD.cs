@@ -32,7 +32,7 @@ public class CustomNetworkingHUD : MonoBehaviour
 
 	void Update ()
 	{
-
+		return;
 		// Start the game if we're in debug mode
 		bool isDebug = LevelManager.getParam ("isDebug") == "True";
 
