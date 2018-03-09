@@ -5,10 +5,13 @@ using UnityEngine.UI;
 
 public class LevelSelect : MonoBehaviour {
 
+    public MenuManager menuManager;
+
 	public Button startBtn;
 	public Button lvl1;
 	public Button lvl2;
 	public Button lvl3;
+    public Button back;
 
 	public bool lvl1_unlocked = true;
 	public bool lvl2_unlocked = true;
@@ -26,6 +29,8 @@ public class LevelSelect : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+        back.onClick.AddListener(backButton);
+
 		if (lvl1_unlocked) 
 		{
 			lvl1.onClick.AddListener (selectedScene1);
@@ -94,4 +99,16 @@ public class LevelSelect : MonoBehaviour {
 	{
 		Debug.Log ("Load scene " + selectedLevel);
 	}
+
+    void backButton()
+    {
+        breakConnection();
+        menuManager.hideLevelSelect();
+        menuManager.displayStartScreen();
+    }
+
+    void breakConnection()
+    {
+        // End connection between players when one leaves the level select screen
+    }
 }
