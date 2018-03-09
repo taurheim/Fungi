@@ -21816,23 +21816,11 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2060340054}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 5.7934933, y: 6.0558753, z: 6.1823883}
   m_Center: {x: 0.3455782, y: 2.5279377, z: -0.058361053}
---- !u!114 &2060340056
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2060340054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58dc312880984d44aa43888590db1ae0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneName: level_2
 --- !u!1 &2061537524
 GameObject:
   m_ObjectHideFlags: 0
