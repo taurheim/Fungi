@@ -29,6 +29,10 @@ public class LevelSelect : MonoBehaviour {
     public Dropdown roleSelectLocal;
     public Dropdown roleSelectPartner;
 
+    public bool localPlayerReady = false;
+    public bool partnerPlayerReady = false;
+    public bool gameStarted = false;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -100,9 +104,9 @@ public class LevelSelect : MonoBehaviour {
 
 	public void startGame()
 	{
-		Debug.Log ("Load scene " + selectedLevel);
-       
-	}
+        gameStarted = true;
+        //Debug.Log ("Load scene " + selectedLevel);
+    }
 
     void backButton()
     {

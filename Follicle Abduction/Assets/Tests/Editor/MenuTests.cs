@@ -147,5 +147,47 @@ public class MenuTests
         Assert.False(levelLoads);
     }
 
+    [Test]
+    public void EnterPort()
+    {
+        MenuManager menuManager = setupMenuManager();
+        int port = 7777;
+        menuManager.joinScreen.setPort(port);
+
+        Assert.True(port == menuManager.joinScreen.getPort());
+    }
+
+    [Test]
+    public void EnterIP()
+    {
+        MenuManager menuManager = setupMenuManager();
+        string ip = "localhost";
+        menuManager.joinScreen.setIP(ip);
+
+        Assert.True(ip == menuManager.joinScreen.getIP());
+    }
+
+    [Test]
+    public void GameBeginsAfterRolesChosen()
+    {
+        MenuManager menuManager = setupMenuManager();
+        menuManager.levelSelect.localPlayerReady = true;
+        menuManager.levelSelect.partnerPlayerReady = false;
+        menuManager.levelSelect.startGame();
+        Assert.True(menuManager.levelSelect.gameStarted);
+    }
+
+    [Test]
+    public void LevelsInOrder()
+    {
+        MenuManager menuManager = setupMenuManager();
+        bool lvl1 = menuManager.levelSelect.lvl1_unlocked;
+        bool lvl2 = menuManager.levelSelect.lvl2_unlocked;
+        bool lvl3 = menuManager.levelSelect.lvl3_unlocked;
+
+        Assert.True(lvl1);
+        Assert.False(lvl2);
+        Assert.False(lvl3);
+    }
 
 }

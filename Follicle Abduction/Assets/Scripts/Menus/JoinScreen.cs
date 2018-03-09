@@ -23,12 +23,12 @@ public class JoinScreen : MonoBehaviour {
 
     }
 
-    void portField()
+    public void portField()
     {
 
     }
 
-    void ipField()
+    public void ipField()
     {
 
     }
@@ -44,6 +44,28 @@ public class JoinScreen : MonoBehaviour {
     {
         menuManager.hideJoinScreen();
         menuManager.displayLevelSelect();
+    }
+
+    int portNum;
+    public int getPort()
+    {
+        return portNum;
+    }
+
+    public void setPort(int num)
+    {
+        portNum = num;
+    }
+
+    string ipAddr;
+    public string getIP()
+    {
+        return ipAddr;
+    }
+
+    public void setIP(string addr)
+    {
+        ipAddr = addr;
     }
 
 }
