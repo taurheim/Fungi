@@ -7,28 +7,29 @@ using UnityEngine.SceneManagement;
     Allow for entity to have waypoints which are sequentially visited. Entity will attempt to move through all positions in
     navMesh before looping backwards.
  */
-public class npcWalk : MonoBehaviour {
+public class npcWalk : MonoBehaviour
+{
 
-    public Vector3[] navMesh;
+	public Vector3[] navMesh;
 
-    public bool Out;
+	public bool Out;
 
-    private UnityEngine.AI.NavMeshAgent agent;
-    private int currentWaypoint = -1;
-    private float StoppingDistance = 0.5f;
+	private UnityEngine.AI.NavMeshAgent agent;
+	private int currentWaypoint = -1;
+	private float StoppingDistance = 0.5f;
 
-    public Vector3 currDestination;
+	public Vector3 currDestination;
 
-    public GameObject artModel;
-    private string currAnimation;
-    public Vector3 sendToOnCapture;
+	public GameObject artModel;
+	private string currAnimation;
+	public Vector3 sendToOnCapture;
 
-    void NavigateToNextWaypoint()
-    {
+	void NavigateToNextWaypoint ()
+	{
 
-        // Choose a new waypoint
-        currentWaypoint = (currentWaypoint + 1) % navMesh.Length;
-        /*
+		// Choose a new waypoint
+		currentWaypoint = (currentWaypoint + 1) % navMesh.Length;
+		/*
             if (currentWaypoint == 2 && !Out)
         {
             transform.position = new Vector3(-33, -14, 27);
@@ -38,57 +39,53 @@ public class npcWalk : MonoBehaviour {
             transform.position = new Vector3(-3, -14, 43);
         }
         */
-        currDestination = navMesh[currentWaypoint];
-    }
+		currDestination = navMesh [currentWaypoint];
+	}
 
 
-    // Use this for initialization
-    void Start () {
-        agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
-        currAnimation = "";
-        if(transform.position.x < -32 &&!Out)
-        {
-            currentWaypoint = 1;
-        }
-        if (transform.position.x > -4 && !Out)
-        {
-            currentWaypoint = 0;
-        }
+	// Use this for initialization
+	void Start ()
+	{
+		agent = this.GetComponent<UnityEngine.AI.NavMeshAgent> ();
+		currAnimation = "";
+		if (transform.position.x < -32 && !Out) {
+			currentWaypoint = 1;
+		}
+		if (transform.position.x > -4 && !Out) {
+			currentWaypoint = 0;
+		}
 
-        if (transform.position.x < -32 && Out)
-        {
-            currentWaypoint = 0;
-        }
-        if (transform.position.x > -4 && Out)
-        {
-            currentWaypoint = 1;
-        }
-        NavigateToNextWaypoint();
-        //artModel.GetComponent<Animation>().Play("walk_cycle", PlayMode.StopAll);
-    }
+		if (transform.position.x < -32 && Out) {
+			currentWaypoint = 0;
+		}
+		if (transform.position.x > -4 && Out) {
+			currentWaypoint = 1;
+		}
+		NavigateToNextWaypoint ();
+		//artModel.GetComponent<Animation>().Play("walk_cycle", PlayMode.StopAll);
+	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 
 
-        if (Vector3.Distance(transform.position, navMesh[currentWaypoint]) < StoppingDistance)
-        {
-            NavigateToNextWaypoint();
+		if (Vector3.Distance (transform.position, navMesh [currentWaypoint]) < StoppingDistance) {
+			NavigateToNextWaypoint ();
             
-        }
-        MoveToDestination();
-        //artModel.GetComponent<Animation>().Play("walk_cycle");
+		}
+		MoveToDestination ();
+		//artModel.GetComponent<Animation>().Play("walk_cycle");
 
-    }
+	}
 
 
-    void MoveToDestination()
-    {
-        if (agent != null)
-        {
-            agent.isStopped = false;
-            agent.SetDestination(currDestination);
+	void MoveToDestination ()
+	{
+		if (agent != null) {
+			agent.isStopped = false;
+			agent.SetDestination (currDestination);
 
-        }
-    }
+		}
+	}
 }

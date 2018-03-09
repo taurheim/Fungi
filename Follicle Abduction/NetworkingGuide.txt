@@ -1,0 +1,61 @@
+Let's say we have a checkbox in the menu that we want synchronized.
+
+1. Add NetworkIdentity Component
+
+2. Our checkbox behaviour should inherit from NetworkedObject
+
+public class Checkbox : NetworkedObject {
+	// Implementation
+}
+
+3. Override Interact():
+
+protected override void Interact() {
+	checked = !checked;
+}
+
+4. Call NetworkInteract() from somewhere in your code:
+void OnMouseDown() {
+	NetworkInteract();
+}
+
+Think of it like you have this interact method that you want called on both client and server, so you call NetworkInteract to do it for you.
+
+-----
+
+What if you want to pass some information in? For example you want to synchronize a text field?
+
+1. Add NetworkIdentity component
+
+2. Inherit from NetworkedObject
+
+public class TextField : NetworkedObject {
+	string lastSentText = "";
+	string currentText = "";
+	// Implementation
+}
+
+3. Override Interact(string str)
+
+protected override void Interact(string str) {
+	currentText = str;
+}
+
+4. Call NetworkInteract(string str) from somewhere in your code:
+
+void Update() {
+	// Don't do it every update so we don't lag the hell out
+	if (currentText != lastSentText) {
+		NetworkInteract(currentText);
+		lastSentText = currentText;
+	}
+}
+
+
+-----
+What if we want to synchronize an object's location?
+
+1. Add NetworkIdentity component
+2. Add NetworkTransform component
+
+Note that this will only synchronize the transform, anything else will have to be done using NetworkedObject. You can use them both on the same object.

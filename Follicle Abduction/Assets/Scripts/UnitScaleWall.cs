@@ -6,11 +6,13 @@ using UnityEngine;
 	Used for the level creator script
  */
 [ExecuteInEditMode]
-public class UnitScaleWall : MonoBehaviour {
+public class UnitScaleWall : MonoBehaviour
+{
 
 	// Use this for initialization
-	void Start () {
-		Vector4 size = GetComponent<Renderer>().bounds.size;
+	void Start ()
+	{
+		Vector4 size = GetComponent<Renderer> ().bounds.size;
 		Vector3 scale = transform.localScale;
 		float scaleFactor = 1.0f / size.x;
 		scale.x = scaleFactor;
@@ -20,7 +22,8 @@ public class UnitScaleWall : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		
 	}
 }

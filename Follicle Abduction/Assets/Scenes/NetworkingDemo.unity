@@ -237,7 +237,7 @@ MonoBehaviour:
     i14: 0
     i15: 0
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
+  m_LocalPlayerAuthority: 0
 --- !u!114 &918769326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,9 +246,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 918769319}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0095bd8ebf148e747b193e348f2fc0d9, type: 3}
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!1 &1341947335
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,7 +360,7 @@ GameObject:
   - component: {fileID: 1403064125}
   m_Layer: 0
   m_Name: Network Manager
-  m_TagString: Untagged
+  m_TagString: networkmanager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -375,13 +385,14 @@ MonoBehaviour:
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 2
-  m_PlayerPrefab: {fileID: 1347868002804400, guid: 34e8b2b4c57e17142b6c5a43c62330a3,
-    type: 2}
-  m_AutoCreatePlayer: 1
+  m_PlayerPrefab: {fileID: 0}
+  m_AutoCreatePlayer: 0
   m_PlayerSpawnMethod: 0
   m_OfflineScene: 
   m_OnlineScene: 
-  m_SpawnPrefabs: []
+  m_SpawnPrefabs:
+  - {fileID: 1347868002804400, guid: 34e8b2b4c57e17142b6c5a43c62330a3, type: 2}
+  - {fileID: 1841814973024174, guid: 7592783746b8fab49b93bb4bfae519f8, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -424,7 +435,7 @@ MonoBehaviour:
     m_MaxTimerTimeout: 12000
     m_MinNetSimulatorTimeout: 1
     m_MaxNetSimulatorTimeout: 12000
-  m_Channels: 
+  m_Channels: 0500000000000000
   m_UseWebSockets: 0
   m_UseSimulator: 0
   m_SimulatedLatency: 1
@@ -438,6 +449,10 @@ MonoBehaviour:
   isNetworkActive: 0
   matchMaker: {fileID: 0}
   spawnLocation: {x: -18, y: -10, z: 42}
+  humanPrefab: {fileID: 1841814973024174, guid: 7592783746b8fab49b93bb4bfae519f8,
+    type: 2}
+  alienPrefab: {fileID: 1347868002804400, guid: 34e8b2b4c57e17142b6c5a43c62330a3,
+    type: 2}
 --- !u!114 &1403064125
 MonoBehaviour:
   m_ObjectHideFlags: 0

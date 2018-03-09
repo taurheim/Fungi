@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public enum NodeState { 
-	LOCKED, 	// Cannot be accessed
-	UNLOCKED, 	// Available to be hacked
-	COMPLETED	// Completed
+public enum NodeState
+{
+	LOCKED,
+	// Cannot be accessed
+	UNLOCKED,
+	// Available to be hacked
+	COMPLETED
+	// Completed}
 };
 
 /*
 	A map node for the alien. Can be in 3 states that are modified by the alien clicking on the icon. Nodes can have children which
 	they will be connected to programmatically. For more information see design doc.
  */
-public class Node : NetworkBehaviour {
+public class Node : NetworkBehaviour
+{
 
 	public NodeState state = NodeState.LOCKED;
 
@@ -48,33 +53,38 @@ public class Node : NetworkBehaviour {
 	
 	private float fadePerSecond = 0.5F;
 
-	void Start () {
+	void Start ()
+	{
 		//Hide map icons with given tag
 		MapVisibility.setVisibilityForTag (tagForHiddenObjects, false);
 		// Draw a line from this node to all children
-		drawLinesToChildren();
+		drawLinesToChildren ();
 	}
 
-	void OnMouseDown() {
-		HandleMouseDown();
+	void OnMouseDown ()
+	{
+		HandleMouseDown ();
 	}
 
-	void OnMouseUp() {
-		HandleMouseUp();
+	void OnMouseUp ()
+	{
+		HandleMouseUp ();
 	}
 
-	public void HandleMouseDown() {
-		if(isServer) {
-			RpcHandleMouseDown();
+	public void HandleMouseDown ()
+	{
+		if (isServer) {
+			RpcHandleMouseDown ();
 			print ("server mouse");
 		} else {
-			CmdHandleMouseDown();
+			CmdHandleMouseDown ();
 			print ("client mouse");
 		}
 	}
 
 	[ClientRpc]
-	void RpcHandleMouseDown() {
+	void RpcHandleMouseDown ()
+	{
 		if (selected) {
 			StartAction ();
 		} else {
@@ -83,25 +93,30 @@ public class Node : NetworkBehaviour {
 	}
 
 	[Command]
-	void CmdHandleMouseDown() {
+	void CmdHandleMouseDown ()
+	{
 		RpcHandleMouseDown ();
 	}
 
-	public void HandleMouseUp() {
+	public void HandleMouseUp ()
+	{
 		if (selected) {
 			EndAction ();
 		}
 	}
 
-	public virtual void StartAction() {
+	public virtual void StartAction ()
+	{
 		//isHacking = true;
 	}
 
-	public virtual void EndAction() {
+	public virtual void EndAction ()
+	{
 		//isHacking = false;
 	}
 
-	public virtual void Select() {
+	public virtual void Select ()
+	{
 		selected = true;
 		if (outline) {
 			print ("select");
@@ -109,7 +124,8 @@ public class Node : NetworkBehaviour {
 		}
 	}
 
-	public virtual void Deselect() {
+	public virtual void Deselect ()
+	{
 		selected = false;
 		if (outline) {
 			print ("deselect");
@@ -118,108 +134,114 @@ public class Node : NetworkBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		// If the node is locked, do nothing
-		if(state == NodeState.UNLOCKED) {
+		if (state == NodeState.UNLOCKED) {
 
-			if(isHacking && percentComplete < 100f) {
+			if (isHacking && percentComplete < 100f) {
 				percentComplete++;
 				float amt = percentComplete / 100f;
 
-				progressBar.transform.localPosition = new Vector3(amt/2 - 0.5f, progressBar.transform.localPosition.y, progressBar.transform.localPosition.z);
-				progressBar.transform.localScale = new Vector3(amt, 1, 1);
+				progressBar.transform.localPosition = new Vector3 (amt / 2 - 0.5f, progressBar.transform.localPosition.y, progressBar.transform.localPosition.z);
+				progressBar.transform.localScale = new Vector3 (amt, 1, 1);
 			}
 
-			if(percentComplete >= 100f) {
-				completeNode();
+			if (percentComplete >= 100f) {
+				completeNode ();
 			}
-		} else if(state == NodeState.COMPLETED) {
+		} else if (state == NodeState.COMPLETED) {
 			// Mark all connections as green, fade them out
-			Color currentColor = progressBar.GetComponent<MeshRenderer>().material.color;
-			Color newColor = new Color(0F, 1.0F, 0F, currentColor.a - (fadePerSecond * Time.deltaTime));
+			Color currentColor = progressBar.GetComponent<MeshRenderer> ().material.color;
+			Color newColor = new Color (0F, 1.0F, 0F, currentColor.a - (fadePerSecond * Time.deltaTime));
 
-			foreach(LineRenderer line in nodeLines){
+			foreach (LineRenderer line in nodeLines) {
 				line.startColor = newColor;
 				line.endColor = newColor;
 			}
-			progressBar.GetComponent<MeshRenderer>().material.color = newColor;
-			GetComponent<MeshRenderer>().enabled = false;
+			progressBar.GetComponent<MeshRenderer> ().material.color = newColor;
+			GetComponent<MeshRenderer> ().enabled = false;
 
 			// Finally, hide the node from view
-			if(newColor.a <= 0) {
-				gameObject.SetActive(false);
+			if (newColor.a <= 0) {
+				gameObject.SetActive (false);
 			}
 		}
 	}
 
-	public void unlockNode() {
+	public void unlockNode ()
+	{
 		state = NodeState.UNLOCKED;
 	}
 
-	public Vector3 getPosition() {
+	public Vector3 getPosition ()
+	{
 		return gameObject.transform.position;
 	}
 
-	public void completeNode() {
+	public void completeNode ()
+	{
 		// Can't complete without unlocking
-		if(state == NodeState.UNLOCKED) {
+		if (state == NodeState.UNLOCKED) {
 			state = NodeState.COMPLETED;
 
 			// Show all hidden objects
-			if(tagForHiddenObjects != null) {
-				Debug.Log(tagForHiddenObjects.Length);
+			if (tagForHiddenObjects != null) {
+				Debug.Log (tagForHiddenObjects.Length);
 				MapVisibility.setVisibilityForTag (tagForHiddenObjects, true);
 			}
 
 			// Unlock all child nodes
-			for(int i=0;i<childNodes.Length;i++){
-				childNodes[i].unlockNode();
+			for (int i = 0; i < childNodes.Length; i++) {
+				childNodes [i].unlockNode ();
 			}
 		}
 	}
 
-	void drawLinesToChildren() {
+	void drawLinesToChildren ()
+	{
 		// The maximum number of lines is 2*child nodes
-		nodeLines = new LineRenderer[childNodes.Length*2];
+		nodeLines = new LineRenderer[childNodes.Length * 2];
 		
-		for(int i=0;i<childNodes.Length;i++){
-			Node childNode = childNodes[i];
-			Vector3 parentPosition = this.getPosition();
-			Vector3 childPosition = childNode.getPosition();
+		for (int i = 0; i < childNodes.Length; i++) {
+			Node childNode = childNodes [i];
+			Vector3 parentPosition = this.getPosition ();
+			Vector3 childPosition = childNode.getPosition ();
 
 			// TODO magic #s, strings, duplication
 			// TODO maybe make this in a range instead of exact?
 			// TODO is there a better way than creating a new game object every time? Can we store them somewhere?
-			if(parentPosition.x == childPosition.x || parentPosition.y == childPosition.y) {
+			if (parentPosition.x == childPosition.x || parentPosition.y == childPosition.y) {
 				// Only need one line
-				GameObject lineObject = new GameObject();
-				lineObject.layer = LayerMask.NameToLayer("Minimap");
-				nodeLines[i] = makeLine(lineObject, parentPosition, childPosition);
+				GameObject lineObject = new GameObject ();
+				lineObject.layer = LayerMask.NameToLayer ("Minimap");
+				nodeLines [i] = makeLine (lineObject, parentPosition, childPosition);
 			} else {
 				// Vertical line
 				// TODO draw different lines first and second based on positions?
 				// TODO make sure lines don't cross?
-				GameObject verticalLineObject = new GameObject();
-				GameObject horizontalLineObject = new GameObject();
-				verticalLineObject.layer = LayerMask.NameToLayer("Minimap");
-				horizontalLineObject.layer = LayerMask.NameToLayer("Minimap");
+				GameObject verticalLineObject = new GameObject ();
+				GameObject horizontalLineObject = new GameObject ();
+				verticalLineObject.layer = LayerMask.NameToLayer ("Minimap");
+				horizontalLineObject.layer = LayerMask.NameToLayer ("Minimap");
 				// Vertical then horizontal
-				Vector3 midPoint = new Vector3(parentPosition.x, childPosition.y, childPosition.z);
-				nodeLines[i] = makeLine(verticalLineObject, parentPosition, midPoint);
-				nodeLines[i+1]  = makeLine(horizontalLineObject, midPoint, childPosition);
+				Vector3 midPoint = new Vector3 (parentPosition.x, childPosition.y, childPosition.z);
+				nodeLines [i] = makeLine (verticalLineObject, parentPosition, midPoint);
+				nodeLines [i + 1] = makeLine (horizontalLineObject, midPoint, childPosition);
 			}
 		}
 	}
 
-	LineRenderer makeLine(GameObject obj, Vector3 startPosition, Vector3 endPosition) {
+	LineRenderer makeLine (GameObject obj, Vector3 startPosition, Vector3 endPosition)
+	{
 		// TODO move all this to constants at the top
-		LineRenderer line = obj.AddComponent<LineRenderer>();
+		LineRenderer line = obj.AddComponent<LineRenderer> ();
 		line.startWidth = 0.2F;
 		line.endWidth = 0.2F;
 		line.positionCount = 2;
-		line.SetPosition(0, startPosition);
-		line.SetPosition(1, endPosition);
-		line.material = new Material (Shader.Find("Particles/Additive"));
+		line.SetPosition (0, startPosition);
+		line.SetPosition (1, endPosition);
+		line.material = new Material (Shader.Find ("Particles/Additive"));
 		line.startColor = Color.red;
 		line.endColor = Color.red;
 

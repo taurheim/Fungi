@@ -12,15 +12,15 @@ public class Float : MonoBehaviour
 	// How much the object will fluctuate up and down (lower will stay more stationary)
 	public float floatStrength = 1;
 
-	void Start()
+	void Start ()
 	{
 		this.originalY = this.transform.position.y;
 	}
 
-	void Update()
+	void Update ()
 	{
-		transform.position = new Vector3(transform.position.x,
-			originalY + ((float)Math.Sin(Time.time) * floatStrength),
+		transform.position = new Vector3 (transform.position.x,
+			originalY + ((float)Math.Sin (Time.time) * floatStrength),
 			transform.position.z);
 	}
 }
