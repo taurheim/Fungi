@@ -14,6 +14,7 @@ public class JoinScreen : MonoBehaviour {
 
     void Start ()
     {
+        connect.onClick.AddListener(connectButton);
         back.onClick.AddListener(backButton);
 	}
 	

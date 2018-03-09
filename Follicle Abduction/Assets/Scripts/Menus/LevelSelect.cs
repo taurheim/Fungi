@@ -24,7 +24,10 @@ public class LevelSelect : MonoBehaviour {
 	Color selected = new Color(52f/255f,152f/255f,219f/255f,1f);
 	Color notSelected = new Color(1f,1f,1f,0f);
 
-	int selectedLevel = 0;
+	public int selectedLevel = 0;
+
+    public Dropdown roleSelectLocal;
+    public Dropdown roleSelectPartner;
 
 	// Use this for initialization
 	void Start () 
@@ -95,9 +98,10 @@ public class LevelSelect : MonoBehaviour {
 		startBtn.interactable = true;
 	}
 
-	void startGame()
+	public void startGame()
 	{
 		Debug.Log ("Load scene " + selectedLevel);
+       
 	}
 
     void backButton()
@@ -110,5 +114,11 @@ public class LevelSelect : MonoBehaviour {
     void breakConnection()
     {
         // End connection between players when one leaves the level select screen
+    }
+
+
+    public bool loadScene()
+    {
+        return false;
     }
 }
