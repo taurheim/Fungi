@@ -32,6 +32,7 @@ public class Patrol : MonoBehaviour
 	public GameObject artModel;
 	private string currAnimation;
 	public Vector3 sendToOnCapture;
+    private Quaternion originalFaceDirection;
 
 	void NavigateToNextWaypoint ()
 	{
@@ -39,7 +40,8 @@ public class Patrol : MonoBehaviour
 		// Choose a new waypoint
 		currentWaypoint = (currentWaypoint + 1) % navMesh.Length;
 		currDestination = navMesh [currentWaypoint];
-	}
+        artModel.GetComponent<Animation>().Play("walk_cycle", PlayMode.StopAll);
+    }
 
 	void Start ()
 	{
@@ -47,11 +49,12 @@ public class Patrol : MonoBehaviour
 		secondaryTargets = new List<GameObject> ();
 		currAnimation = "";
 		NavigateToNextWaypoint ();
-		artModel.GetComponent<Animation> ().Play ("walk_cycle", PlayMode.StopAll);
+        artModel.GetComponent<Animation>().Play("look_around", PlayMode.StopAll);
+        originalFaceDirection = this.transform.rotation;
 
-	}
+    }
 
-	void Update ()
+    void Update ()
 	{
 		// If currently chasing a target
 		if (currChaseTarget != null) {
@@ -94,8 +97,15 @@ public class Patrol : MonoBehaviour
 		// If not currently chasing, simply patrol to next waypoint
 		else {
 			if (Vector3.Distance (transform.position, navMesh [currentWaypoint]) < StoppingDistance) {
-				artModel.GetComponent<Animation> ().Play ("look_around", PlayMode.StopAll);
-				NavigateToNextWaypoint ();
+                // If this guard is meant to stay in one position (rather than patrolling)
+                if (navMesh.Length == 1) {
+                    artModel.GetComponent<Animation>().Play("look_around", PlayMode.StopAll);
+                    this.transform.rotation = originalFaceDirection;
+                }
+                else {
+                    artModel.GetComponent<Animation>().Play("look_around", PlayMode.StopAll);
+                    NavigateToNextWaypoint();
+                }
 			}
 
 			// Look for all targets in target array, if any found, begin chase

@@ -61,7 +61,7 @@ public class RadioNode : Node {
 		}
 	}
 
-	void ChooseSong(bool correct) {
+	public void ChooseSong(bool correct) {
 		if(isServer) {
 			RpcChooseSong(correct);
 		} else {
@@ -70,12 +70,12 @@ public class RadioNode : Node {
 	}
 
 	[ClientRpc]
-	void RpcChooseSong(bool correct) {
+	public void RpcChooseSong(bool correct) {
 		choseCorrectSong = correct;
 	}
 
 	[Command]
-	void CmdChooseSong(bool correct) {
+	public void CmdChooseSong(bool correct) {
 		RpcChooseSong (correct);
 	}
 
@@ -115,26 +115,30 @@ public class RadioNode : Node {
 		return;
 	}
 
-	void PlayWrongSong() {
+	public void PlayWrongSong() {
 		source.PlayOneShot (wrongSong);
 	}
 
-	void PlayCorrectSong() {
+	public void PlayCorrectSong() {
 		if (!playing) {
-			source.Stop ();
-			source.PlayOneShot (correctSong);
+			if (source && correctSong){
+				source.Stop ();
+				source.PlayOneShot (correctSong);
+			}
 			playing = true;
-			foreach (Patrol guard in songLovingGuards) {
-				GameObject parent = transform.parent.gameObject;;
-				if (parent) {
-					print ("adding secondary target");
-					guard.AddSecondaryTarget (parent);
+			if (songLovingGuards != null) {
+				foreach (Patrol guard in songLovingGuards) {
+					GameObject parent = transform.parent.gameObject;;
+					if (parent) {
+						print ("adding secondary target");
+						guard.AddSecondaryTarget (parent);
+					}
 				}
 			}
 		}
 	}
 
-	void StopPlayingCorrectSong () {
+	public void StopPlayingCorrectSong () {
 		if (playing) {
 			playing = false;
 			foreach (Patrol guard in songLovingGuards) {

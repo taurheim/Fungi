@@ -45,23 +45,29 @@ public class PhoneNode : Node
 		return;
 	}
 
-	void Ring ()
+	public void Ring ()
 	{
 		if (!ringing) {
-			source.PlayOneShot (ring);
+			//If a sound is actually set...
+			if (source && ring){
+				source.PlayOneShot (ring);
+			}
+			//Otherwise silent "ring"? Can generalize this behaviour to non-phone objects later
 			ringing = true;
 			print ("ringing");
-			foreach (Patrol guard in guards) {
-				GameObject parent = transform.parent.gameObject;
-				print (guard);
-				if (parent) {
-					guard.AddSecondaryTarget (parent);
+			if (guards != null) {
+				foreach (Patrol guard in guards) {
+					GameObject parent = transform.parent.gameObject;
+					print (guard);
+					if (parent) {
+						guard.AddSecondaryTarget (parent);
+					}
 				}
 			}
 		}
 	}
 
-	void StopRinging ()
+	public void StopRinging ()
 	{
 		if (ringing) {
 			ringing = false;
