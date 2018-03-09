@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityStandardAssets.Characters.FirstPerson;
 
 /*
 	This should be added to any object that can be a player.
@@ -11,7 +12,13 @@ using UnityEngine.Networking;
 public class NetworkedPlayer : NetworkBehaviour {
 
 	public override void OnStartLocalPlayer() {
-		GameObject.FindWithTag("networkmanager").GetComponent<DemoCustomNetworkManager>().registerPlayerObject(this.gameObject);
+		Debug.Log("It's our local player!");
+		GameObject.FindWithTag("networkmanager").GetComponent<CustomNetworkManager>().registerPlayerObject(this.gameObject);
+		FirstPersonController controller = GetComponentInChildren<FirstPersonController>();
+		if(controller) {
+			controller.enabled = true;
+		}
+		GetComponentInChildren<Camera>().enabled = true;
 	}
 
 	[Command]

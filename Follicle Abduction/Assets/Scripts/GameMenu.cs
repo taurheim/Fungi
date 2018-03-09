@@ -49,7 +49,7 @@ public class GameMenu : NetworkBehaviour
 		// on the other hand maybe this is the cleanest way to do this
 		string role = LevelManager.getParam ("playerRole");
 
-		if (isDebug) {
+		if (false && isDebug) {
 			Debug.Log ("We're in debug mode - don't wait for more connections");
 			hideMenu ();
 			GameObject player = (GameObject)Instantiate (playerPrefab, spawnLocation, Quaternion.identity);
@@ -69,7 +69,7 @@ public class GameMenu : NetworkBehaviour
 
 	void hideMenu ()
 	{
-		netManagerHUD.showGUI = false;
+		//netManagerHUD.showGUI = false;
 	}
 
 	public void pauseGame ()
@@ -85,6 +85,7 @@ public class GameMenu : NetworkBehaviour
 
 	public void NotifyPlayerAdded (NetworkConnection connection, short playerControllerId)
 	{
+		return;
 		Debug.Log ("Player has connected!");
 		GameObject player = (GameObject)Instantiate (playerPrefab, spawnLocation, Quaternion.identity);
 		if (isServer) {

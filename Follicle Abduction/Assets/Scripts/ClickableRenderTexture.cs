@@ -19,6 +19,10 @@ public class ClickableRenderTexture : MonoBehaviour
 
 	void OnMouseDown ()
 	{
+		if (!mainCamera) {
+			mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+		}
+
 		RaycastHit hit;
 		Ray ray = mainCamera.ScreenPointToRay (Input.mousePosition);
 
