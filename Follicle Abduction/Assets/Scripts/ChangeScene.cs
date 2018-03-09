@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class ChangeScene : MonoBehaviour {
 
 	public string sceneName;
+	
+	// Prevent double calling
+	private bool changingScenes;
 	// private LevelManager levelManager
 
 	// void Start() {
@@ -13,9 +16,10 @@ public class ChangeScene : MonoBehaviour {
 	// }
 
 	private void OnTriggerEnter(Collider other) {
-		MonoBehaviour.print(other.gameObject.tag);
-		if (other.gameObject.CompareTag("playerA")){
-			SceneManager.LoadScene(sceneName);
+		if (!changingScenes && other.gameObject.CompareTag("playerA")){
+			changingScenes = true;
+			Debug.Log("Collision detected - switching scenes!");
+			GameObject.FindGameObjectWithTag("networkmanager").GetComponent<CustomNetworkManager>().NetworkLoadScene(sceneName);
 		}
 	}
 }

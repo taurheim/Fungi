@@ -18,6 +18,8 @@ public class CustomNetworkManager : NetworkManager
 	private GameObject playerObject;
 	private int playerCount;
 	private bool isHost = false;
+	public string myRole = "";
+	private bool isLoadingScene = false;
 
 	// This is called by the "host" - could be either alien or human player
 	// Passes itself (the player object) in
@@ -37,21 +39,30 @@ public class CustomNetworkManager : NetworkManager
 		isHost = true;
 	}
 
+	public override void OnStopHost() {
+		isHost = false;
+		myRole = "";
+	}
+
 	// Called when someone joins the unity server
 	public override void OnServerAddPlayer (NetworkConnection conn, short playerControllerId)
 	{
-		// Legacy code
-		// TODO remove it (but leave this method overriden)
-		if (conn.hostId == 0) {
-			menu.NotifyPlayerAdded (conn, playerControllerId);
-		}
+		// Do nothing just incase something else calls this
 	}
 
 	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader) {
-		Debug.Log("OnServerAddPlayer");
 		RoleMessage msg = extraMessageReader.ReadMessage<RoleMessage>();
 		string role = msg.role;
+		Debug.Log("OnServerAddPlayer: " + role);
 
+		if (isLoadingScene) {
+			StartCoroutine(WaitForSceneLoad(conn, role, playerControllerId));
+		} else {
+			SpawnPlayerForConnection(conn, role, playerControllerId);
+		}
+	}
+
+	void SpawnPlayerForConnection(NetworkConnection conn, string role, short playerControllerId) {
 		GameObject playerObject;
 		switch (role) {
 			case "human":
@@ -72,15 +83,79 @@ public class CustomNetworkManager : NetworkManager
 		NetworkServer.AddPlayerForConnection(conn, playerObject, playerControllerId);
 	}
 
+	IEnumerator WaitForSceneLoad(NetworkConnection conn, string role, short playerControllerId) {
+		Debug.Log("Waiting for scene to finish loading...");
+		yield return new WaitUntil(() => !isLoadingScene);
+		Debug.Log("Scene loading: " + isLoadingScene);
+		SpawnPlayerForConnection(conn, role, playerControllerId);
+	}
+
 	public override void OnClientConnect(NetworkConnection conn){
 		Debug.Log("Client connect!");
 		ClientScene.Ready(client.connection);
 
 		// This shouldn't be determined here
-		string role = isHost ? "human" : "alien";
+		myRole = isHost ? "human" : "alien";
 
+		NotifyServerSpawnPlayer(conn, myRole);
+	}
+
+	public void NetworkLoadScene(string sceneName) {
+		if(isHost) {
+			Debug.Log("We're the host and we're switching scenes");
+			isLoadingScene = true;
+			ServerChangeScene(sceneName);
+		}
+	}
+
+	public override void OnServerSceneChanged(string sceneName) {
+		Debug.Log("Server scene changed!");
+		isLoadingScene = false;
+	}
+
+	private void NotifyServerSpawnPlayer(NetworkConnection conn, string playerRole) {
 		RoleMessage msg = new RoleMessage();
-		msg.role = role;
+		msg.role = playerRole;
 		ClientScene.AddPlayer(conn, 0, msg);
+	}
+
+	/*
+		Hack: Assume that setting client to not ready means that we need to spawn them
+	*/
+	public override void OnClientSceneChanged(NetworkConnection conn) {
+		Debug.Log("OnClientSceneChanged");
+		if (!ClientScene.ready) {
+			ClientScene.Ready(conn);
+		}
+
+		bool addPlayer = false;
+		if (ClientScene.localPlayers.Count == 0)
+		{
+			// no players exist
+			Debug.Log("No players found");
+			addPlayer = true;
+		}
+
+		bool foundPlayer = false;
+		foreach (var playerController in ClientScene.localPlayers)
+		{
+			if (playerController.gameObject != null)
+			{
+				Debug.Log("Found a player object");
+				foundPlayer = true;
+				break;
+			}
+		}
+
+		if (!foundPlayer)
+		{
+			// there are players, but their game objects have all been deleted
+			Debug.Log("There are players but their game objects have been deleted");
+			addPlayer = true;
+		}
+		if (addPlayer)
+		{
+			NotifyServerSpawnPlayer(conn, myRole);
+		}
 	}
 }
