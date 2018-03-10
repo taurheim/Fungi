@@ -24,30 +24,30 @@ public class NodeTests {
 	[Test]
 	public void UnlockNode() {
 		Node parentNode = SetupWithChildren(0);
-		Assert.Equals(parentNode.state, NodeState.LOCKED);
+		Assert.AreEqual(parentNode.state, NodeState.LOCKED);
 
 		parentNode.unlockNode();
 
-		Assert.Equals(parentNode.state, NodeState.UNLOCKED);
+		Assert.AreEqual(parentNode.state, NodeState.UNLOCKED);
 	}
 
 	[Test]
 	public void CompleteNode() {
 		Node parentNode = SetupWithChildren(0);
-		Assert.Equals(parentNode.state, NodeState.LOCKED);
+		Assert.AreEqual(parentNode.state, NodeState.LOCKED);
 
 		parentNode.unlockNode();
 		parentNode.completeNode();
 
-		Assert.Equals(parentNode.state, NodeState.COMPLETED);
+		Assert.AreEqual(parentNode.state, NodeState.COMPLETED);
 	}
 
 	[Test]
 	public void CantCompleteLockedNode() {
 		Node parentNode = SetupWithChildren(0);
-		Assert.Equals(parentNode.state, NodeState.LOCKED);
+		Assert.AreEqual(parentNode.state, NodeState.LOCKED);
 		parentNode.completeNode();
-		Assert.Equals(parentNode.state, NodeState.LOCKED);
+		Assert.AreEqual(parentNode.state, NodeState.LOCKED);
 	}
 
 	[Test]
@@ -84,7 +84,8 @@ public class NodeTests {
 
 	[Test]
 	public void UseNode() {
-		MockNode node = new MockNode();
+		GameObject parentGameObject = new GameObject();
+		MockNode node = parentGameObject.AddComponent<MockNode>();
 		node.unlockNode();
 		node.completeNode();
 		node.useNode();
@@ -93,7 +94,8 @@ public class NodeTests {
 
 	[Test]
 	public void CantUseIncompleteNode() {
-		MockNode node = new MockNode();
+		GameObject parentGameObject = new GameObject();
+		MockNode node = parentGameObject.AddComponent<MockNode>();
 		node.useNode();
 		Assert.False(node.wasUsed);
 	}
