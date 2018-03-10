@@ -10,8 +10,43 @@ using UnityEngine.SceneManagement;
 
 public static class LevelManager
 {
+
+	public static string[] levels = { "level_1", "level_2", "level_3", "level_4"};
  
 	private static Dictionary<string, string> parameters;
+
+	private static int currentLevel = 0;
+
+	private static int maxLevel = 4;
+
+	public static string getCurrentLevel() {
+		return levels[currentLevel];
+	}
+
+	public static void goToNextLevel() {
+		currentLevel++;
+	}
+
+	public static string[] getLevelList() {
+		return levels;
+	}
+
+	public static void resetState() {
+		currentLevel = 0;
+	}
+
+	public static bool isLevelAvailable(string levelName) {
+		for(int i = 0; i <= currentLevel; i++) {
+			if (levels[i] == levelName) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static bool isGameComplete() {
+		return currentLevel == maxLevel;
+	}
 
 	public static void Load (string sceneName, Dictionary<string, string> parameters = null)
 	{
