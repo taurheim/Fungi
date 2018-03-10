@@ -30,4 +30,12 @@ public class IngameMenu : MonoBehaviour {
     public void ReturnToMainMenu() {
         LevelManager.Load("MainMenu");
     }
+
+    public void Pause() {
+        Time.timeScale = 0;
+    }
+
+    public void Unpause() {
+        Time.timeScale = 1;
+    }
 }
