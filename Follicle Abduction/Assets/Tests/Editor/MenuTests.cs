@@ -94,6 +94,15 @@ public class MenuTests
     }
 
     [Test]
+    public void ChangeSettings()
+    {
+        MenuManager menuManager = setupMenuManager();
+        menuManager.startScreen.settingsButton();
+        Assert.True(menuManager.settingsScreen.isActiveAndEnabled);
+        Assert.False(menuManager.startScreen.isActiveAndEnabled);
+    }
+
+    [Test]
     public void BackToMainMenu()
     {
         MenuManager menuManager = setupMenuManager();
