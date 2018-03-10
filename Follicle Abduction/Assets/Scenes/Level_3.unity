@@ -11882,6 +11882,48 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: be63ae4a8dbf08d4a9c648a4715bd530, type: 3}
+--- !u!1001 &1079393309
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4649400711794682, guid: d937ff5d918435c4dbcb0ce6dda3b035, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 228.11333
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649400711794682, guid: d937ff5d918435c4dbcb0ce6dda3b035, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 349.69772
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649400711794682, guid: d937ff5d918435c4dbcb0ce6dda3b035, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 316.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649400711794682, guid: d937ff5d918435c4dbcb0ce6dda3b035, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649400711794682, guid: d937ff5d918435c4dbcb0ce6dda3b035, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649400711794682, guid: d937ff5d918435c4dbcb0ce6dda3b035, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649400711794682, guid: d937ff5d918435c4dbcb0ce6dda3b035, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649400711794682, guid: d937ff5d918435c4dbcb0ce6dda3b035, type: 2}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d937ff5d918435c4dbcb0ce6dda3b035, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1079537120
 Prefab:
   m_ObjectHideFlags: 0
@@ -13658,6 +13700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSuspiciousness: 100
+  currentNode: {fileID: 0}
 --- !u!1001 &1274960582
 Prefab:
   m_ObjectHideFlags: 0
