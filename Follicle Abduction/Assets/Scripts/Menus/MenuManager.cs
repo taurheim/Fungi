@@ -10,10 +10,6 @@ public class MenuManager : MonoBehaviour {
     public HostScreen hostScreen;
     public SettingsScreen settingsScreen;
 
-    void Start ()
-    {
-
-    }
 	
     // START SCREEN
     public void displayStartScreen()

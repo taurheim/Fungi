@@ -108,8 +108,6 @@ public class LevelSelect : MonoBehaviour {
 	{
         gameStarted = true;
 		Cursor.visible = false;
-        //Debug.Log ("Load scene " + selectedLevel);
-
         manager.NetworkLoadScene(selectedLevel);
     }
 
