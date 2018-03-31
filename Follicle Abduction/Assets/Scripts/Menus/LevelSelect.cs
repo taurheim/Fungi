@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public class LevelSelect : MonoBehaviour {
 
     public MenuManager menuManager;
+    public CustomNetworkManager manager;
 
 	public Button startBtn;
 	public Button lvl1;
@@ -15,7 +17,7 @@ public class LevelSelect : MonoBehaviour {
 
 	public bool lvl1_unlocked = true;
 	public bool lvl2_unlocked = true;
-	public bool lvl3_unlocked = false;
+	public bool lvl3_unlocked = true;
 
 	public Image border1;
 	public Image border2;
@@ -24,7 +26,7 @@ public class LevelSelect : MonoBehaviour {
 	Color selected = new Color(52f/255f,152f/255f,219f/255f,1f);
 	Color notSelected = new Color(1f,1f,1f,0f);
 
-	public int selectedLevel = 0;
+	public string selectedLevel = "test";
 
     public Dropdown roleSelectLocal;
     public Dropdown roleSelectPartner;
@@ -71,9 +73,9 @@ public class LevelSelect : MonoBehaviour {
 
 	void selectedScene1()
 	{
-		selectedLevel = 1;
+        selectedLevel = "Level_1";
 
-		border1.color = selected;
+        border1.color = selected;
 		border2.color = notSelected;
 		border3.color = notSelected;
 
@@ -82,7 +84,7 @@ public class LevelSelect : MonoBehaviour {
 
 	void selectedScene2()
 	{
-		selectedLevel = 2;
+		selectedLevel = "Level_2";
 
 		border1.color = notSelected;
 		border2.color = selected;
@@ -93,9 +95,9 @@ public class LevelSelect : MonoBehaviour {
 
 	void selectedScene3()
 	{
-		selectedLevel = 3;
+        selectedLevel = "Level_3";
 
-		border1.color = notSelected;
+        border1.color = notSelected;
 		border2.color = notSelected;
 		border3.color = selected;
 
@@ -107,6 +109,8 @@ public class LevelSelect : MonoBehaviour {
         gameStarted = true;
 		Cursor.visible = false;
         //Debug.Log ("Load scene " + selectedLevel);
+
+        manager.NetworkLoadScene(selectedLevel);
     }
 
     void backButton()
@@ -119,6 +123,7 @@ public class LevelSelect : MonoBehaviour {
     void breakConnection()
     {
         // End connection between players when one leaves the level select screen
+        manager.StopAllCoroutines();
     }
 
 

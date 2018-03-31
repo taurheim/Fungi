@@ -205,7 +205,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: 
+  m_Text: 7777
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
@@ -744,7 +744,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 202148740}
   m_OnClick:
     m_PersistentCalls:
@@ -969,7 +969,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -1179,7 +1179,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 255941266}
-  - component: {fileID: 255941265}
   - component: {fileID: 255941263}
   m_Layer: 0
   m_Name: NetworkManager
@@ -1208,12 +1207,15 @@ MonoBehaviour:
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 2
-  m_PlayerPrefab: {fileID: 0}
+  m_PlayerPrefab: {fileID: 1941569765007020, guid: d94fdde74fb49f543b72409d40c8c3aa,
+    type: 2}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 0
   m_OfflineScene: 
   m_OnlineScene: 
-  m_SpawnPrefabs: []
+  m_SpawnPrefabs:
+  - {fileID: 1941569765007020, guid: d94fdde74fb49f543b72409d40c8c3aa, type: 2}
+  - {fileID: 1257515722238380, guid: c9f9ed00b3e48c642ba63a6ef3286c14, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -1270,24 +1272,11 @@ MonoBehaviour:
   isNetworkActive: 0
   matchMaker: {fileID: 0}
   menu: {fileID: 0}
-  humanPrefab: {fileID: 0}
-  alienPrefab: {fileID: 0}
+  humanPrefab: {fileID: 1941569765007020, guid: d94fdde74fb49f543b72409d40c8c3aa,
+    type: 2}
+  alienPrefab: {fileID: 1257515722238380, guid: c9f9ed00b3e48c642ba63a6ef3286c14,
+    type: 2}
   myRole: 
---- !u!114 &255941265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 255941262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9222079fc7d4e574facdc85b17dbf225, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 255941263}
-  showGUI: 0
-  offsetX: 0
-  offsetY: 0
 --- !u!4 &255941266
 Transform:
   m_ObjectHideFlags: 0
@@ -1592,7 +1581,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 8e66f1f1a6d14420287d28bb7fc9a53a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 870c61bee210dfd4a82d6e5fd74db63f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2527,6 +2516,7 @@ MonoBehaviour:
   ipAddress: {fileID: 1371400601}
   back: {fileID: 907375503}
   menuManager: {fileID: 463003756}
+  manager: {fileID: 255941263}
 --- !u!1 &791410497
 GameObject:
   m_ObjectHideFlags: 0
@@ -2670,7 +2660,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -63.9, y: -42}
+  m_AnchoredPosition: {x: 0, y: -42}
   m_SizeDelta: {x: 64.8, y: 22.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &801972197
@@ -2685,7 +2675,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2699,7 +2689,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -2763,6 +2753,7 @@ MonoBehaviour:
   back: {fileID: 146796291}
   message: {fileID: 407168202}
   menuManager: {fileID: 463003756}
+  manager: {fileID: 255941263}
 --- !u!1 &879778865
 GameObject:
   m_ObjectHideFlags: 0
@@ -3738,7 +3729,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 8e66f1f1a6d14420287d28bb7fc9a53a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2e6dad77d31bf0a448de8854a372b519, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3809,6 +3800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuManager: {fileID: 463003756}
+  manager: {fileID: 255941263}
   startBtn: {fileID: 1190905601}
   lvl1: {fileID: 344390402}
   lvl2: {fileID: 1086005644}
@@ -3816,11 +3808,11 @@ MonoBehaviour:
   back: {fileID: 447077603}
   lvl1_unlocked: 1
   lvl2_unlocked: 1
-  lvl3_unlocked: 0
+  lvl3_unlocked: 1
   border1: {fileID: 418973876}
   border2: {fileID: 1014331301}
   border3: {fileID: 764641283}
-  selectedLevel: 0
+  selectedLevel: 
   roleSelectLocal: {fileID: 317988669}
   roleSelectPartner: {fileID: 1256865036}
   localPlayerReady: 0
@@ -4871,7 +4863,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: 
+  m_Text: localhost
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
@@ -4940,7 +4932,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -41.8, y: -42}
+  m_AnchoredPosition: {x: 0, y: -42}
   m_SizeDelta: {x: 108.5, y: 22.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1378334659
@@ -4955,7 +4947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4969,7 +4961,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -5329,7 +5321,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 8e66f1f1a6d14420287d28bb7fc9a53a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b4dd8c23c5f7d064e9c71a84766ce158, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5572,7 +5564,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -65, y: -41.1}
+  m_AnchoredPosition: {x: 0, y: -41.1}
   m_SizeDelta: {x: 64.8, y: 22.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1652945726
@@ -5587,7 +5579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5601,7 +5593,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
