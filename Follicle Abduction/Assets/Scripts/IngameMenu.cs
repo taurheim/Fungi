@@ -42,6 +42,7 @@ public class IngameMenu : NetworkedObject {
         Time.timeScale = 0;
         isPaused = true;
         Cursor.visible = true;
+        //check if this player is human?
         GameObject human = GameObject.FindWithTag("playerA");
         if (human) {
             human.GetComponent<FirstPersonController>().enabled = false;
@@ -52,6 +53,7 @@ public class IngameMenu : NetworkedObject {
         Time.timeScale = 1;
         isPaused = false;
         Cursor.visible = false;
+        //check if this player is human?
         GameObject human = GameObject.FindWithTag("playerA");
         if (human) {
             human.GetComponent<FirstPersonController>().enabled = true;
