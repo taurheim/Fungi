@@ -23,6 +23,7 @@ public class MainMenu : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		Cursor.visible = true;
 		if (startGame != null) {
 			startGame.onClick.AddListener (selectedScene);
 		}

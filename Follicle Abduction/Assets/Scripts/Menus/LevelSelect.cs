@@ -105,6 +105,7 @@ public class LevelSelect : MonoBehaviour {
 	public void startGame()
 	{
         gameStarted = true;
+		Cursor.visible = false;
         //Debug.Log ("Load scene " + selectedLevel);
     }
 

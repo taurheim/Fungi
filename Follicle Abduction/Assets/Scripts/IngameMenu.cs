@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class IngameMenu : NetworkedObject {
 
@@ -33,17 +34,28 @@ public class IngameMenu : NetworkedObject {
     }
 
     public void ReturnToMainMenu() {
+        Cursor.visible = true;
         LevelManager.Load("MainMenu");
     }
 
     public void Pause() {
         Time.timeScale = 0;
         isPaused = true;
+        Cursor.visible = true;
+        GameObject human = GameObject.FindWithTag("playerA");
+        if (human) {
+            human.GetComponent<FirstPersonController>().enabled = false;
+        }
     }
 
     public void Unpause() {
         Time.timeScale = 1;
         isPaused = false;
+        Cursor.visible = false;
+        GameObject human = GameObject.FindWithTag("playerA");
+        if (human) {
+            human.GetComponent<FirstPersonController>().enabled = true;
+        }
     }
 
     protected override void Interact(){

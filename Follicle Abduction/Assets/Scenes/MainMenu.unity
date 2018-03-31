@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.009256138, g: 0.009483897, b: 0.009256138, a: 1}
+  m_IndirectSpecularColor: {r: 0.009406347, g: 0.009492566, b: 0.009406347, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -607,51 +607,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
---- !u!1 &104913130
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 104913131}
-  - component: {fileID: 104913132}
-  m_Layer: 0
-  m_Name: MenuManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &104913131
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 104913130}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &104913132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 104913130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c57202020fe7c74e8dc20e6aad1f8c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startScreen: {fileID: 1609308055}
-  joinScreen: {fileID: 778603610}
-  levelSelect: {fileID: 1090071408}
-  hostScreen: {fileID: 848543729}
-  settingsScreen: {fileID: 0}
 --- !u!1 &110852471
 GameObject:
   m_ObjectHideFlags: 0
@@ -1504,7 +1459,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &219667642
 GameObject:
@@ -3355,7 +3310,7 @@ MonoBehaviour:
   port: {fileID: 3611607}
   ipAddress: {fileID: 1371400601}
   back: {fileID: 907375503}
-  menuManager: {fileID: 104913132}
+  menuManager: {fileID: 0}
 --- !u!1 &791410497
 GameObject:
   m_ObjectHideFlags: 0
@@ -3693,7 +3648,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   back: {fileID: 146796291}
   message: {fileID: 407168202}
-  menuManager: {fileID: 104913132}
+  menuManager: {fileID: 0}
 --- !u!1 &879778865
 GameObject:
   m_ObjectHideFlags: 0
@@ -5149,7 +5104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35e93eaa2e2a14d6abde4a0ca611f81e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuManager: {fileID: 104913132}
+  menuManager: {fileID: 0}
   startBtn: {fileID: 1190905601}
   lvl1: {fileID: 344390402}
   lvl2: {fileID: 1086005644}
@@ -5164,6 +5119,9 @@ MonoBehaviour:
   selectedLevel: 0
   roleSelectLocal: {fileID: 317988669}
   roleSelectPartner: {fileID: 1256865036}
+  localPlayerReady: 0
+  partnerPlayerReady: 0
+  gameStarted: 0
 --- !u!1 &1115806341
 GameObject:
   m_ObjectHideFlags: 0
@@ -5483,7 +5441,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1190905599
 GameObject:
@@ -5761,7 +5719,7 @@ RectTransform:
   - {fileID: 1090071407}
   - {fileID: 934546772}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -7482,7 +7440,7 @@ MonoBehaviour:
   join: {fileID: 791410499}
   settings: {fileID: 1125679401}
   quit: {fileID: 892161831}
-  menuManager: {fileID: 104913132}
+  menuManager: {fileID: 0}
 --- !u!1 &1611822978
 GameObject:
   m_ObjectHideFlags: 0
