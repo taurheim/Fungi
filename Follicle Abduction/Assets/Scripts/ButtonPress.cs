@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class ButtonPress : MonoBehaviour
 {
-	public Collider buttonHitbox;
-
+	Collider buttonHitbox;
 	ButtonAnimation buttonAnimation;
 
 	private bool isPressed;
@@ -13,6 +12,7 @@ public class ButtonPress : MonoBehaviour
 	void Start ()
 	{
 		buttonAnimation = GetComponent<ButtonAnimation> ();
+		buttonHitbox = GetComponentInChildren<Collider>();
 	}
 
 	void Update ()
