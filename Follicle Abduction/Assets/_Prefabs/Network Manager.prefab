@@ -125,11 +125,12 @@ MonoBehaviour:
   matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
-  menu: {fileID: 0}
   humanPrefab: {fileID: 1941569765007020, guid: d94fdde74fb49f543b72409d40c8c3aa,
     type: 2}
   alienPrefab: {fileID: 1257515722238380, guid: c9f9ed00b3e48c642ba63a6ef3286c14,
     type: 2}
+  myRole: 
+  clientConnected: 0
 --- !u!114 &114877227900272712
 MonoBehaviour:
   m_ObjectHideFlags: 1
