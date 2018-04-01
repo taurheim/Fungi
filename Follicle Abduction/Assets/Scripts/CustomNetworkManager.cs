@@ -21,11 +21,11 @@ public class CustomNetworkManager : NetworkManager
 	public string myRole = "";
 	private bool isLoadingScene = false;
 
-    public bool clientConnected = false;
+    public bool clientConnected = false;    //Used by HostScreen.cs to determine when a client connects
 
-	// This is called by the "host" - could be either alien or human player
-	// Passes itself (the player object) in
-	public void registerPlayerObject(GameObject obj) {
+    // This is called by the "host" - could be either alien or human player
+    // Passes itself (the player object) in
+    public void registerPlayerObject(GameObject obj) {
 		playerObject = obj;
 	}
 
@@ -168,5 +168,10 @@ public class CustomNetworkManager : NetworkManager
         { 
             clientConnected = true;
         }
+    }
+
+    public bool isTheHost() // Used by LevelSelect.cs to determine role
+    {
+        return isHost;
     }
 }

@@ -14,7 +14,6 @@ public class MenuTests
         menuManager.hostScreen = setupHostScreen(menuManager);
         menuManager.joinScreen = setupJoinScreen(menuManager);
         menuManager.levelSelect = setupLevelSelect(menuManager);
-        menuManager.settingsScreen = setupSettingsScreen(menuManager);
 
         return menuManager;
     }
@@ -50,8 +49,8 @@ public class MenuTests
         GameObject drop1 = new GameObject();
         GameObject drop2 = new GameObject();
         LevelSelect levelSelect = obj.AddComponent<LevelSelect>();
-        levelSelect.roleSelectLocal = drop1.AddComponent<Dropdown>();
-        levelSelect.roleSelectPartner = drop2.AddComponent<Dropdown>();
+        levelSelect.roleSelectHost = drop1.AddComponent<Dropdown>();
+        levelSelect.roleSelectClient = drop2.AddComponent<Dropdown>();
         levelSelect.menuManager = menuManager;
         return levelSelect;
     }
@@ -84,25 +83,6 @@ public class MenuTests
     }
 
     [Test]
-    public void Settings()
-    {
-
-        MenuManager menuManager = setupMenuManager();
-        menuManager.startScreen.settingsButton();
-        Assert.True(menuManager.settingsScreen.isActiveAndEnabled);
-        Assert.False(menuManager.startScreen.isActiveAndEnabled);
-    }
-
-    [Test]
-    public void ChangeSettings()
-    {
-        MenuManager menuManager = setupMenuManager();
-        menuManager.startScreen.settingsButton();
-        Assert.True(menuManager.settingsScreen.isActiveAndEnabled);
-        Assert.False(menuManager.startScreen.isActiveAndEnabled);
-    }
-
-    [Test]
     public void BackToMainMenu()
     {
         MenuManager menuManager = setupMenuManager();
@@ -116,7 +96,7 @@ public class MenuTests
     public void SelectPlayerRole()
     {
         MenuManager menuManager = setupMenuManager();
-        bool canSelectRole = menuManager.levelSelect.roleSelectLocal.interactable;
+        bool canSelectRole = menuManager.levelSelect.roleSelectHost.interactable;
         Assert.True(canSelectRole);
     }
 

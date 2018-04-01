@@ -28,19 +28,21 @@ public class LevelSelect : MonoBehaviour {
 
 	public string selectedLevel = "test";
 
-    public Dropdown roleSelectLocal;
-    public Dropdown roleSelectPartner;
+    public Dropdown roleSelectHost;
+    public Dropdown roleSelectClient;
 
     public bool localPlayerReady = false;
     public bool partnerPlayerReady = false;
     public bool gameStarted = false;
 
     bool levelSelected = false;
+    bool isHost;
 
 	// Use this for initialization
 	void Start () 
 	{
         manager = GameObject.FindGameObjectWithTag("networkmanager").GetComponent<CustomNetworkManager>();
+        bool isHost = manager.isTheHost();
 
         back.onClick.AddListener(backButton);
 
@@ -72,11 +74,20 @@ public class LevelSelect : MonoBehaviour {
 		}
 
 		startBtn.onClick.AddListener (startGame);
+
+        if(isHost)
+        {
+            roleSelectClient.interactable = false;
+        }
+        else
+        {
+            roleSelectHost.interactable = false;
+        }
 	}
 
     void Update()
     {
-        if(roleSelectLocal.value == roleSelectPartner.value)
+        if(roleSelectHost.value == roleSelectClient.value)
         {
             startBtn.interactable = false;
         }
@@ -120,11 +131,37 @@ public class LevelSelect : MonoBehaviour {
         levelSelected = true;
     }
 
-	public void startGame()
-	{
+    public void startGame()
+    {
         gameStarted = true;
-		Cursor.visible = false;
-        manager.NetworkLoadScene(selectedLevel);
+        Cursor.visible = false;
+
+        string role = "";
+        if (isHost)
+        { 
+            if (roleSelectHost.value == 0)
+            {
+                role = "human";
+            }
+            else if (roleSelectHost.value == 1)
+            {
+                role = "alien";
+            }
+        }
+        else
+        {
+            if (roleSelectClient.value == 0)
+            {
+                role = "human";
+            }
+            else if (roleSelectClient.value == 1)
+            {
+                role = "alien";
+            }
+        }
+
+        manager.myRole = role;
+        loadScene();
     }
 
     void backButton()
@@ -143,6 +180,7 @@ public class LevelSelect : MonoBehaviour {
 
     public bool loadScene()
     {
-        return false;
+        manager.NetworkLoadScene(selectedLevel);
+        return true;
     }
 }
