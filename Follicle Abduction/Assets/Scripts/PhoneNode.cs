@@ -10,7 +10,6 @@ public class PhoneNode : Node
 
 	public AudioClip ring;
 	public Patrol[] guards;
-
 	private AudioSource source;
 	private GameObject phone;
 	private bool ringing;

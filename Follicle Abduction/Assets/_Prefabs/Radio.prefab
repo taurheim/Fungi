@@ -418,7 +418,6 @@ GameObject:
   - component: {fileID: 82886868637252410}
   - component: {fileID: 114608059626917650}
   - component: {fileID: 114348551044328780}
-  - component: {fileID: 114989057986252622}
   m_Layer: 11
   m_Name: Radio Node
   m_TagString: Untagged
@@ -1745,7 +1744,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1829683523433832}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2da8762c2c67423f97e531ae3110ba7, type: 3}
+  m_Script: {fileID: 11500000, guid: eb8760ed73785954981c09cf6a47a013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   state: 1
@@ -1755,13 +1754,12 @@ MonoBehaviour:
   data: []
   selected: 0
   progressBar: {fileID: 0}
-  outline: {fileID: 1683642185324330}
-  correctSongName: Fur Elise
-  correctSong: {fileID: 8300000, guid: 66e9fa3f5e0c04afcb004fea621a961b, type: 3}
-  wrongSong: {fileID: 8300000, guid: 5980558661b874f58970f46cdf14fe04, type: 3}
-  songLovingGuards:
-  - {fileID: 0}
-  inputField: {fileID: 1643008970899726}
+  outline: {fileID: 0}
+  correctSongName: 
+  correctSong: {fileID: 0}
+  wrongSong: {fileID: 0}
+  songLovingGuards: []
+  inputField: {fileID: 0}
 --- !u!114 &114862982453272314
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1799,17 +1797,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114989057986252622
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1829683523433832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0095bd8ebf148e747b193e348f2fc0d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &222238529136656692
 CanvasRenderer:
   m_ObjectHideFlags: 1
