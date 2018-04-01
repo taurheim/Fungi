@@ -14,9 +14,9 @@ public class ChangeScene : MonoBehaviour {
 	// void Start() {
 	// 	levelManager = GameObject.FindWithTag("levelmanager").GetComponent<LevelManager>();
 	// }
-
+	
 	private void OnTriggerEnter(Collider other) {
-		if (!changingScenes && other.gameObject.CompareTag("playerA")){
+		if (other.gameObject.CompareTag("playerA") && !changingScenes){
 			changingScenes = true;
 			Debug.Log("Collision detected - switching scenes!");
 			GameObject.FindGameObjectWithTag("networkmanager").GetComponent<CustomNetworkManager>().NetworkLoadScene(sceneName);
