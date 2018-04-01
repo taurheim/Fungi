@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(NetworkManager))]
 public class JoinScreen : MonoBehaviour {
 
     [SerializeField] Button connect;
@@ -12,31 +14,37 @@ public class JoinScreen : MonoBehaviour {
 
     public MenuManager menuManager;
 
+    public CustomNetworkManager manager;
+
     void Start ()
     {
+        manager = GameObject.FindGameObjectWithTag("networkmanager").GetComponent<CustomNetworkManager>();
         connect.onClick.AddListener(connectButton);
         back.onClick.AddListener(backButton);
 	}
-	
-    void connectButton()
-    {
 
+    void Update()
+    {
+        if (manager.IsClientConnected())    
+        {
+            Debug.Log("Connected");
+            onConnectedToHost();
+        }
     }
 
-    public void portField()
+    void connectButton()       // Try to connect to specified host
     {
-
-    }
-
-    public void ipField()
-    {
-
+        manager.networkAddress = ipAddress.text;
+        manager.networkPort = int.Parse(port.text);
+        manager.StartClient();
     }
 
     void backButton()
     {
         menuManager.hideJoinScreen();
         menuManager.displayStartScreen();
+
+        manager.StopClient();
     }
 
 
@@ -45,6 +53,8 @@ public class JoinScreen : MonoBehaviour {
         menuManager.hideJoinScreen();
         menuManager.displayLevelSelect();
     }
+
+
 
     int portNum;
     public int getPort()

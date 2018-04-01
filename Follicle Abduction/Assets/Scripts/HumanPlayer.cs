@@ -1,23 +1,33 @@
-﻿using System.Collections;
+﻿
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/* 
+	Component for human-behaviour, besides the FPS controller.
+	Currently handles:
+		- pickups
+		- resetting position 
+ */
+
 public class HumanPlayer : MonoBehaviour {
 
+	private double minYPosition; // Player out of bounds below this height!
 	public int pickups{
 		get; private set;
 	}
 	private Vector3 originalPosition;
 
-	// Use this for initialization
 	void Awake () {
 		pickups = 0;
 		originalPosition = transform.position;
+		GameObject floor = GameObject.Find("Floor");
+		minYPosition = floor.transform.position.y - 5.0;
 	}
 	
-	// Update is called once per frame
 	void Update () {
-		if (transform.position.y < -55.0){
+		if (transform.position.y < minYPosition){
 			ResetPosition();
 		}
 	}

@@ -3,20 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/* 
+	Component to make a trigger change scenes.
+	Used to change levels when reaching the goal.
+ */
+
 public class ChangeScene : MonoBehaviour {
 
 	public string sceneName;
+	private bool changingScenes; // Prevent double calling
 	
-	// Prevent double calling
-	private bool changingScenes;
-	// private LevelManager levelManager
-
-	// void Start() {
-	// 	levelManager = GameObject.FindWithTag("levelmanager").GetComponent<LevelManager>();
-	// }
-
 	private void OnTriggerEnter(Collider other) {
-		if (!changingScenes && other.gameObject.CompareTag("playerA")){
+		if (other.gameObject.CompareTag("playerA") && !changingScenes){
 			changingScenes = true;
 			Debug.Log("Collision detected - switching scenes!");
 			GameObject.FindGameObjectWithTag("networkmanager").GetComponent<CustomNetworkManager>().NetworkLoadScene(sceneName);

@@ -4,12 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 
+/* 
+	Component for radio node behaviour.
+	Handles song input for Alien player and playing song clips.
+	Also handles distracting the correct guards given the correct song.
+ */
+
 public class RadioNode : Node {
 
 	public string correctSongName;
 	public AudioClip correctSong;
 	public AudioClip wrongSong;
-	public Patrol[] songLovingGuards;
+	public Patrol[] songLovingGuards; // These guards get distracted (move towards the radio) when the correct song is played
 	public GameObject inputField;
 
 	private AudioSource source;
@@ -19,7 +25,6 @@ public class RadioNode : Node {
 	private bool showingInputField;
 
 
-	// Use this for initialization
 	void Start () {
 		source = GetComponent<AudioSource> ();
 		playing = false;
@@ -29,36 +34,35 @@ public class RadioNode : Node {
 		showingInputField = false;
 	}
 	
-	// Update is called once per frame
 	void Update () {
-		//temp while waiting for ray-picking to work
-		if (playing && !source.isPlaying) {
+		if (playing && !source.isPlaying) { // Temp until ray casting is implemented
 			StopPlayingCorrectSong ();
 		}
 		if(showingInputField && isServer) {
-			
-			InputField field = inputField.GetComponent<InputField> ();
-			if (Input.GetKeyUp (KeyCode.Return)) {
-				print ("hit enter");
-				if (field.text == correctSongName) {
-					print ("correct song!");
-					ChooseSong (true);
-				} else {
-					ChooseSong (false);
-				}
-			} else if (Input.GetKeyDown (KeyCode.Backspace)) {
-				print("backspace key");
-				if (field.text.Length > 0) {
-					field.text = field.text.Remove (field.text.Length - 1);
-				}
-
-			} else {
-				field.text += Input.inputString;
-			}
-			print ("TEXT FIELD: " + field.text);
-		} else if (Input.GetKeyDown (KeyCode.R)) { //for debugging in human mode!
+			HandleKeyInput();
+		} else if (Input.GetKeyDown (KeyCode.R)) { // For debugging!
 			PlayCorrectSong ();
 		}
+	}
+
+	void HandleKeyInput() {
+		InputField field = inputField.GetComponent<InputField> ();
+		if (Input.GetKeyUp (KeyCode.Return)) {
+			if (field.text == correctSongName) {
+				print ("correct song!");
+				ChooseSong (true);
+			} else {
+				ChooseSong (false);
+			}
+		} else if (Input.GetKeyDown (KeyCode.Backspace)) {
+			print("backspace key");
+			if (field.text.Length > 0) {
+				field.text = field.text.Remove (field.text.Length - 1);
+			}
+		} else {
+			field.text += Input.inputString;
+		}
+		print ("Text field: " + field.text);
 	}
 
 	public void ChooseSong(bool correct) {
@@ -89,6 +93,7 @@ public class RadioNode : Node {
 		}
 	}
 
+	// Highlights and opens input field when node is selected
 	public override void Select() {
 		isSelected = true;
 		if (outline) {
@@ -127,6 +132,7 @@ public class RadioNode : Node {
 			}
 			playing = true;
 			if (songLovingGuards != null) {
+				// Attract the guards to the radio!
 				foreach (Patrol guard in songLovingGuards) {
 					GameObject parent = transform.parent.gameObject;;
 					if (parent) {

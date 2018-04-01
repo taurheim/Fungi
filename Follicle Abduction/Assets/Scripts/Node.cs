@@ -90,7 +90,6 @@ public class Node : NetworkBehaviour
 		isSelected = false;
 	}
 	
-	// Update is called once per frame
 	void Update ()
 	{
 		// Show the border if we're selected

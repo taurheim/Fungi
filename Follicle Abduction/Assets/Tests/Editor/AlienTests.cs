@@ -13,39 +13,6 @@ public class AlienTests {
 		alien = new Alien ();
 	}
 
-	//Tests for suspiciousness levels
-
-	[Test]
-	public void DefaultSuspiciousnessIsZero() {
-		Assert.True (alien.getSuspiciousness () == 0);
-	}
-
-	[Test]
-	public void DoesSomethingSuspicious() {
-		int initialSuspiciousness = alien.getSuspiciousness ();
-		alien.doSomethingSuspicious (10);
-		int finalSuspiciousness = alien.getSuspiciousness ();
-		Assert.True ((finalSuspiciousness - initialSuspiciousness) == 10);
-	}
-
-	[Test]
-	public void GetsCapturedAtMaxSuspiciousness() {
-		alien.doSomethingSuspicious (alien.maxSuspiciousness);
-		Assert.True (alien.hasBeenCaptured());
-	}
-
-	[Test]
-	public void DoesNotGetCapturedAtLessThanMaxSuspiciousness() {
-		alien.doSomethingSuspicious (alien.maxSuspiciousness - 1);
-		Assert.False (alien.hasBeenCaptured());
-	}
-
-	[Test]
-	public void GetsCapturedAtMoreThanMaxSuspiciousness() {
-		alien.doSomethingSuspicious (alien.maxSuspiciousness + 1);
-		Assert.True (alien.hasBeenCaptured());
-	}
-
 	[Test]
 	public void MoveTests() {
 		Node parentNode = new Node();

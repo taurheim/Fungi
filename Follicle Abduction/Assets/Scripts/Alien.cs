@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
-	Handle suspiciousness
-	TODO: Still a stub, build out once suspiciousness is fully implemented
+	Alien player controller. In the process of changing the interaction from mouse-based to key-based.
  */
+
 public class Alien : MonoBehaviour
 {
 
@@ -26,7 +26,6 @@ public class Alien : MonoBehaviour
 
 	void Start ()
 	{
-		suspiciousness = 0;
 		captured = false;
 		isMoving = false;
 		movePositions = new List<Vector3>();
@@ -69,24 +68,6 @@ public class Alien : MonoBehaviour
 				alienIcon.transform.position = Vector3.MoveTowards(alienIcon.transform.position, movePositions[0], 0.5f);
 			}
 		}
-	}
-
-	public void doSomethingSuspicious (int howSuspicious)
-	{
-		suspiciousness += howSuspicious;
-		if (suspiciousness >= maxSuspiciousness) {
-			captured = true;
-		}
-	}
-
-	public int getSuspiciousness ()
-	{
-		return suspiciousness;
-	}
-
-	public bool hasBeenCaptured ()
-	{
-		return captured;
 	}
 
 	public void moveLeft() {

@@ -8,12 +8,6 @@ public class MenuManager : MonoBehaviour {
     public JoinScreen joinScreen;
     public LevelSelect levelSelect;
     public HostScreen hostScreen;
-    public SettingsScreen settingsScreen;
-
-    void Start ()
-    {
-
-    }
 	
     // START SCREEN
     public void displayStartScreen()

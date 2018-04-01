@@ -421,7 +421,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 34908337}
-  m_LocalRotation: {x: 0.27324158, y: -0.38109618, z: 0.8199482, w: -0.3283136}
+  m_LocalRotation: {x: 0.27324155, y: -0.38109612, z: 0.8199481, w: -0.32831356}
   m_LocalPosition: {x: -16.296694, y: 18.43674, z: -20.89448}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2391,18 +2391,13 @@ Prefab:
         type: 2}
       propertyPath: buttonHitbox
       value: 
-      objectReference: {fileID: 334290026}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37e3ce07cabd24597822bc3af491376e, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &334290025 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4769790838563478, guid: 37e3ce07cabd24597822bc3af491376e,
-    type: 2}
-  m_PrefabInternal: {fileID: 334290024}
---- !u!64 &334290026 stripped
-MeshCollider:
-  m_PrefabParentObject: {fileID: 64798211985791452, guid: 37e3ce07cabd24597822bc3af491376e,
     type: 2}
   m_PrefabInternal: {fileID: 334290024}
 --- !u!1 &334290027 stripped
@@ -2506,7 +2501,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 337186066}
-  m_LocalRotation: {x: 0.27324158, y: -0.38109618, z: 0.8199482, w: -0.3283136}
+  m_LocalRotation: {x: 0.27324155, y: -0.38109612, z: 0.8199481, w: -0.32831356}
   m_LocalPosition: {x: -16.296694, y: 18.43674, z: -20.89448}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2706,7 +2701,7 @@ Prefab:
         type: 2}
       propertyPath: buttonHitbox
       value: 
-      objectReference: {fileID: 389021585}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37e3ce07cabd24597822bc3af491376e, type: 2}
   m_IsPrefabParent: 0
@@ -2718,11 +2713,6 @@ Transform:
 --- !u!1 &389021584 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1110391960409114, guid: 37e3ce07cabd24597822bc3af491376e,
-    type: 2}
-  m_PrefabInternal: {fileID: 389021582}
---- !u!64 &389021585 stripped
-MeshCollider:
-  m_PrefabParentObject: {fileID: 64798211985791452, guid: 37e3ce07cabd24597822bc3af491376e,
     type: 2}
   m_PrefabInternal: {fileID: 389021582}
 --- !u!1 &403410687
@@ -3340,18 +3330,13 @@ Prefab:
         type: 2}
       propertyPath: buttonHitbox
       value: 
-      objectReference: {fileID: 516362603}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37e3ce07cabd24597822bc3af491376e, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &516362602 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4769790838563478, guid: 37e3ce07cabd24597822bc3af491376e,
-    type: 2}
-  m_PrefabInternal: {fileID: 516362601}
---- !u!64 &516362603 stripped
-MeshCollider:
-  m_PrefabParentObject: {fileID: 64798211985791452, guid: 37e3ce07cabd24597822bc3af491376e,
     type: 2}
   m_PrefabInternal: {fileID: 516362601}
 --- !u!1 &516362604 stripped
@@ -4061,7 +4046,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 706921162}
-  m_LocalRotation: {x: -0.27324158, y: 0.38109618, z: -0.8199482, w: -0.3283136}
+  m_LocalRotation: {x: -0.27324155, y: 0.38109612, z: -0.8199481, w: -0.32831356}
   m_LocalPosition: {x: 7.5499897, y: -2.3200073, z: 31.300001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6512,7 +6497,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a411087a67f64a448e2bccabc8c82c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alienIconPrefab: {fileID: 1395041013160604, guid: 630fe1cd56eb4d542bb2d84be439ae33,
+    type: 2}
   maxSuspiciousness: 100
+  currentNode: {fileID: 0}
 --- !u!1 &1258508256
 GameObject:
   m_ObjectHideFlags: 0
@@ -11129,18 +11117,13 @@ Prefab:
         type: 2}
       propertyPath: buttonHitbox
       value: 
-      objectReference: {fileID: 2096965736}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37e3ce07cabd24597822bc3af491376e, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &2096965735 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4769790838563478, guid: 37e3ce07cabd24597822bc3af491376e,
-    type: 2}
-  m_PrefabInternal: {fileID: 2096965734}
---- !u!64 &2096965736 stripped
-MeshCollider:
-  m_PrefabParentObject: {fileID: 64798211985791452, guid: 37e3ce07cabd24597822bc3af491376e,
     type: 2}
   m_PrefabInternal: {fileID: 2096965734}
 --- !u!1 &2096965737 stripped
