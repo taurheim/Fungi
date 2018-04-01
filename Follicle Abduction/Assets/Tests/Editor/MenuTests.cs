@@ -124,7 +124,7 @@ public class MenuTests
     public void LoadLevel1()
     {
         MenuManager menuManager = setupMenuManager();
-        menuManager.levelSelect.selectedLevel = 1;
+        menuManager.levelSelect.selectedLevel = "Level_1";
         bool levelLoads = menuManager.levelSelect.loadScene();
         Assert.True(levelLoads);
     }
@@ -133,7 +133,7 @@ public class MenuTests
     public void LoadLevel2()
     {
         MenuManager menuManager = setupMenuManager();
-        menuManager.levelSelect.selectedLevel = 2;
+        menuManager.levelSelect.selectedLevel = "Level_2";
         bool levelLoads = menuManager.levelSelect.loadScene();
         Assert.True(levelLoads);
     }
@@ -142,7 +142,7 @@ public class MenuTests
     public void LoadLevel3()
     {
         MenuManager menuManager = setupMenuManager();
-        menuManager.levelSelect.selectedLevel = 3;
+        menuManager.levelSelect.selectedLevel = "Level_3";
         bool levelLoads = menuManager.levelSelect.loadScene();
         Assert.True(levelLoads);
     }
@@ -151,7 +151,7 @@ public class MenuTests
     public void LoadFakeLevel()
     {
         MenuManager menuManager = setupMenuManager();
-        menuManager.levelSelect.selectedLevel = -1;
+        menuManager.levelSelect.selectedLevel = "";
         bool levelLoads = menuManager.levelSelect.loadScene();
         Assert.False(levelLoads);
     }

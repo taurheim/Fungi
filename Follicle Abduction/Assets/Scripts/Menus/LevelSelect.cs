@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public class LevelSelect : MonoBehaviour {
 
     public MenuManager menuManager;
+    public CustomNetworkManager manager;
 
 	public Button startBtn;
 	public Button lvl1;
@@ -15,7 +17,7 @@ public class LevelSelect : MonoBehaviour {
 
 	public bool lvl1_unlocked = true;
 	public bool lvl2_unlocked = true;
-	public bool lvl3_unlocked = false;
+	public bool lvl3_unlocked = true;
 
 	public Image border1;
 	public Image border2;
@@ -24,7 +26,7 @@ public class LevelSelect : MonoBehaviour {
 	Color selected = new Color(52f/255f,152f/255f,219f/255f,1f);
 	Color notSelected = new Color(1f,1f,1f,0f);
 
-	public int selectedLevel = 0;
+	public string selectedLevel = "test";
 
     public Dropdown roleSelectLocal;
     public Dropdown roleSelectPartner;
@@ -33,9 +35,13 @@ public class LevelSelect : MonoBehaviour {
     public bool partnerPlayerReady = false;
     public bool gameStarted = false;
 
+    bool levelSelected = false;
+
 	// Use this for initialization
 	void Start () 
 	{
+        manager = GameObject.FindGameObjectWithTag("networkmanager").GetComponent<CustomNetworkManager>();
+
         back.onClick.AddListener(backButton);
 
 		if (lvl1_unlocked) 
@@ -68,45 +74,57 @@ public class LevelSelect : MonoBehaviour {
 		startBtn.onClick.AddListener (startGame);
 	}
 
+    void Update()
+    {
+        if(roleSelectLocal.value == roleSelectPartner.value)
+        {
+            startBtn.interactable = false;
+        }
+        else if(levelSelected)
+        {
+            startBtn.interactable = true;
+        }
+    }
+
 
 	void selectedScene1()
 	{
-		selectedLevel = 1;
+        selectedLevel = "Level_1";
 
-		border1.color = selected;
+        border1.color = selected;
 		border2.color = notSelected;
 		border3.color = notSelected;
 
-		startBtn.interactable = true;
+        levelSelected = true;
 	}
 
 	void selectedScene2()
 	{
-		selectedLevel = 2;
+		selectedLevel = "Level_2";
 
 		border1.color = notSelected;
 		border2.color = selected;
 		border3.color = notSelected;
 
-		startBtn.interactable = true;
-	}
+        levelSelected = true;
+    }
 
 	void selectedScene3()
 	{
-		selectedLevel = 3;
+        selectedLevel = "Level_3";
 
-		border1.color = notSelected;
+        border1.color = notSelected;
 		border2.color = notSelected;
 		border3.color = selected;
 
-		startBtn.interactable = true;
-	}
+        levelSelected = true;
+    }
 
 	public void startGame()
 	{
         gameStarted = true;
 		Cursor.visible = false;
-        //Debug.Log ("Load scene " + selectedLevel);
+        manager.NetworkLoadScene(selectedLevel);
     }
 
     void backButton()
@@ -119,6 +137,7 @@ public class LevelSelect : MonoBehaviour {
     void breakConnection()
     {
         // End connection between players when one leaves the level select screen
+        manager.StopAllCoroutines();
     }
 
 

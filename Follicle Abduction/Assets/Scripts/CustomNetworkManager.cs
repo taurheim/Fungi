@@ -21,6 +21,8 @@ public class CustomNetworkManager : NetworkManager
 	public string myRole = "";
 	private bool isLoadingScene = false;
 
+    public bool clientConnected = false;
+
 	// This is called by the "host" - could be either alien or human player
 	// Passes itself (the player object) in
 	public void registerPlayerObject(GameObject obj) {
@@ -47,8 +49,8 @@ public class CustomNetworkManager : NetworkManager
 	// Called when someone joins the unity server
 	public override void OnServerAddPlayer (NetworkConnection conn, short playerControllerId)
 	{
-		// Do nothing just incase something else calls this
-	}
+        // Do nothing just incase something else calls this
+    }
 
 	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader) {
 		RoleMessage msg = extraMessageReader.ReadMessage<RoleMessage>();
@@ -158,4 +160,13 @@ public class CustomNetworkManager : NetworkManager
 			NotifyServerSpawnPlayer(conn, myRole);
 		}
 	}
+
+    // Called when someone joins the server
+    public override void OnServerConnect(NetworkConnection conn)
+    {
+        if (conn.connectionId == 1) //Check that a client has joined (and not the host player)
+        { 
+            clientConnected = true;
+        }
+    }
 }
