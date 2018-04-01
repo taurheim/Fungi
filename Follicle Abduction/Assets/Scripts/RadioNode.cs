@@ -79,7 +79,7 @@ public class RadioNode : Node {
 		RpcChooseSong (correct);
 	}
 
-	public override void StartAction() {
+	public override void onStartAction() {
 		if (state == NodeState.UNLOCKED) {
 			if (choseCorrectSong) {
 				PlayCorrectSong ();
@@ -90,7 +90,7 @@ public class RadioNode : Node {
 	}
 
 	public override void Select() {
-		selected = true;
+		isSelected = true;
 		if (outline) {
 			print ("select");
 			outline.SetActive (true);
@@ -103,7 +103,7 @@ public class RadioNode : Node {
 	}
 
 	public override void Deselect() {
-		selected = false;
+		isSelected = false;
 		if (outline) {
 			print ("deselect");
 			outline.SetActive (false);
@@ -111,7 +111,7 @@ public class RadioNode : Node {
 		}
 	}
 
-	public override void EndAction() {
+	public override void onEndAction() {
 		return;
 	}
 

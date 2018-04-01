@@ -37,7 +37,7 @@ public class ClickableRenderTexture : MonoBehaviour
 				GameObject collidedWith = portalHit.collider.gameObject;
 
 				if (collidedWith.GetComponent<Node> ()) {
-					collidedWith.GetComponent<Node> ().HandleMouseDown ();
+					// collidedWith.GetComponent<Node> ().HandleMouseDown ();
 				}
 			}
 		}
@@ -59,7 +59,7 @@ public class ClickableRenderTexture : MonoBehaviour
 				GameObject collidedWith = portalHit.collider.gameObject;
 
 				if (collidedWith.GetComponent<Node> ()) {
-					collidedWith.GetComponent<Node> ().HandleMouseUp ();
+					// collidedWith.GetComponent<Node> ().HandleMouseUp ();
 				}
 			}
 		}
