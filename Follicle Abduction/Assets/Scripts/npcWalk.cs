@@ -49,10 +49,10 @@ public class npcWalk : MonoBehaviour
 	{
 		agent = this.GetComponent<UnityEngine.AI.NavMeshAgent> ();
 		currAnimation = "";
-		if (transform.position.x < -32 && !Out) {
-			currentWaypoint = 1;
+		if (transform.position.x < -3 && !Out) {
+			currentWaypoint = 2;
 		}
-		if (transform.position.x > -4 && !Out) {
+		if (transform.position.x > -3 && !Out) {
 			currentWaypoint = 0;
 		}
 
@@ -71,8 +71,10 @@ public class npcWalk : MonoBehaviour
 	{
 
 
-		if (Vector3.Distance (transform.position, navMesh [currentWaypoint]) < StoppingDistance) {
-			NavigateToNextWaypoint ();
+        if (Vector3.Distance (transform.position, navMesh [currentWaypoint]) < StoppingDistance) {
+            if(currentWaypoint == 1)
+                transform.position = new Vector3(-33, -14, 27);
+            NavigateToNextWaypoint ();
             
 		}
 		MoveToDestination ();
