@@ -1391,7 +1391,6 @@ GameObject:
   - component: {fileID: 33214041938824702}
   - component: {fileID: 64711879606810392}
   - component: {fileID: 23968093801908234}
-  - component: {fileID: 114367850591679250}
   m_Layer: 5
   m_Name: MainScreen
   m_TagString: Untagged
@@ -1439,7 +1438,7 @@ GameObject:
   - component: {fileID: 4657095523424634}
   - component: {fileID: 114266419917613700}
   m_Layer: 0
-  m_Name: Console View
+  m_Name: Console
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4709,16 +4708,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeData: {fileID: 102203664560865516}
---- !u!114 &114367850591679250
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1737935398971822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 023d2d7308b30f74b849fef7c31574d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  securityCamera: {fileID: 0}
-  mainCamera: {fileID: 0}
