@@ -1,9 +1,11 @@
-﻿// Visually highlight gameObject on mouse-hover
-// Used to indicate interactivity
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+/* 
+	Component that enables visual highlights on mouse-hover
+	Used to indicate interactivity
+ */
 
 public class OnHoverHighlight : MonoBehaviour {
 	

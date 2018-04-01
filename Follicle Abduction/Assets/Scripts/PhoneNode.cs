@@ -4,6 +4,7 @@ using UnityEngine;
 
 /*
 	Node attached to the phone to allow the alien to control it. Implements Node.
+	Alien can ring the phone by clicking it when it's unlocked, which distracts the guards
  */
 public class PhoneNode : Node
 {

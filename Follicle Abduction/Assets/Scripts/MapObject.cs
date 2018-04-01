@@ -4,6 +4,7 @@ using UnityEngine;
 
 /*
 	Handles visiblity/toggle for objects that are shown on the map(alien view).
+	Needed so that the alien only sees unlocked nodes.
  */
 public class MapObject : MonoBehaviour
 {
@@ -16,18 +17,6 @@ public class MapObject : MonoBehaviour
 		if (mapIcon != null) {
 			mapIconRenderer = mapIcon.GetComponent<Renderer> ();
 		}
-	}
-
-	// Use this for initialization
-	void Start ()
-	{
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-		
 	}
 
 	public void setMapIcon (GameObject newMapIcon)

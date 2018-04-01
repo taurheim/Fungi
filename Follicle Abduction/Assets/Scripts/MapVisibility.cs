@@ -4,6 +4,7 @@ using UnityEngine;
 
 /*
 	Util method to set visibility for objects with given tag.
+	Sometimes nodes that need to be unlocked are grouped together by tag, which is why this is useful.
  */
 public static class MapVisibility
 {

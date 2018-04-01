@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
-	Custom behaviour for the phone.
+	Component for phone behaviour.
+	Phone NODE can be unlocked by human player. Then the node is accessed by the alien player.
  */
 public class Phone : MonoBehaviour
 {
@@ -12,13 +13,11 @@ public class Phone : MonoBehaviour
 	public GameObject phone;
 	private bool touchingPlayer;
 
-	// Use this for initialization
 	void Start ()
 	{
 		node = GetComponentInChildren<Node> ();
 	}
 	
-	// Update is called once per frame
 	void Update ()
 	{
 		if (touchingPlayer) {
@@ -34,7 +33,6 @@ public class Phone : MonoBehaviour
 		print (other.tag);
 		if (other.CompareTag ("playerA")) {
 			touchingPlayer = true;
-			print (touchingPlayer);
 		}
 	}
 
@@ -47,10 +45,7 @@ public class Phone : MonoBehaviour
 
 	void TurnOn ()
 	{
-		print ("TURNING ON!");
-		//make some turning-on sound
 		node.unlockNode ();
-		//do some visual to show it's turned on
 	}
 		
 }

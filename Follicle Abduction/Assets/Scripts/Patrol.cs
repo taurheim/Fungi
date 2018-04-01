@@ -20,10 +20,8 @@ public class Patrol : MonoBehaviour
 	public float detectAngle;
 	public float detectRange;
 
-	// Array of target objects to look for and try to capture
-	public GameObject[] detectTargets;
-	public List <GameObject> secondaryTargets = new List<GameObject> ();
-	//distracting environmental things that can't be captured (ringing phones, music, etc.)
+	public GameObject[] detectTargets; // Array of target objects to look for and try to capture
+	public List <GameObject> secondaryTargets = new List<GameObject> (); // Targets with lower priority (distractions)
 
 	public Vector3 currDestination;
 	public GameObject currChaseTarget;
@@ -36,7 +34,6 @@ public class Patrol : MonoBehaviour
 
 	void NavigateToNextWaypoint ()
 	{
-
 		// Choose a new waypoint
 		currentWaypoint = (currentWaypoint + 1) % navMesh.Length;
 		currDestination = navMesh [currentWaypoint];
@@ -129,6 +126,7 @@ public class Patrol : MonoBehaviour
 
 	}
 
+	// Sets destination
 	void MoveToDestination ()
 	{
 		if (agent != null) {

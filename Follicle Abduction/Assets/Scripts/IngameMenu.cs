@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
+/* 
+    In-game pause menu.
+ */
+
 public class IngameMenu : NetworkedObject {
 
     public Transform canvas;
     private bool isPaused;
 
-    // Use this for initialization
     void Start() {
         canvas.gameObject.SetActive(false);
         isPaused = false;
     }
 
-    // Update is called once per frame
     void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             ViewMenu();
@@ -28,9 +30,7 @@ public class IngameMenu : NetworkedObject {
         else {
             canvas.gameObject.SetActive(false);
         }
-
         NetworkInteract();
-
     }
 
     public void ReturnToMainMenu() {

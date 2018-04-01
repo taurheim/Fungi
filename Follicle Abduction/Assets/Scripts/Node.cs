@@ -133,7 +133,6 @@ public class Node : NetworkBehaviour
 		}
 	}
 	
-	// Update is called once per frame
 	void Update ()
 	{
 		// If the node is locked, do nothing

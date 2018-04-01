@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /*
-    Allow for entity to have waypoints which are sequentially visited. Entity will attempt to move through all positions in
-    navMesh before looping backwards.
+    Allow for entity to have waypoints which are sequentially visited.
+	Entity will attempt to move through all positions in navMesh before looping backwards.
+	Used to animate non-interactive NPCs along set paths.
  */
 public class npcWalk : MonoBehaviour
 {
