@@ -28,7 +28,8 @@ public class DoorAnimation : MonoBehaviour
 
 	public void open ()
 	{
-		if (!isOpen) {
+        //We do not want to start another animation before the previous has stopped playing
+		if (!isOpen && !animations.isPlaying) {
 			animations.Play ("open", PlayMode.StopAll);
 			isOpen = true;
 		}
@@ -36,12 +37,13 @@ public class DoorAnimation : MonoBehaviour
 
 	public void close ()
 	{
-		if (isOpen) {
+		if (isOpen && !animations.isPlaying) {
 			animations.Play ("close", PlayMode.StopAll);
 			isOpen = false;
 		}
 	}
 
+    // Open door without any animation
 	void instantOpen ()
 	{
 		animations.Play ("instantOpen", PlayMode.StopAll);
