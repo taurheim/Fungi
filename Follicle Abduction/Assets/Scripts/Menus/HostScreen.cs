@@ -12,10 +12,12 @@ public class HostScreen : MonoBehaviour {
 
     public MenuManager menuManager;
 
-    public NetworkManager manager;
+    public CustomNetworkManager manager;
 
     void Start ()
     {
+
+        manager = GameObject.FindGameObjectWithTag("networkmanager").GetComponent<CustomNetworkManager>();
         back.onClick.AddListener(backButton);
 
         manager.StartHost();            // Start listening for clients
@@ -23,9 +25,9 @@ public class HostScreen : MonoBehaviour {
 
     void Update()
     {
-        if(manager.IsClientConnected())          
+        if(manager.clientConnected)  
+                                  
         {
-            Debug.Log("Client Connected");
             onClientConnected();
         }
 

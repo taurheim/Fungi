@@ -41,7 +41,7 @@ public class CustomNetworkingHUD : MonoBehaviour
 			debugStarted = true;
 			return;
 		}
-
+     
 		if (!showGUI)
 			return;
 

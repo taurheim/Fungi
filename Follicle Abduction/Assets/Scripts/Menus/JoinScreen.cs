@@ -14,10 +14,11 @@ public class JoinScreen : MonoBehaviour {
 
     public MenuManager menuManager;
 
-    public NetworkManager manager;
+    public CustomNetworkManager manager;
 
     void Start ()
     {
+        manager = GameObject.FindGameObjectWithTag("networkmanager").GetComponent<CustomNetworkManager>();
         connect.onClick.AddListener(connectButton);
         back.onClick.AddListener(backButton);
 	}
@@ -36,16 +37,6 @@ public class JoinScreen : MonoBehaviour {
         manager.networkAddress = ipAddress.text;
         manager.networkPort = int.Parse(port.text);
         manager.StartClient();
-    }
-
-    public void portField()
-    {
-
-    }
-
-    public void ipField()
-    {
-
     }
 
     void backButton()

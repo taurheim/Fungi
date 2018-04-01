@@ -35,9 +35,13 @@ public class LevelSelect : MonoBehaviour {
     public bool partnerPlayerReady = false;
     public bool gameStarted = false;
 
+    bool levelSelected = false;
+
 	// Use this for initialization
 	void Start () 
 	{
+        manager = GameObject.FindGameObjectWithTag("networkmanager").GetComponent<CustomNetworkManager>();
+
         back.onClick.AddListener(backButton);
 
 		if (lvl1_unlocked) 
@@ -70,6 +74,18 @@ public class LevelSelect : MonoBehaviour {
 		startBtn.onClick.AddListener (startGame);
 	}
 
+    void Update()
+    {
+        if(roleSelectLocal.value == roleSelectPartner.value)
+        {
+            startBtn.interactable = false;
+        }
+        else if(levelSelected)
+        {
+            startBtn.interactable = true;
+        }
+    }
+
 
 	void selectedScene1()
 	{
@@ -79,7 +95,7 @@ public class LevelSelect : MonoBehaviour {
 		border2.color = notSelected;
 		border3.color = notSelected;
 
-		startBtn.interactable = true;
+        levelSelected = true;
 	}
 
 	void selectedScene2()
@@ -90,8 +106,8 @@ public class LevelSelect : MonoBehaviour {
 		border2.color = selected;
 		border3.color = notSelected;
 
-		startBtn.interactable = true;
-	}
+        levelSelected = true;
+    }
 
 	void selectedScene3()
 	{
@@ -101,8 +117,8 @@ public class LevelSelect : MonoBehaviour {
 		border2.color = notSelected;
 		border3.color = selected;
 
-		startBtn.interactable = true;
-	}
+        levelSelected = true;
+    }
 
 	public void startGame()
 	{
