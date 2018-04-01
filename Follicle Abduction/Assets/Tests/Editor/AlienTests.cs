@@ -5,12 +5,12 @@ using System.Collections;
 
 public class AlienTests {
 
-	Alien alien;
+	AlienPlayer alien;
 
 	[SetUp]
 	public void SetUp() {
 		//Map visibility is on by default
-		alien = new Alien ();
+		alien = new AlienPlayer ();
 	}
 
 	[Test]

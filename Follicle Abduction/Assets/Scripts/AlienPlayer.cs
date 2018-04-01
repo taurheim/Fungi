@@ -6,16 +6,13 @@ using UnityEngine;
 	Alien player controller. In the process of changing the interaction from mouse-based to key-based.
  */
 
-public class Alien : MonoBehaviour
+public class AlienPlayer : MonoBehaviour
 {
-<<<<<<< HEAD
 
 	public GameObject alienIconPrefab;
 
 	public int maxSuspiciousness = 100;
 	private int suspiciousness;
-=======
->>>>>>> fd8feb8d4da43fc9b13b1aa7aabff4afb85dcc69
 	private bool captured;
 
 	// Should be undefined at the start
