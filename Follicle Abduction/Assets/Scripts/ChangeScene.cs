@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/* 
+	Component to make a trigger change scenes.
+	Used to change levels when reaching the goal.
+ */
+
 public class ChangeScene : MonoBehaviour {
 
 	public string sceneName;
-	
-	// Prevent double calling
-	private bool changingScenes;
-	// private LevelManager levelManager
-
-	// void Start() {
-	// 	levelManager = GameObject.FindWithTag("levelmanager").GetComponent<LevelManager>();
-	// }
+	private bool changingScenes; // Prevent double calling
 	
 	private void OnTriggerEnter(Collider other) {
 		if (other.gameObject.CompareTag("playerA") && !changingScenes){

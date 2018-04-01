@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/* 
+	Component that handles button being pressed.
+	Handles raycast from human player and button animation.
+	TODO: generalize! Many objects could have a checkraycast->animate behaviour
+ */
+
 public class ButtonPress : MonoBehaviour
 {
 	Collider buttonHitbox;
 	ButtonAnimation buttonAnimation;
-
 	private bool isPressed;
 
 	void Start ()
@@ -17,6 +22,7 @@ public class ButtonPress : MonoBehaviour
 
 	void Update ()
 	{
+		//Check for raycast when interact button "E" is pressed
 		if (Input.GetKeyDown (KeyCode.E)) {
 			int layerMask = 1;  //Rays only hit objects on default layer
 
@@ -37,12 +43,9 @@ public class ButtonPress : MonoBehaviour
 		buttonAnimation.push ();
 	}
 
-
 	public bool getButtonStatus ()
 	{
-
 		return isPressed;
-        
 	}
 
 	public void stopPress ()

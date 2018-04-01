@@ -11,18 +11,6 @@ public class Grid : MonoBehaviour
 	public int cellSize;
 	public int n;
 
-	// Use this for initialization
-	void Start ()
-	{
-
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-		
-	}
-
 	void OnDrawGizmos ()
 	{
 		DrawGrid ();

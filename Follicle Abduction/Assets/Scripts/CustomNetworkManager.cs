@@ -10,8 +10,6 @@ public class CustomNetworkManager : NetworkManager
 	public class RoleMessage : MessageBase {
 		public string role;
 	}
-	public GameMenu menu;
-
 	public GameObject humanPrefab;
 	public GameObject alienPrefab;
 

@@ -3,7 +3,8 @@ using System;
 using System.Collections;
 
 /*
-	Make object float up and down above the ground
+	Make object float up and down above the ground.
+	Simply a visual effect, currently used for pick-ups.
  */
 public class Float : MonoBehaviour
 {
