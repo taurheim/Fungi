@@ -9,6 +9,7 @@ public enum NodeState
 	UNLOCKED, // Available to be hacked
 	COMPLETED // Node is completed and can be "used"
 };
+public enum LineDirection { UP, DOWN, LEFT, RIGHT, NONE};
 
 /*
 	A map node for the alien. Can be in 3 states that are modified by the alien clicking on the icon. Nodes can have children which
@@ -16,8 +17,6 @@ public enum NodeState
  */
 public class Node : NetworkBehaviour
 {
-
-	private enum LineDirection { UP, DOWN, LEFT, RIGHT, NONE};
 
 	public NodeState state = NodeState.LOCKED;
 	public bool isSelected;
@@ -49,6 +48,7 @@ public class Node : NetworkBehaviour
 	private KeyCode actionKey = KeyCode.Space;
 
 	private Dictionary<LineDirection, Node> connectedNodes;
+	private Dictionary<LineDirection, Vector3> midpoints;
 
 	/* 
 		Override these for node-specific functionality
@@ -76,7 +76,7 @@ public class Node : NetworkBehaviour
 		// Draw a line from this node to all children
 		if(isHeadNode) {
 			Select();
-			drawLinesToChildren(LineDirection.NONE, null);
+			drawLinesToChildren(LineDirection.NONE, new Vector3(), null);
 		}
 	}
 
@@ -158,8 +158,10 @@ public class Node : NetworkBehaviour
 			Color newColor = new Color (0F, 1.0F, 0F);
 
 			foreach (LineRenderer line in nodeLines) {
-				line.startColor = newColor;
-				line.endColor = newColor;
+				if(line) {
+					line.startColor = newColor;
+					line.endColor = newColor;
+				}
 			}
 			progressBar.GetComponent<MeshRenderer> ().material.color = newColor;
 			GetComponent<MeshRenderer> ().enabled = false;
@@ -169,20 +171,29 @@ public class Node : NetworkBehaviour
 		}
 	}
 
-	void recursivelyDrawLinesToChildren() {
-		// This should only be called by the first node - it will call the drawLinesToChildren() method on all the other nodes
-
+	public Node getNode(LineDirection direction) {
+		if(!connectedNodes.ContainsKey(direction)) {
+			return null;
+		} else {
+			return connectedNodes[direction];
+		}
 	}
 
-	void drawLinesToChildren (LineDirection parentDirection, Node parent)
+	public Vector3 getMidPoint(LineDirection direction) {
+		return midpoints[direction];
+	}
+
+	void drawLinesToChildren (LineDirection parentDirection, Vector3 parentMidpoint, Node parent)
 	{
 		// Most nodes will only have 3 child nodes (6 lines)
 		// The first node can have 4 (8 lines)
 		connectedNodes = new Dictionary<LineDirection, Node>();
 		nodeLines = new LineRenderer[8];
+		midpoints = new Dictionary<LineDirection, Vector3>();
 
 		if(parentDirection != LineDirection.NONE) {
 			connectedNodes[parentDirection] = parent;
+			midpoints[parentDirection] = parentMidpoint;
 		}
 
 		for(int i = 0; i < childNodes.Length; i++) {
@@ -254,13 +265,15 @@ public class Node : NetworkBehaviour
 				GameObject lineObject = new GameObject ();
 				lineObject.layer = LayerMask.NameToLayer ("Minimap");
 				nodeLines [i] = makeLine (lineObject, parentPosition, childPosition);
+				// I'M SORRY
+				midpoints[dir] = childNode.transform.position;
 			} else {
 				// Vertical line
 				GameObject verticalLineObject = new GameObject ();
 				GameObject horizontalLineObject = new GameObject ();
 				verticalLineObject.layer = LayerMask.NameToLayer ("Minimap");
 				horizontalLineObject.layer = LayerMask.NameToLayer ("Minimap");
-				Vector3 midPoint ;
+				Vector3 midPoint;
 				if(dir == LineDirection.UP || dir == LineDirection.DOWN) {
 					// Vertical then horizontal
 					midPoint = new Vector2 (parentPosition.x, childPosition.y);
@@ -270,11 +283,13 @@ public class Node : NetworkBehaviour
 				}
 				nodeLines [i] = makeLine (verticalLineObject, parentPosition, midPoint);
 				nodeLines [i+1] = makeLine (horizontalLineObject, midPoint, childPosition);
+				// I'M SORRY
+				midpoints[dir] = new Vector3(midPoint.x, transform.position.y, midPoint.y);
 			}
 
 			// Recurse
 			LineDirection entryDirection = getEntryDirection(dir, parentPosition, childPosition);
-			childNode.drawLinesToChildren(entryDirection, this);
+			childNode.drawLinesToChildren(entryDirection, midpoints[dir], this);
 		}
 	}
 
