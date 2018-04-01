@@ -72,12 +72,12 @@ public class NodeTests {
 	public void SelectNode() {
 		Node parentNode = SetupWithChildren(0);
 		parentNode.Select();
-		Assert.True(parentNode.selected);
+		Assert.True(parentNode.isSelected);
 	}
 
 	class MockNode : Node {
 		public bool wasUsed = false;
-		public override void StartAction() {
+		public override void onStartAction() {
 			wasUsed = true;
 		}
 	}
@@ -88,7 +88,7 @@ public class NodeTests {
 		MockNode node = parentGameObject.AddComponent<MockNode>();
 		node.unlockNode();
 		node.completeNode();
-		node.useNode();
+		node.onStartAction();
 		Assert.True(node.wasUsed);
 	}
 
@@ -96,7 +96,7 @@ public class NodeTests {
 	public void CantUseIncompleteNode() {
 		GameObject parentGameObject = new GameObject();
 		MockNode node = parentGameObject.AddComponent<MockNode>();
-		node.useNode();
+		node.onStartAction();
 		Assert.False(node.wasUsed);
 	}
 }

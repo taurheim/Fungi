@@ -95,7 +95,7 @@ public class CustomNetworkManager : NetworkManager
 		ClientScene.Ready(client.connection);
 
 		// This shouldn't be determined here
-		myRole = isHost ? "human" : "alien";
+		myRole = isHost ? "alien" : "human";
 
 		NotifyServerSpawnPlayer(conn, myRole);
 	}

@@ -29,18 +29,18 @@ public class PhoneNode : Node
 			StopRinging ();
 		}
 		if (Input.GetKeyUp (KeyCode.P)) { //for debugging in human mode!
-			StartAction ();
+			onStartAction ();
 		}
 	}
 
-	public override void StartAction ()
+	public override void onStartAction ()
 	{
 		if (state == NodeState.UNLOCKED) {
 			Ring ();
 		}
 	}
 
-	public override void EndAction ()
+	public override void onEndAction ()
 	{
 		return;
 	}

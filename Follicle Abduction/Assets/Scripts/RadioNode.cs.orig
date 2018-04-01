@@ -83,7 +83,12 @@ public class RadioNode : Node {
 		RpcChooseSong (correct);
 	}
 
+<<<<<<< HEAD
 	public override void onStartAction() {
+=======
+	// This node's action is to play a song
+	public override void StartAction() {
+>>>>>>> fd8feb8d4da43fc9b13b1aa7aabff4afb85dcc69
 		if (state == NodeState.UNLOCKED) {
 			if (choseCorrectSong) {
 				PlayCorrectSong ();
