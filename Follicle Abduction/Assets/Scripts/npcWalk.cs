@@ -60,7 +60,7 @@ public class NPCWalk : MonoBehaviour
 		}
         if (transform.position.x < -3 && transform.position.x > -32 && Out)
         {
-            currentWaypoint = 1;
+            currentWaypoint = 2;
         }
         if (transform.position.x > -3 && Out)
         {
@@ -83,8 +83,10 @@ public class NPCWalk : MonoBehaviour
         if (Vector3.Distance (transform.position, navMesh [currentWaypoint]) < StoppingDistance) {
             if(currentWaypoint == 1 & !Out)
                 transform.position = new Vector3(-33, -14, 27);
+
             if (currentWaypoint == 1 & Out)
-                transform.position = new Vector3(-3, -14, 63);
+                transform.position = new Vector3(-3, -14, 42);
+
             NavigateToNextWaypoint ();
             
 		}
