@@ -25,7 +25,8 @@ public class NPCWalk : MonoBehaviour
 	private string currAnimation;
 	public Vector3 sendToOnCapture;
 
-	void NavigateToNextWaypoint ()
+	void NavigateToNextWaypoint ()// This moves the npc through its own set destination points in a loop
+        // this is here because the guards need to path in a predicable manner
 	{
 
 		// Choose a new waypoint
@@ -45,7 +46,8 @@ public class NPCWalk : MonoBehaviour
 
 
 	// Use this for initialization
-	void Start ()
+	void Start ()// Needed because guards may not always spawn in the same location, this accomidates for that by starting them
+                // on the correct first destination not to start its loop
 	{
 		agent = this.GetComponent<UnityEngine.AI.NavMeshAgent> ();
 		currAnimation = "";
@@ -78,7 +80,9 @@ public class NPCWalk : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-
+        // instead of having pathing, where the player can't see them, 
+        // it was better for optization to have the guards teleport to next visible 
+        // location, and reduce the total number of NPCs
 
         if (Vector3.Distance (transform.position, navMesh [currentWaypoint]) < StoppingDistance) {
             if(currentWaypoint == 1 & !Out)
