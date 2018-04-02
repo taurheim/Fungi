@@ -11,12 +11,12 @@ using UnityEngine;
 public class ButtonPress : MonoBehaviour
 {
 	Collider buttonHitbox;
-	ButtonAnimation buttonAnimation;
+	Animation buttonAnimation;
 	private bool isPressed;
 
 	void Start ()
 	{
-		buttonAnimation = GetComponent<ButtonAnimation> ();
+		buttonAnimation = GetComponent<Animation> ();
 		buttonHitbox = GetComponentInChildren<Collider>();
 	}
 
@@ -40,7 +40,7 @@ public class ButtonPress : MonoBehaviour
 	void push ()
 	{
 		isPressed = true;
-		buttonAnimation.push ();
+		buttonAnimation.Play("pushed");
 	}
 
 	public bool getButtonStatus ()
