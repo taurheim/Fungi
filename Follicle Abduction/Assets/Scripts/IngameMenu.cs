@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
+using UnityEngine.UI;
 
 /* 
     In-game pause menu.
@@ -10,6 +11,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class IngameMenu : NetworkedObject {
 
     public Transform canvas;
+    public Slider volumeSlider;
     private bool isPaused;
 
     void Start() {
@@ -23,6 +25,7 @@ public class IngameMenu : NetworkedObject {
         }
     }
 
+    // Allows user to view the ingame menu (also pauses the game when opened)
     public void ViewMenu() {
         if (!canvas.gameObject.activeInHierarchy) {
             canvas.gameObject.SetActive(true);
@@ -60,6 +63,7 @@ public class IngameMenu : NetworkedObject {
         }
     }
 
+    // Syncs pause/unpause game status with other player
     protected override void Interact(){
         if (isPaused){
             Unpause();
@@ -69,5 +73,10 @@ public class IngameMenu : NetworkedObject {
             Pause();
             Debug.Log("Game Paused");
         }
+    }
+
+    // Allows users to adjust volume via the ingame menu slider
+    public void changeVolumeSlider() {
+        AudioListener.volume = volumeSlider.value;
     }
 }
