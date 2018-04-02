@@ -5,6 +5,7 @@ using UnityEngine;
 /*
     Custom puzzle implementation for the door matching puzzle.
  */
+ 
 public class Symbol_Match_Door_Puzzle : MonoBehaviour
 {
 

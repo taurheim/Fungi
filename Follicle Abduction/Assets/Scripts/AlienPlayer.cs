@@ -10,17 +10,12 @@ public class AlienPlayer : MonoBehaviour
 {
 
 	public GameObject alienIconPrefab;
-
-	public int maxSuspiciousness = 100;
-	private int suspiciousness;
 	private bool captured;
 
 	// Should be undefined at the start
 	// TODO this should be private and use getters/setters for tests
 	public Node currentNode;
-
 	private GameObject alienIcon;
-
 	private bool isMoving;
 	private List<Vector3> movePositions;
 

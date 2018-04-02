@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 	Entity will attempt to move through all positions in navMesh before looping backwards.
 	Used to animate non-interactive NPCs along set paths.
  */
-public class npcWalk : MonoBehaviour
+public class NPCWalk : MonoBehaviour
 {
 
 	public Vector3[] navMesh;

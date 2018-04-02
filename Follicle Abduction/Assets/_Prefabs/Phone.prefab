@@ -345,7 +345,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4801709868490268}
-  - component: {fileID: 114795751263600606}
   - component: {fileID: 135313213222620400}
   m_Layer: 0
   m_Name: Phone
@@ -3128,28 +3127,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 1
-  hackKey: 
+  isSelected: 0
+  isHeadNode: 0
   childNodes: []
   tagForHiddenObjects: 
   data: []
-  selected: 0
   progressBar: {fileID: 0}
   outline: {fileID: 1056461092801754}
   ring: {fileID: 8300000, guid: c670e541e48be45eeaef4f4be7709750, type: 3}
   guards:
   - {fileID: 0}
---- !u!114 &114795751263600606
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1237708580411750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 830dfc3bdb8744193a6b14da83bdd8b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  phone: {fileID: 1554649331761796}
 --- !u!114 &114843665510322138
 MonoBehaviour:
   m_ObjectHideFlags: 1
