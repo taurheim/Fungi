@@ -25,11 +25,12 @@ public class Patrol : NetworkedObject
 	public Vector3 currDestination;
 	public GameObject currChaseTarget;
 	public Vector3 lastKnownTargetLoc;
+	private Quaternion originalFaceDirection;
+	private float remainingWaitDuration;
 
 	public GameObject artModel;
 	private string currAnimation;
 	public Vector3 sendToOnCapture;
-    private Quaternion originalFaceDirection;
 
 	void NavigateToNextWaypoint ()
 	{
@@ -47,10 +48,25 @@ public class Patrol : NetworkedObject
 		NavigateToNextWaypoint ();
         artModel.GetComponent<Animation>().Play("look_around", PlayMode.StopAll);
         originalFaceDirection = this.transform.rotation;
+        remainingWaitDuration = 0.0f;
     }
 
     void Update ()
 	{
+		// Check if the guard is currently waiting, if so, do not proceed
+		if (remainingWaitDuration > 0.0f){
+			remainingWaitDuration -= Time.deltaTime;
+
+			// If the guard is no longer waiting after this frame, resume walking
+			if (remainingWaitDuration <= 0.0f) {
+				agent.Resume();
+				NavigateToNextWaypoint();
+
+			}
+			return;
+		}
+
+
 		// If currently chasing a target
 		if (currChaseTarget != null) {
 
@@ -81,7 +97,7 @@ public class Patrol : NetworkedObject
 					print ("REACHED DESTINATION!");
 					agent.isStopped = true;
 					agent.speed = 0.0f;
-					artModel.GetComponent<Animation>().Play ("look_around", PlayMode.StopAll);
+					WaitAtDestination(6.0f);
 				} else {
 					lastKnownTargetLoc = currChaseTarget.transform.position;
 					currDestination = currChaseTarget.transform.position;
@@ -212,6 +228,12 @@ public class Patrol : NetworkedObject
 			ResumePatrol();
 		}
 		secondaryTargets.Remove(target);
+	}
+
+	public void WaitAtDestination(float duration){
+		remainingWaitDuration = duration;
+		agent.Stop();
+		artModel.GetComponent<Animation>().Play ("look_around", PlayMode.StopAll);
 	}
 
 }
