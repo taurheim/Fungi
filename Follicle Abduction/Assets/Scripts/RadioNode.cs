@@ -16,53 +16,50 @@ public class RadioNode : Node {
 	public AudioClip correctSong;
 	public AudioClip wrongSong;
 	public Patrol[] songLovingGuards; // These guards get distracted (move towards the radio) when the correct song is played
-	public GameObject inputField;
+	public GameObject songSelector;
 
 	private AudioSource source;
 	private GameObject radio;
 	private bool playing;
 	private bool choseCorrectSong;
-	private bool showingInputField;
+	private bool showingSongSelector;
 
 
-	void Start () {
+	protected override void Start () {
+		base.Start();
 		source = GetComponent<AudioSource> ();
 		playing = false;
 		choseCorrectSong = false;
-		InputField field = inputField.GetComponent<InputField>();
-		field.interactable = true;
-		showingInputField = false;
+		songSelector.SetActive(false);
+		Dropdown dropDown = songSelector.GetComponentInChildren<Dropdown>();
+		dropDown.onValueChanged.AddListener(delegate {
+                DropdownValueChanged(dropDown);
+            });
+		dropDown.interactable = true;
+		showingSongSelector = false;
 	}
 	
-	void Update () {
+	protected override void Update () {
+		base.Update();
+		// Playing music
 		if (playing && !source.isPlaying) { // Temp until ray casting is implemented
 			StopPlayingCorrectSong ();
 		}
-		if(showingInputField && isServer) {
-			HandleKeyInput();
-		} else if (Input.GetKeyDown (KeyCode.R)) { // For debugging!
-			PlayCorrectSong ();
+		// Showing text input
+		if (isSelected && !showingSongSelector && isServer && (state == NodeState.COMPLETED)) {
+			ShowSongSelector();
+		} else if (!isSelected && showingSongSelector) {
+			Debug.Log("hide!!!");
+			HideSongSelector();
 		}
 	}
 
-	void HandleKeyInput() {
-		InputField field = inputField.GetComponent<InputField> ();
-		if (Input.GetKeyUp (KeyCode.Return)) {
-			if (field.text == correctSongName) {
-				print ("correct song!");
-				ChooseSong (true);
-			} else {
-				ChooseSong (false);
-			}
-		} else if (Input.GetKeyDown (KeyCode.Backspace)) {
-			print("backspace key");
-			if (field.text.Length > 0) {
-				field.text = field.text.Remove (field.text.Length - 1);
-			}
+	private void DropdownValueChanged(Dropdown dropDown) {
+		if (dropDown.options[dropDown.value].text == correctSongName) {
+			ChooseSong(true);
 		} else {
-			field.text += Input.inputString;
+			ChooseSong(false);
 		}
-		print ("Text field: " + field.text);
 	}
 
 	public void ChooseSong(bool correct) {
@@ -84,7 +81,7 @@ public class RadioNode : Node {
 	}
 
 	public override void onStartAction() {
-		if (state == NodeState.UNLOCKED) {
+		if (state == NodeState.COMPLETED) {
 			if (choseCorrectSong) {
 				PlayCorrectSong ();
 			} else {
@@ -93,27 +90,18 @@ public class RadioNode : Node {
 		}
 	}
 
-	// Highlights and opens input field when node is selected
-	public override void Select() {
-		isSelected = true;
-		if (outline) {
-			print ("select");
-			outline.SetActive (true);
-			inputField.SetActive (true);
-			InputField field = inputField.GetComponent<InputField>();
-			field.ActivateInputField ();
-			field.interactable = true;
-			showingInputField = true;
-		}
+	private void ShowSongSelector() {
+		songSelector.SetActive (true);
+		Dropdown dropDown = songSelector.GetComponentInChildren<Dropdown>();
+		dropDown.interactable = true;
+		showingSongSelector = true;
 	}
 
-	public override void Deselect() {
-		isSelected = false;
-		if (outline) {
-			print ("deselect");
-			outline.SetActive (false);
-			inputField.SetActive(false);
-		}
+	private void HideSongSelector() {
+		songSelector.SetActive(false);
+		Dropdown dropDown = songSelector.GetComponentInChildren<Dropdown>();
+		dropDown.interactable = false;
+		showingSongSelector = false;
 	}
 
 	public override void onEndAction() {
@@ -121,7 +109,7 @@ public class RadioNode : Node {
 	}
 
 	public void PlayWrongSong() {
-		source.PlayOneShot (wrongSong);
+		//source.PlayOneShot (wrongSong);
 	}
 
 	public void PlayCorrectSong() {
