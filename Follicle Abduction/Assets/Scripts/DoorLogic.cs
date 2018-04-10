@@ -5,7 +5,7 @@ using UnityEngine;
 /*
     Manager for the door opening/door closing logic
  */
-public class DoorLogic : MonoBehaviour
+public class DoorLogic : NetworkedObject
 {
 
 	private bool isLocked;
@@ -25,31 +25,42 @@ public class DoorLogic : MonoBehaviour
 
 	void Update ()
 	{
-		if (button.GetComponent<ButtonPress> ().getButtonStatus () && !this.isOpen) {
-			button.GetComponent<ButtonPress> ().stopPress ();
-			this.open ();
-		} else if (button.GetComponent<ButtonPress> ().getButtonStatus () && this.isOpen) {
-			button.GetComponent<ButtonPress> ().stopPress ();
-			this.close ();
+		if (button.GetComponent<ButtonPress>().getButtonStatus() && !this.isOpen) {
+			button.GetComponent<ButtonPress>().stopPress();
+			NetworkInteract();
+		} else if (button.GetComponent<ButtonPress>().getButtonStatus() && this.isOpen) {
+			button.GetComponent<ButtonPress>().stopPress ();
+			NetworkInteract();
 		}
-        
 	}
 
 	// Called every frame if door is opening, slowly opens door every frame
 	public void open ()
 	{
 		if (!isLocked) {
-			door.GetComponent<DoorAnimation> ().open ();
+			door.GetComponent<DoorAnimation>().open ();
 			this.isOpen = true;
-			this.GetComponent<BoxCollider> ().size = new Vector3 (0, 0, 0);
+			this.GetComponent<BoxCollider>().size = new Vector3 (0, 0, 0);
 		}
 	}
 
 	// Called every frame if door is closing, slowly closes door every frame
 	public void close ()
 	{
-		door.GetComponent<DoorAnimation> ().close ();
+		door.GetComponent<DoorAnimation>().close ();
 		this.isOpen = false;
-		this.GetComponent<BoxCollider> ().size = new Vector3 (5, 5, 1);
+		this.GetComponent<BoxCollider>().size = new Vector3 (5, 5, 1);
 	}
+
+    protected override void Interact(){
+    	if (!isOpen){
+    		this.open();
+    	}
+    	else{
+    		this.close();
+    	}
+    }
+
+
+
 }
