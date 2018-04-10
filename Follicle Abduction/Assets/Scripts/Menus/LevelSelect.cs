@@ -36,13 +36,13 @@ public class LevelSelect : MonoBehaviour {
     public bool gameStarted = false;
 
     bool levelSelected = false;
-    bool isHost;
+    public bool isHost;
 
 	// Use this for initialization
 	void Start () 
 	{
         manager = GameObject.FindGameObjectWithTag("networkmanager").GetComponent<CustomNetworkManager>();
-        bool isHost = manager.isTheHost();
+        isHost = manager.isTheHost();
 
         back.onClick.AddListener(backButton);
 
