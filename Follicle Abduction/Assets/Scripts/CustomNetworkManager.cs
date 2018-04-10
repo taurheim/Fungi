@@ -3,14 +3,17 @@ using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
+public class RoleMessage : MessageBase {
+	public static short type = MsgType.Highest + 1;
+	public bool isHost;
+	public string role;
+}
+
 /*
     Custom implementation of the NetworkManager interface. Currently used mainly as a debug tool.
  */
 public class CustomNetworkManager : NetworkManager
 {
-	public class RoleMessage : MessageBase {
-		public string role;
-	}
 	public GameObject humanPrefab;
 	public GameObject alienPrefab;
 
@@ -35,9 +38,6 @@ public class CustomNetworkManager : NetworkManager
 		return playerObject;
 	}
 
-	// TODO which player you start as shouldn't be decided here
-	// Instead, we should have some other way of telling what the player chose so we can
-	// spawn the right player in OnServerAddPlayer()
 	public override void OnStartHost() {
 		isHost = true;
 	}
@@ -52,8 +52,8 @@ public class CustomNetworkManager : NetworkManager
 	// Called when someone joins the unity server
 	public override void OnServerAddPlayer (NetworkConnection conn, short playerControllerId)
 	{
-        // Do nothing just incase something else calls this
-    }
+		// Do nothing just incase something else calls this
+	}
 
 	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader) {
 		RoleMessage msg = extraMessageReader.ReadMessage<RoleMessage>();
@@ -138,13 +138,16 @@ public class CustomNetworkManager : NetworkManager
 
 	// Called when we're the server and the client disconnects
 	public override void OnServerDisconnect(NetworkConnection conn) {
+		Debug.Log("OnServerDisconnect");
 		NetworkLoadScene(mainMenuSceneName);
 		StartCoroutine(StopHostAfterSceneLoad());
 	}
 
 	// Called when we're the client and the server disconnects
 	public override void OnClientDisconnect(NetworkConnection conn) {
-		NetworkLoadScene(mainMenuSceneName);
+		Debug.Log("OnClientDisconnect");
+		StopClient();
+		SceneManager.LoadScene(mainMenuSceneName);
 	}
 
 	private void NotifyServerSpawnPlayer(NetworkConnection conn, string playerRole) {
