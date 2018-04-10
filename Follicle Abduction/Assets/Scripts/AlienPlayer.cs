@@ -83,6 +83,7 @@ public class AlienPlayer : MonoBehaviour
 	}
 
 	private void moveInDirection(LineDirection direction) {
+		if (!currentNode) return;
 		Node nextNode = currentNode.getNode(direction);
 		if(nextNode) {
 			currentNode.Deselect();

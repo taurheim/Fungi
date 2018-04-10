@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 /*
@@ -13,9 +14,11 @@ public class CustomNetworkManager : NetworkManager
 	public GameObject humanPrefab;
 	public GameObject alienPrefab;
 
+	private string mainMenuSceneName = "MainMenu";
+
 	private GameObject playerObject;
 	private int playerCount;
-	private bool isHost = false;
+	public bool isHost = false;
 	public string myRole = "";
 	private bool isLoadingScene = false;
 
@@ -41,7 +44,9 @@ public class CustomNetworkManager : NetworkManager
 
 	public override void OnStopHost() {
 		isHost = false;
+		clientConnected = false;
 		myRole = "";
+		Debug.Log("Host stopped.");
 	}
 
 	// Called when someone joins the unity server
@@ -55,6 +60,7 @@ public class CustomNetworkManager : NetworkManager
 		string role = msg.role;
 		Debug.Log("OnServerAddPlayer: " + role);
 
+		// Handle connections while loading scene
 		if (isLoadingScene) {
 			StartCoroutine(WaitForSceneLoad(conn, role, playerControllerId));
 		} else {
@@ -67,13 +73,25 @@ public class CustomNetworkManager : NetworkManager
 		switch (role) {
 			case "human":
 				// Spawn human
-				Transform humanSpawn = GameObject.Find("HumanSpawn").GetComponent<Transform>();
-				playerObject = Instantiate(humanPrefab, humanSpawn);
+				GameObject humanSpawn = GameObject.Find("HumanSpawn");
+				if (!humanSpawn) {
+					// Probably on the main menu
+					Debug.Log("Couldn't find a human spawn - not spawning");
+					return;
+				}
+				Transform humanSpawnLocation = humanSpawn.GetComponent<Transform>();
+				playerObject = Instantiate(humanPrefab, humanSpawnLocation);
 				break;
 			case "alien":
 				// Spawn alien
-				Transform alienSpawn = GameObject.Find("AlienSpawn").GetComponent<Transform>();
-				playerObject = Instantiate(alienPrefab, alienSpawn);
+				GameObject alienSpawn = GameObject.Find("AlienSpawn");
+				if (!alienSpawn) {
+					// Probably on the main menu
+					Debug.Log("Couldn't find an alien spawn - not spawning");
+					return;
+				}
+				Transform alienSpawnLocation = alienSpawn.GetComponent<Transform>();
+				playerObject = Instantiate(alienPrefab, alienSpawnLocation);
 				break;
 			default:
 				Debug.Log("Invalid role: " + role);
@@ -88,6 +106,11 @@ public class CustomNetworkManager : NetworkManager
 		yield return new WaitUntil(() => !isLoadingScene);
 		Debug.Log("Scene loading: " + isLoadingScene);
 		SpawnPlayerForConnection(conn, role, playerControllerId);
+	}
+
+	IEnumerator StopHostAfterSceneLoad() {
+		yield return new WaitUntil(() => !isLoadingScene);
+		StopHost();
 	}
 
 	public override void OnClientConnect(NetworkConnection conn){
@@ -111,6 +134,17 @@ public class CustomNetworkManager : NetworkManager
 	public override void OnServerSceneChanged(string sceneName) {
 		Debug.Log("Server scene changed!");
 		isLoadingScene = false;
+	}
+
+	// Called when we're the server and the client disconnects
+	public override void OnServerDisconnect(NetworkConnection conn) {
+		NetworkLoadScene(mainMenuSceneName);
+		StartCoroutine(StopHostAfterSceneLoad());
+	}
+
+	// Called when we're the client and the server disconnects
+	public override void OnClientDisconnect(NetworkConnection conn) {
+		NetworkLoadScene(mainMenuSceneName);
 	}
 
 	private void NotifyServerSpawnPlayer(NetworkConnection conn, string playerRole) {
@@ -155,21 +189,26 @@ public class CustomNetworkManager : NetworkManager
 		}
 		if (addPlayer)
 		{
+			Debug.Log("Attempting to add player with role: " + myRole);
 			NotifyServerSpawnPlayer(conn, myRole);
 		}
 	}
 
-    // Called when someone joins the server
-    public override void OnServerConnect(NetworkConnection conn)
-    {
-        if (conn.connectionId == 1) //Check that a client has joined (and not the host player)
-        { 
-            clientConnected = true;
-        }
-    }
+	public void setMyRole(string role) {
+		myRole = role;
+	}
 
-    public bool isTheHost() // Used by LevelSelect.cs to determine role
-    {
-        return isHost;
-    }
+	// Called when someone joins the server
+	public override void OnServerConnect(NetworkConnection conn)
+	{
+			if (conn.connectionId == 1) //Check that a client has joined (and not the host player)
+			{ 
+					clientConnected = true;
+			}
+	}
+
+	public bool isTheHost() // Used by LevelSelect.cs to determine role
+	{
+			return isHost;
+	}
 }
