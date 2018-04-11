@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.009406347, g: 0.009492566, b: 0.009406347, a: 1}
+  m_IndirectSpecularColor: {r: 0.009256138, g: 0.009483897, b: 0.009256138, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -589,10 +589,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 48899185}
     m_Modifications:
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
+    - target: {fileID: 114661056438224178, guid: 3fbdb837006b93b4eb2879b38aa7d859,
         type: 2}
       propertyPath: navMesh.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4079515114247456, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
       propertyPath: m_LocalPosition.x
@@ -629,83 +629,6 @@ Prefab:
     - target: {fileID: 1828591768074562, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
       propertyPath: m_Name
       value: Human NPC filler (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4079515114247456, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.0000005
-      objectReference: {fileID: 0}
-    - target: {fileID: 4079515114247456, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1.0000005
-      objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
-      propertyPath: navMesh.Array.data[2].x
-      value: -33
-      objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
-      propertyPath: navMesh.Array.data[2].y
-      value: -14
-      objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
-      propertyPath: navMesh.Array.data[2].z
-      value: 37.66
-      objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
-      propertyPath: navMesh.Array.data[1].z
-      value: 26
-      objectReference: {fileID: 0}
-    - target: {fileID: 4079515114247456, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
-      propertyPath: navMesh.Array.data[3].x
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
-      propertyPath: navMesh.Array.data[3].y
-      value: -14
-      objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
-      propertyPath: navMesh.Array.data[3].z
-      value: 42
-      objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
-      propertyPath: navMesh.Array.data[0].x
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
-      propertyPath: navMesh.Array.data[0].y
-      value: -14
-      objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
-      propertyPath: navMesh.Array.data[0].z
-      value: 37.66
-      objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
-      propertyPath: navMesh.Array.data[1].x
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
-      propertyPath: navMesh.Array.data[1].y
-      value: -14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
@@ -9739,8 +9662,7 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 48899185}
     m_Modifications:
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -9788,28 +9710,23 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.0000005
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[2].x
       value: -33
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[2].y
       value: -14
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[2].z
       value: 37.66
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[1].z
       value: 28
       objectReference: {fileID: 0}
@@ -9817,18 +9734,15 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[3].x
       value: -3
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[3].y
       value: -14
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[3].z
       value: 42
       objectReference: {fileID: 0}
@@ -11974,8 +11888,7 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 48899185}
     m_Modifications:
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -12023,28 +11936,23 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.0000005
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[2].x
       value: -33
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[2].y
       value: -14
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[2].z
       value: 37.66
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[1].z
       value: 28
       objectReference: {fileID: 0}
@@ -12052,22 +11960,20 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[3].x
       value: -3
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[3].y
       value: -14
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[3].z
       value: 42
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 3fbdb837006b93b4eb2879b38aa7d859, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1057852070 stripped
@@ -12206,8 +12112,7 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 48899185}
     m_Modifications:
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -12255,28 +12160,23 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.0000005
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[2].x
       value: -33
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[2].y
       value: -14
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[2].z
       value: 37.66
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[1].z
       value: 28
       objectReference: {fileID: 0}
@@ -12284,18 +12184,15 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[3].x
       value: -3
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[3].y
       value: -14
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[3].z
       value: 42
       objectReference: {fileID: 0}
@@ -13425,8 +13322,7 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 48899185}
     m_Modifications:
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -13474,28 +13370,23 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.0000005
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[2].x
       value: -33
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[2].y
       value: -14
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[2].z
       value: 37.66
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[1].z
       value: 28
       objectReference: {fileID: 0}
@@ -13503,18 +13394,15 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[3].x
       value: -3
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[3].y
       value: -14
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[3].z
       value: 42
       objectReference: {fileID: 0}
@@ -15124,8 +15012,7 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 48899185}
     m_Modifications:
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -15173,28 +15060,23 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.0000005
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[2].x
       value: -33
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[2].y
       value: -14
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[2].z
       value: 37.66
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[1].z
       value: 28
       objectReference: {fileID: 0}
@@ -15202,18 +15084,15 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[3].x
       value: -3
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[3].y
       value: -14
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[3].z
       value: 42
       objectReference: {fileID: 0}
@@ -20812,8 +20691,7 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 48899185}
     m_Modifications:
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -20861,28 +20739,23 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.0000005
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[2].x
       value: -33
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[2].y
       value: -14
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[2].z
       value: 37.66
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[1].z
       value: 28
       objectReference: {fileID: 0}
@@ -20890,18 +20763,15 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[3].x
       value: -3
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[3].y
       value: -14
       objectReference: {fileID: 0}
-    - target: {fileID: 114186070933502188, guid: 3fbdb837006b93b4eb2879b38aa7d859,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: navMesh.Array.data[3].z
       value: 42
       objectReference: {fileID: 0}

@@ -785,7 +785,7 @@ GameObject:
   - component: {fileID: 195217190035715510}
   - component: {fileID: 54245360063355116}
   - component: {fileID: 136267466791087028}
-  - component: {fileID: 114186070933502188}
+  - component: {fileID: 114661056438224178}
   m_Layer: 0
   m_Name: Human NPC filler
   m_TagString: Untagged
@@ -1019,7 +1019,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1828591768074562}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -29.21, y: -14, z: 37.66}
+  m_LocalPosition: {x: -24.02, y: -14, z: 37.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4467404586818754}
@@ -2044,25 +2044,6 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 1
---- !u!114 &114186070933502188
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1828591768074562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed5b5cf1725fb1b4c9fed7cdc5028e74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  navMesh:
-  - {x: -3, y: -14, z: 37.66}
-  - {x: -3, y: -14, z: 28}
-  - {x: -33, y: -14, z: 37.66}
-  Out: 0
-  currDestination: {x: 0, y: 0, z: 0}
-  artModel: {fileID: 0}
-  sendToOnCapture: {x: 0, y: 0, z: 0}
 --- !u!114 &114644764173731424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2092,6 +2073,25 @@ MonoBehaviour:
   lastKnownTargetLoc: {x: 0, y: 0, z: 0}
   artModel: {fileID: 1494792474583478}
   sendToOnCapture: {x: -9.79, y: -14, z: 43.12}
+--- !u!114 &114661056438224178
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1828591768074562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c96c627234842447954412a4c1b0100, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navMesh:
+  - {x: -3, y: -14, z: 37.66}
+  - {x: -33, y: -14, z: 28}
+  - {x: -33, y: -14, z: 37.66}
+  Out: 0
+  currDestination: {x: 0, y: 0, z: 0}
+  artModel: {fileID: 0}
+  sendToOnCapture: {x: 0, y: 0, z: 0}
 --- !u!136 &136267466791087028
 CapsuleCollider:
   m_ObjectHideFlags: 1
