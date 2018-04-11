@@ -162,7 +162,7 @@ public class LevelSelect : MonoBehaviour {
             startBtn.interactable = true;
         }
 
-        if(hostPlayerReady && clientPlayerReady)
+        if(hostPlayerReady && clientPlayerReady && !gameStarted)
         {
             startGame();
         }
