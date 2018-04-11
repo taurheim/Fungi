@@ -24,12 +24,13 @@ public class CustomNetworkManager : NetworkManager
 	public bool isHost = false;
 	public string myRole = "";
 	private bool isLoadingScene = false;
+	private int maxConnectedPlayers = 2;
 
-    public bool clientConnected = false;    //Used by HostScreen.cs to determine when a client connects
+	public bool clientConnected = false;    //Used by HostScreen.cs to determine when a client connects
 
-    // This is called by the "host" - could be either alien or human player
-    // Passes itself (the player object) in
-    public void registerPlayerObject(GameObject obj) {
+	// This is called by the "host" - could be either alien or human player
+	// Passes itself (the player object) in
+	public void registerPlayerObject(GameObject obj) {
 		playerObject = obj;
 	}
 
@@ -139,8 +140,11 @@ public class CustomNetworkManager : NetworkManager
 	// Called when we're the server and the client disconnects
 	public override void OnServerDisconnect(NetworkConnection conn) {
 		Debug.Log("OnServerDisconnect");
-		NetworkLoadScene(mainMenuSceneName);
-		StartCoroutine(StopHostAfterSceneLoad());
+		if (conn.connectionId < maxConnectedPlayers) {
+			// Kick everyone to the main menu if a player leaves
+			NetworkLoadScene(mainMenuSceneName);
+			StartCoroutine(StopHostAfterSceneLoad());
+		}
 	}
 
 	// Called when we're the client and the server disconnects
@@ -204,10 +208,14 @@ public class CustomNetworkManager : NetworkManager
 	// Called when someone joins the server
 	public override void OnServerConnect(NetworkConnection conn)
 	{
-			if (conn.connectionId == 1) //Check that a client has joined (and not the host player)
-			{ 
-					clientConnected = true;
-			}
+		if(conn.connectionId < maxConnectedPlayers) {
+			// A player joined (host player will have id 0)
+			clientConnected = true;
+		} else if (conn.connectionId >= maxConnectedPlayers) {
+			// Disconnect this player, we have too many
+			Debug.Log("Disconnecting extra player");
+			conn.Disconnect();
+		}
 	}
 
 	public bool isTheHost() // Used by LevelSelect.cs to determine role
