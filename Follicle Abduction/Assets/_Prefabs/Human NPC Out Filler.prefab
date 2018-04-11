@@ -999,8 +999,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1481035495122692}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -14, y: -14, z: 51.5}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -42.42, y: -14, z: 51.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4848237379090974}
@@ -1364,9 +1364,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navMesh:
+  - {x: -58, y: -14, z: 51.5}
+  - {x: -58, y: -14, z: 45}
   - {x: -3, y: -14, z: 51.5}
-  - {x: -33, y: -14, z: 63}
-  - {x: -33, y: -14, z: 51.5}
   Out: 1
   currDestination: {x: 0, y: 0, z: 0}
   artModel: {fileID: 0}

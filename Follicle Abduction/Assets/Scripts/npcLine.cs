@@ -29,11 +29,11 @@ public class npcLine : MonoBehaviour
     {
 
         // Choose a new waypoint
-        currentWaypoint = (currentWaypoint + 1) % navMesh.Length;
+        currentWaypoint = (currentWaypoint + 1) % 3;
         /*
             if (currentWaypoint == 2 && !Out)
         {
-            transform.position = new Vector3(-33, -14, 27);
+            transform.position = new Vector3(-58, -14, 27);
         }
         if (currentWaypoint == 2 && Out)
         {
@@ -50,7 +50,7 @@ public class npcLine : MonoBehaviour
     {
         agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
         currAnimation = "";
-        if (transform.position.x < -3 && transform.position.x > -32 && !Out)
+        if (transform.position.x < -3 && transform.position.x > -57 && !Out)
         {
             currentWaypoint = 2;
         }
@@ -58,11 +58,11 @@ public class npcLine : MonoBehaviour
         {
             currentWaypoint = 0;
         }
-        if (transform.position.x < -32 && !Out)
+        if (transform.position.x < -57 && !Out)
         {
             currentWaypoint = 1;
         }
-        if (transform.position.x < -3 && transform.position.x > -32 && Out)
+        if (transform.position.x < -3 && transform.position.x > -57 && Out)
         {
             currentWaypoint = 2;
         }
@@ -70,7 +70,7 @@ public class npcLine : MonoBehaviour
         {
             currentWaypoint = 1;
         }
-        if (transform.position.x < -32 && Out)
+        if (transform.position.x < -57 && Out)
         {
             currentWaypoint = 0;
         }
@@ -89,7 +89,7 @@ public class npcLine : MonoBehaviour
         if (Vector3.Distance(transform.position, navMesh[currentWaypoint]) < StoppingDistance)
         {
             if (currentWaypoint == 1 & !Out)
-                transform.position = new Vector3(-33, -14, 27);
+                transform.position = new Vector3(-58, -14, 27);
 
             if (currentWaypoint == 1 & Out)
                 transform.position = new Vector3(-3, -14, 42);
