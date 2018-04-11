@@ -33,8 +33,8 @@ public class LevelSelect : MonoBehaviour {
     public Dropdown roleSelectHost;
     public Dropdown roleSelectClient;
 
-    public bool localPlayerReady = false;
-    public bool partnerPlayerReady = false;
+    public bool hostPlayerReady = false;
+    public bool clientPlayerReady = false;
     public bool gameStarted = false;
 
     bool levelSelected = false;
@@ -161,6 +161,11 @@ public class LevelSelect : MonoBehaviour {
         {
             startBtn.interactable = true;
         }
+
+        if(hostPlayerReady && clientPlayerReady)
+        {
+            startGame();
+        }
     }
 
     private void selectLevel(int level) {
@@ -211,6 +216,16 @@ public class LevelSelect : MonoBehaviour {
         // We should also have it so that if anything changes, the ready state is reset
         // The lead player can start the game if both players are ready
         Debug.Log((isHostPlayer ? "host" : "client") + " " + (isReady? "is" : "isnt") + " ready");
+
+        if(isHostPlayer && isReady)
+        {
+            hostPlayerReady = true;
+        }
+        else if(isReady)
+        {
+            clientPlayerReady = true;
+        }
+
     }
 
     private void sendSyncMessage(short messageTypeId, MessageBase msg) {

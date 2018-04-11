@@ -160,8 +160,8 @@ public class MenuTests
     public void GameBeginsAfterRolesChosen()
     {
         MenuManager menuManager = setupMenuManager();
-        menuManager.levelSelect.localPlayerReady = true;
-        menuManager.levelSelect.partnerPlayerReady = false;
+        menuManager.levelSelect.hostPlayerReady = true;
+        menuManager.levelSelect.clientPlayerReady = true;
         menuManager.levelSelect.startGame();
         Assert.True(menuManager.levelSelect.gameStarted);
     }
