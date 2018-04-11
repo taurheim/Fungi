@@ -28,9 +28,6 @@ public class Node : NetworkBehaviour
 	// Upon completion, show all objects with this tag.
 	public string tagForHiddenObjects;
 
-	// Data held by the node made visible by selection
-	public string[] data;
-
 	// This is a reference to the progress bar of the node's completion
 	public GameObject progressBar;
 	public GameObject outline;
