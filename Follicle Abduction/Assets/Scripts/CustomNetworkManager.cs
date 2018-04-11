@@ -3,14 +3,17 @@ using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
+public class RoleMessage : MessageBase {
+	public static short type = MsgType.Highest + 1;
+	public bool isHost;
+	public string role;
+}
+
 /*
     Custom implementation of the NetworkManager interface. Currently used mainly as a debug tool.
  */
 public class CustomNetworkManager : NetworkManager
 {
-	public class RoleMessage : MessageBase {
-		public string role;
-	}
 	public GameObject humanPrefab;
 	public GameObject alienPrefab;
 
@@ -21,12 +24,13 @@ public class CustomNetworkManager : NetworkManager
 	public bool isHost = false;
 	public string myRole = "";
 	private bool isLoadingScene = false;
+	private int maxConnectedPlayers = 2;
 
-    public bool clientConnected = false;    //Used by HostScreen.cs to determine when a client connects
+	public bool clientConnected = false;    //Used by HostScreen.cs to determine when a client connects
 
-    // This is called by the "host" - could be either alien or human player
-    // Passes itself (the player object) in
-    public void registerPlayerObject(GameObject obj) {
+	// This is called by the "host" - could be either alien or human player
+	// Passes itself (the player object) in
+	public void registerPlayerObject(GameObject obj) {
 		playerObject = obj;
 	}
 
@@ -35,9 +39,6 @@ public class CustomNetworkManager : NetworkManager
 		return playerObject;
 	}
 
-	// TODO which player you start as shouldn't be decided here
-	// Instead, we should have some other way of telling what the player chose so we can
-	// spawn the right player in OnServerAddPlayer()
 	public override void OnStartHost() {
 		isHost = true;
 	}
@@ -52,8 +53,8 @@ public class CustomNetworkManager : NetworkManager
 	// Called when someone joins the unity server
 	public override void OnServerAddPlayer (NetworkConnection conn, short playerControllerId)
 	{
-        // Do nothing just incase something else calls this
-    }
+		// Do nothing just incase something else calls this
+	}
 
 	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader) {
 		RoleMessage msg = extraMessageReader.ReadMessage<RoleMessage>();
@@ -138,13 +139,19 @@ public class CustomNetworkManager : NetworkManager
 
 	// Called when we're the server and the client disconnects
 	public override void OnServerDisconnect(NetworkConnection conn) {
-		NetworkLoadScene(mainMenuSceneName);
-		StartCoroutine(StopHostAfterSceneLoad());
+		Debug.Log("OnServerDisconnect");
+		if (conn.connectionId < maxConnectedPlayers) {
+			// Kick everyone to the main menu if a player leaves
+			NetworkLoadScene(mainMenuSceneName);
+			StartCoroutine(StopHostAfterSceneLoad());
+		}
 	}
 
 	// Called when we're the client and the server disconnects
 	public override void OnClientDisconnect(NetworkConnection conn) {
-		NetworkLoadScene(mainMenuSceneName);
+		Debug.Log("OnClientDisconnect");
+		StopClient();
+		SceneManager.LoadScene(mainMenuSceneName);
 	}
 
 	private void NotifyServerSpawnPlayer(NetworkConnection conn, string playerRole) {
@@ -201,10 +208,14 @@ public class CustomNetworkManager : NetworkManager
 	// Called when someone joins the server
 	public override void OnServerConnect(NetworkConnection conn)
 	{
-			if (conn.connectionId == 1) //Check that a client has joined (and not the host player)
-			{ 
-					clientConnected = true;
-			}
+		if(conn.connectionId < maxConnectedPlayers) {
+			// A player joined (host player will have id 0)
+			clientConnected = true;
+		} else if (conn.connectionId >= maxConnectedPlayers) {
+			// Disconnect this player, we have too many
+			Debug.Log("Disconnecting extra player");
+			conn.Disconnect();
+		}
 	}
 
 	public bool isTheHost() // Used by LevelSelect.cs to determine role

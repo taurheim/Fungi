@@ -126,7 +126,10 @@ public class Patrol : NetworkedObject
 				if (Detect(target)) {
 					Chase(target);
 					detectedPrimaryTarget = true;
-				}
+
+                    AudioSource sfx = GetComponent<AudioSource>();
+                    sfx.Play();
+                }
 			}
 			if (!detectedPrimaryTarget) {
 				foreach (GameObject target in secondaryTargets) {
