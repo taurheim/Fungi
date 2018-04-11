@@ -45,9 +45,10 @@ public class IngameMenu : NetworkedObject {
         Time.timeScale = 0;
         isPaused = true;
         Cursor.visible = true;
-        //check if this player is human?
-        GameObject human = GameObject.FindWithTag("playerA");
-        if (human) {
+        //check if this player is human
+        CustomNetworkManager NetworkManager = GameObject.FindWithTag("networkmanager").GetComponent<CustomNetworkManager>();
+        if (NetworkManager.myRole == "human") {
+            GameObject human = GameObject.FindWithTag("playerA");
             human.GetComponent<FirstPersonController>().enabled = false;
         }
     }
@@ -57,8 +58,9 @@ public class IngameMenu : NetworkedObject {
         isPaused = false;
         Cursor.visible = false;
         //check if this player is human?
-        GameObject human = GameObject.FindWithTag("playerA");
-        if (human) {
+        CustomNetworkManager NetworkManager = GameObject.FindWithTag("networkmanager").GetComponent<CustomNetworkManager>();
+        if (NetworkManager.myRole == "human") {
+            GameObject human = GameObject.FindWithTag("playerA");
             human.GetComponent<FirstPersonController>().enabled = true;
         }
     }
