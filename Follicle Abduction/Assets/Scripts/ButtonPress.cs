@@ -41,7 +41,10 @@ public class ButtonPress : MonoBehaviour
 	{
 		isPressed = true;
 		buttonAnimation.Play("pushed");
-	}
+
+        AudioSource sfx = GetComponent<AudioSource>();
+        sfx.Play();
+    }
 
 	public bool getButtonStatus ()
 	{

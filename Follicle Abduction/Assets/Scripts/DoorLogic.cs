@@ -41,6 +41,9 @@ public class DoorLogic : NetworkedObject
 			door.GetComponent<DoorAnimation>().open ();
 			this.isOpen = true;
 			this.GetComponent<BoxCollider>().size = new Vector3 (0, 0, 0);
+
+            AudioSource sfx = GetComponent<AudioSource>();
+            sfx.Play();
 		}
 	}
 
