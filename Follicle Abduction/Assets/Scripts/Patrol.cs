@@ -12,8 +12,9 @@ public class Patrol : NetworkedObject
 
 	private UnityEngine.AI.NavMeshAgent agent;
 	private int currentWaypoint = 0;
-
 	private float StoppingDistance = 0.5f;
+	public float walkSpeed = 3.5f;
+	public float runSpeed = 5.0f;
 
 	// Cone of detection is determined by angle and length
 	public float detectAngle;
@@ -29,7 +30,6 @@ public class Patrol : NetworkedObject
 	private float remainingWaitDuration;
 
 	public GameObject artModel;
-	private string currAnimation;
 	public Vector3 sendToOnCapture;
 
 
@@ -46,7 +46,6 @@ public class Patrol : NetworkedObject
 		base.Start();
 		agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
 		secondaryTargets = new List<GameObject>();
-		currAnimation = "";
 		NavigateToNextWaypoint ();
         artModel.GetComponent<Animation>().Play("look_around", PlayMode.StopAll);
         originalFaceDirection = this.transform.rotation;
@@ -154,6 +153,8 @@ public class Patrol : NetworkedObject
 		if (agent != null) {
 			agent.isStopped = false;
 			agent.SetDestination (currDestination);
+
+			setAnimation();
 		}
 	}
 
@@ -214,15 +215,14 @@ public class Patrol : NetworkedObject
 	// Sets current animation based on navMesh speed
 	void setAnimation()
 	{
-		if (0 < agent.velocity.magnitude && agent.velocity.magnitude < 5 && currAnimation != "walk_cycle") {
-			artModel.GetComponent<Animation>().Play ("walk_cycle", PlayMode.StopAll);
-			currAnimation = "walk_cycle";
-		} else if (5 <= agent.velocity.magnitude && currAnimation != "run_cycle") {
-			artModel.GetComponent<Animation>().Play ("run_cycle", PlayMode.StopAll);
-			currAnimation = "run_cycle";
-		} else if (currAnimation != "look_around") {
-			artModel.GetComponent<Animation>().Play ("look_around", PlayMode.StopAll);
-			currAnimation = "look_around";
+		if (agent.speed == runSpeed){
+			artModel.GetComponent<Animation>().Play("run_cycle", PlayMode.StopAll);
+		}
+		else if (agent.speed == walkSpeed){
+			artModel.GetComponent<Animation>().Play("walk_cycle", PlayMode.StopAll);
+		}
+		else{
+			artModel.GetComponent<Animation>().Play("look_around", PlayMode.StopAll);
 		}
 	}
 
