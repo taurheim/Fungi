@@ -213,7 +213,7 @@ public class Node : NetworkBehaviour
 		// Most nodes will only have 3 child nodes (6 lines)
 		// The first node can have 4 (8 lines)
 		connectedNodes = new Dictionary<LineDirection, Node>();
-		nodeLines = new LineRenderer[8];
+		nodeLines = new LineRenderer[10];
 		midpoints = new Dictionary<LineDirection, Vector3>();
 
 		if(parentDirection != LineDirection.NONE) {
