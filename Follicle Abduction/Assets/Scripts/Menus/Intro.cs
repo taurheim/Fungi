@@ -10,6 +10,8 @@ public class Intro : MonoBehaviour {
 
 	float time = 0f;
 
+    public bool outro = false;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -25,7 +27,7 @@ public class Intro : MonoBehaviour {
             SceneManager.LoadScene("MainMenu");
         }
 
-        if(Input.anyKey)
+        if(Input.anyKey && !outro)
         {
             SceneManager.LoadScene("MainMenu");
         }
