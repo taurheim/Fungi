@@ -182,14 +182,18 @@ public class Node : NetworkBehaviour
 	private void ShowNodeDataOnConsole() {
 		Transform dataDisplay = GameObject.Find("DataDisplay").transform;
 		Transform nodeData = transform.Find("Data");
-		nodeData.gameObject.SetActive(true);
-		nodeData.position = dataDisplay.position;
+		if (nodeData) {
+			nodeData.gameObject.SetActive(true);
+			nodeData.position = dataDisplay.position;
+		}
 	}
 
 	//Sets data to be invisible
 	private void HideNodeDataOnConsole() {
 		Transform nodeData = transform.Find("Data");
-		nodeData.gameObject.SetActive(false);
+		if (nodeData) {
+			nodeData.gameObject.SetActive(false);
+		}
 	}
 
 	public Node getNode(LineDirection direction) {
