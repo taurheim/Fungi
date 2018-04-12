@@ -19,6 +19,10 @@ public class AlienPlayer : MonoBehaviour
 	private bool isMoving;
 	private List<Vector3> movePositions;
 
+	private float currentMoveSpeed;
+
+	private float timeToMoveBetweenNodes = 1.0f; // In seconds
+
 	void Start ()
 	{
 		captured = false;
@@ -49,6 +53,9 @@ public class AlienPlayer : MonoBehaviour
 			}
 		}
 
+	}
+
+	void FixedUpdate() {
 		if(isMoving && movePositions.Count > 0) {
 			// We're moving
 			if(alienIcon.transform.position == movePositions[0]) {
@@ -60,8 +67,7 @@ public class AlienPlayer : MonoBehaviour
 					currentNode.Select();
 				}
 			} else {
-				// We still need to move more
-				alienIcon.transform.position = Vector3.MoveTowards(alienIcon.transform.position, movePositions[0], 0.5f);
+				alienIcon.transform.position = Vector3.MoveTowards(alienIcon.transform.position, movePositions[0], currentMoveSpeed);
 			}
 		}
 	}
@@ -89,6 +95,20 @@ public class AlienPlayer : MonoBehaviour
 			currentNode.Deselect();
 			movePositions.Add(currentNode.getMidPoint(direction));
 			movePositions.Add(nextNode.transform.position);
+
+			// Figure out how fast we should move there
+			// We still need to move more
+			float distanceToMove = 0;
+			Vector3 previousPosition = alienIcon.transform.position;
+			foreach (Vector3 nextPosition in movePositions) {
+				distanceToMove += Vector3.Distance(previousPosition, nextPosition);
+				previousPosition = nextPosition;
+			}
+			float totalTimeToMove = timeToMoveBetweenNodes;
+			float totalUpdatesToMove = totalTimeToMove / Time.fixedDeltaTime;
+			float distanceToMovePerUpdate = distanceToMove / totalUpdatesToMove;
+			currentMoveSpeed = distanceToMovePerUpdate;
+
 			isMoving = true;
 			currentNode = nextNode;
 		}
