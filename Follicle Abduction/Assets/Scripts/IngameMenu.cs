@@ -14,7 +14,8 @@ public class IngameMenu : NetworkedObject {
     public Slider volumeSlider;
     private bool isPaused;
 
-    void Start() {
+    public override void Start() {
+        base.Start();
         canvas.gameObject.SetActive(false);
         isPaused = false;
     }
