@@ -210,7 +210,10 @@ public class CustomNetworkManager : NetworkManager
 	{
 		if(conn.connectionId < maxConnectedPlayers) {
 			// A player joined (host player will have id 0)
-			clientConnected = true;
+			if (conn.connectionId != 0) 
+			{
+				clientConnected = true;
+			}
 		} else if (conn.connectionId >= maxConnectedPlayers) {
 			// Disconnect this player, we have too many
 			Debug.Log("Disconnecting extra player");
