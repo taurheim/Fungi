@@ -9,9 +9,9 @@ public class DoorNode : Node {
 	public GameObject door;
 
 	// Use this for initialization
-	protected override void Start ()
+	public override void initializeNode ()
 	{
-		base.Start();
+		// Initialization code
 	}
 	
 	// Update is called once per frame

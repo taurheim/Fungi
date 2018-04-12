@@ -15,7 +15,7 @@ public enum LineDirection { UP, DOWN, LEFT, RIGHT, NONE};
 	A map node for the alien. Can be in 3 states that are modified by the alien clicking on the icon. Nodes can have children which
 	they will be connected to programmatically. For more information see design doc.
  */
-public class Node : NetworkBehaviour
+public class Node : NetworkedObject
 {
 
 	public NodeState state = NodeState.LOCKED;
@@ -70,13 +70,22 @@ public class Node : NetworkBehaviour
 		ShowNodeDataOnConsole();
 	}
 
-	protected virtual void Start ()
+	public virtual void initializeNode() {
+		// Called when a node is first initialized. This will be run at the same time as Start()
+		// (After the Networked Object and the Node are initialized)
+	}
+
+	public override void Start ()
 	{
+		base.Start();
 		// Draw a line from this node to all children
 		if(isHeadNode) {
 			Select();
 			drawLinesToChildren(LineDirection.NONE, new Vector3(), null);
 		}
+
+		// Call the individual node's init functions
+		initializeNode();
 	}
 
 	public virtual void Select ()

@@ -25,8 +25,7 @@ public class RadioNode : Node {
 	private bool showingSongSelector;
 
 
-	protected override void Start () {
-		base.Start();
+	public override void initializeNode () {
 		source = GetComponent<AudioSource> ();
 		playing = false;
 		choseCorrectSong = false;

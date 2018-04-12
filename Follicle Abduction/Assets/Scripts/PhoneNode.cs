@@ -16,9 +16,8 @@ public class PhoneNode : Node
 	private bool ringing;
 
 	// Use this for initialization
-	protected override void Start ()
+	public override void initializeNode ()
 	{
-		base.Start();
 		source = GetComponent<AudioSource> ();
 		ringing = false;
 	}

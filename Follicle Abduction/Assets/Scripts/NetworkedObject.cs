@@ -17,6 +17,10 @@ public class NetworkedObject : NetworkBehaviour {
 	protected CustomNetworkManager networkManager;
 
 	public virtual void Start () {
+		InitializeNetworkedObject();
+	}
+
+	protected void InitializeNetworkedObject() {
 		networkManager = GameObject.FindGameObjectWithTag("networkmanager").GetComponent<CustomNetworkManager>();
 		GameObject playerObject = GameObject.FindWithTag("networkmanager").GetComponent<CustomNetworkManager>().getPlayerObject();
 		if(playerObject){
