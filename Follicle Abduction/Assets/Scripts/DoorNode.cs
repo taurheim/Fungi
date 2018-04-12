@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Attach a door to this node: its "action" will open and close it!
+
 public class DoorNode : Node {
 
 	public GameObject door;

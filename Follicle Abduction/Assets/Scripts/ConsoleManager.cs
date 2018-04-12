@@ -10,7 +10,7 @@ public class ConsoleManager : MonoBehaviour
 {
 
 	private Node selectedNode;
-	public TextMesh nodeData;
+	public GameObject nodeData;
 
 	/* 
 	Make this node the currently selected node

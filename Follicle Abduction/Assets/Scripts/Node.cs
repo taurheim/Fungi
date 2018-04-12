@@ -67,6 +67,7 @@ public class Node : NetworkBehaviour
 
 	public virtual void onComplete() {
 		// Called when a node is completed
+		ShowNodeDataOnConsole();
 	}
 
 	protected virtual void Start ()
@@ -81,12 +82,17 @@ public class Node : NetworkBehaviour
 	public virtual void Select ()
 	{
 		isSelected = true;
+		if (state == NodeState.COMPLETED) {
+			ShowNodeDataOnConsole();
+		}
 	}
 
 	public virtual void Deselect ()
 	{
-		Debug.Log("deselect");
 		isSelected = false;
+		if (state == NodeState.COMPLETED) {
+			HideNodeDataOnConsole();
+		}
 	}
 	
 	protected virtual void Update ()
@@ -170,6 +176,20 @@ public class Node : NetworkBehaviour
 			// Run any extra completion code
 			onComplete();
 		}
+	}
+
+	//Moves data to console (in case it isnt already there) and sets it visible
+	private void ShowNodeDataOnConsole() {
+		Transform dataDisplay = GameObject.Find("DataDisplay").transform;
+		Transform nodeData = transform.Find("Data");
+		nodeData.gameObject.SetActive(true);
+		nodeData.position = dataDisplay.position;
+	}
+
+	//Sets data to be invisible
+	private void HideNodeDataOnConsole() {
+		Transform nodeData = transform.Find("Data");
+		nodeData.gameObject.SetActive(false);
 	}
 
 	public Node getNode(LineDirection direction) {
