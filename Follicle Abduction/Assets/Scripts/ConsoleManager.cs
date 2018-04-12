@@ -33,12 +33,12 @@ public class ConsoleManager : MonoBehaviour
 	*/
 	void SetNodeData ()
 	{
-		// if (nodeData) {
-		// 	nodeData.text = "";
-		// 	foreach (string data in selectedNode.data) {
-		// 		nodeData.text += "\n";
-		// 		nodeData.text += data;
-		// 	}
-		// }
+		if (nodeData) {
+			nodeData.text = "";
+			foreach (string data in selectedNode.data) {
+				nodeData.text += "\n";
+				nodeData.text += data;
+			}
+		}
 	}
 }

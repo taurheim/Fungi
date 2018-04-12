@@ -28,6 +28,9 @@ public class Node : NetworkBehaviour
 	// Upon completion, show all objects with this tag.
 	public string tagForHiddenObjects;
 
+	// Data held by the node made visible by selection
+	public string[] data;
+
 	// This is a reference to the progress bar of the node's completion
 	public GameObject progressBar;
 	public GameObject outline;
@@ -68,7 +71,7 @@ public class Node : NetworkBehaviour
 		// Called when a node is completed
 	}
 
-	protected virtual void Start ()
+	void Start ()
 	{
 		// Draw a line from this node to all children
 		if(isHeadNode) {
@@ -84,11 +87,10 @@ public class Node : NetworkBehaviour
 
 	public virtual void Deselect ()
 	{
-		Debug.Log("deselect");
 		isSelected = false;
 	}
 	
-	protected virtual void Update ()
+	void Update ()
 	{
 		// Show the border if we're selected
 		if(outline) {
@@ -160,8 +162,8 @@ public class Node : NetworkBehaviour
 					line.endColor = newColor;
 				}
 			}
-			//progressBar.GetComponent<MeshRenderer> ().material.color = newColor; //is this necessary?
-			//GetComponent<MeshRenderer> ().enabled = false;
+			progressBar.GetComponent<MeshRenderer> ().material.color = newColor;
+			GetComponent<MeshRenderer> ().enabled = false;
 
 			// Run any extra completion code
 			onComplete();

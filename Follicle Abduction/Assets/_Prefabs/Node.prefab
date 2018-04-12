@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 23415669727039350}
   - component: {fileID: 114743804286887600}
   m_Layer: 11
-  m_Name: NodeObject
+  m_Name: Node
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -273,7 +273,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   isSelected: 0
-  isHeadNode: 0
   childNodes: []
   tagForHiddenObjects: 
   data: []

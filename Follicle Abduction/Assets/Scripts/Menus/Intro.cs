@@ -8,8 +8,6 @@ public class Intro : MonoBehaviour {
 
     public VideoPlayer vp;
 
-	float time = 0f;
-
 	// Use this for initialization
 	void Start () {
 		
@@ -18,9 +16,7 @@ public class Intro : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		time += Time.deltaTime;
-
-		if(!vp.isPlaying && time > 5f)
+		if(!vp.isPlaying)
         {
             SceneManager.LoadScene("MainMenu");
         }
