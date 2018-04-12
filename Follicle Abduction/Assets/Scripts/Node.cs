@@ -42,7 +42,8 @@ public class Node : NetworkBehaviour
 	
 	private float fadePerSecond = 0.5F;
 
-	private KeyCode actionKey = KeyCode.Space;
+	private KeyCode hackKey = KeyCode.Space;
+	private KeyCode actionKey = KeyCode.E;
 
 	private Dictionary<LineDirection, Node> connectedNodes;
 	private Dictionary<LineDirection, Vector3> midpoints;
@@ -111,22 +112,25 @@ public class Node : NetworkBehaviour
 			}
 		}
 
-		if (isSelected && Input.GetKeyDown(actionKey)) {
+		if (isSelected) {
 			if (state == NodeState.UNLOCKED) {
-				// This will get the above to run
-				isHacking = true; 
+				if (Input.GetKeyDown(hackKey)) {
+					// This will get the above to run
+					isHacking = true;
+				} else if (Input.GetKeyUp(hackKey)) {
+					isHacking = false;
+				}
 			} else if (state == NodeState.COMPLETED) {
-				// If we're completed, then we can run the action
-				onStartAction();
-			}
-		} else if (isSelected && Input.GetKeyUp(actionKey)) {
-			if (state == NodeState.UNLOCKED) {
-				isHacking = false;
-			} else if (state == NodeState.COMPLETED) {
-				// Stop the action
-				onEndAction();
+				if (Input.GetKeyDown(actionKey)) {
+					// If we're completed, then we can run the action
+					onStartAction();
+				} else if (Input.GetKeyUp(actionKey)) {
+					// Stop the action
+					onEndAction();
+				}
 			}
 		}
+
 	}
 
 	public void unlockNode ()
