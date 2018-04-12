@@ -10,7 +10,7 @@ public class DoorLogic : NetworkedObject
 
 	private bool isLocked;
 	// Unused atm, maybe unnecessary
-	private bool isOpen;
+	public bool isOpen;
 
 	public GameObject door;
 

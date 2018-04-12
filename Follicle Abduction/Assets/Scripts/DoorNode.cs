@@ -1,0 +1,33 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DoorNode : Node {
+
+	public GameObject door;
+
+	// Use this for initialization
+	protected override void Start ()
+	{
+		base.Start();
+	}
+	
+	// Update is called once per frame
+	protected override void Update ()
+	{
+		base.Update();
+	}
+
+	public override void onStartAction ()
+	{
+		if (state == NodeState.COMPLETED) {
+			DoorLogic doorScript = door.GetComponent<DoorLogic>();
+			if (doorScript.isOpen) {
+				doorScript.close();
+			} else {
+				doorScript.open();
+			}
+		}
+	}
+
+}
