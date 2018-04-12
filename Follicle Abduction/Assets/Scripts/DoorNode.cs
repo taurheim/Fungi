@@ -24,11 +24,7 @@ public class DoorNode : Node {
 	{
 		if (state == NodeState.COMPLETED) {
 			DoorLogic doorScript = door.GetComponent<DoorLogic>();
-			if (doorScript.isOpen) {
-				doorScript.close();
-			} else {
-				doorScript.open();
-			}
+			doorScript.NetworkInteract();
 		}
 	}
 
