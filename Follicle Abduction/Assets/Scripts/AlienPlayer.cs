@@ -24,9 +24,10 @@ public class AlienPlayer : MonoBehaviour
 		captured = false;
 		isMoving = false;
 		movePositions = new List<Vector3>();
-
+		Debug.Log("alien player START");
 		// Find our current node
-		foreach(Node node in FindObjectsOfType(typeof(Node))) {
+		foreach(Node node in Object.FindObjectsOfTypeAll(typeof(Node))) {
+			Debug.Log("found node");
 			if(node.isHeadNode) {
 				currentNode = node;
 				alienIcon = Instantiate(alienIconPrefab, node.transform);

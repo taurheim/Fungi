@@ -16,15 +16,17 @@ public class PhoneNode : Node
 	private bool ringing;
 
 	// Use this for initialization
-	void Start ()
+	protected override void Start ()
 	{
+		base.Start();
 		source = GetComponent<AudioSource> ();
 		ringing = false;
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	protected override void Update ()
 	{
+		base.Update();
 		if (ringing && !source.isPlaying) {
 			StopRinging ();
 		}
@@ -35,7 +37,7 @@ public class PhoneNode : Node
 
 	public override void onStartAction ()
 	{
-		if (state == NodeState.UNLOCKED) {
+		if (state == NodeState.COMPLETED) {
 			Ring ();
 		}
 	}
