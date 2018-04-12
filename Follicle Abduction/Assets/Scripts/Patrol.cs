@@ -32,6 +32,7 @@ public class Patrol : NetworkedObject
 	private string currAnimation;
 	public Vector3 sendToOnCapture;
 
+
 	void NavigateToNextWaypoint ()
 	{
 		// Choose a new waypoint
@@ -40,8 +41,9 @@ public class Patrol : NetworkedObject
         artModel.GetComponent<Animation>().Play("walk_cycle", PlayMode.StopAll);
     }
 
-	void Start ()
+	public override void Start ()
 	{
+		base.Start();
 		agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
 		secondaryTargets = new List<GameObject>();
 		currAnimation = "";
@@ -53,6 +55,11 @@ public class Patrol : NetworkedObject
 
     void Update ()
 	{
+		// Only run on the server
+		if(!networkManager.isTheHost()) {
+			return;
+		}
+
 		// Check if the guard is currently waiting, if so, do not proceed
 		if (remainingWaitDuration > 0.0f){
 			remainingWaitDuration -= Time.deltaTime;

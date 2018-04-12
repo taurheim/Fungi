@@ -59,3 +59,10 @@ What if we want to synchronize an object's location?
 2. Add NetworkTransform component
 
 Note that this will only synchronize the transform, anything else will have to be done using NetworkedObject. You can use them both on the same object.
+
++ Don't forget you have to check if we're the host or not otherwise the host and server will fight eachother
+
++ If you use NetworkedObject make sure to:
+public override void Start() {
+	base.Start();
+}

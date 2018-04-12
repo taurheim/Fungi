@@ -16,8 +16,9 @@ public class DoorLogic : NetworkedObject
 
 	public GameObject button;
 
-	void Start ()
+	public override void Start ()
 	{
+		base.Start();
 		isLocked = false;
 		this.isOpen = false;
 

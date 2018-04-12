@@ -12,10 +12,13 @@ using UnityEngine.Networking;
  */
 public class NetworkedObject : NetworkBehaviour {
 
-	private NetworkedPlayer localPlayer;
+	protected NetworkedPlayer localPlayer;
 
-	void Start () {
-		GameObject playerObject = GameObject.FindWithTag("networkmanager").GetComponent<DemoCustomNetworkManager>().getPlayerObject();
+	protected CustomNetworkManager networkManager;
+
+	public virtual void Start () {
+		networkManager = GameObject.FindGameObjectWithTag("networkmanager").GetComponent<CustomNetworkManager>();
+		GameObject playerObject = GameObject.FindWithTag("networkmanager").GetComponent<CustomNetworkManager>().getPlayerObject();
 		if(playerObject){
 			localPlayer = playerObject.GetComponent<NetworkedPlayer>();
 		}
