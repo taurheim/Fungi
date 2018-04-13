@@ -76,14 +76,8 @@ public class CustomNetworkManager : NetworkManager
 	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader) {
 		RoleMessage msg = extraMessageReader.ReadMessage<RoleMessage>();
 		string role = msg.role;
-		Debug.Log("OnServerAddPlayer: " + role);
-
-		// Handle connections while loading scene
-		if (isLoadingScene) {
-			StartCoroutine(WaitForSceneLoad(conn, role, playerControllerId));
-		} else {
-			SpawnPlayerForConnection(conn, role, playerControllerId);
-		}
+		Debug.Log("OnServerAddPlayer: " + role + "(Connection: "+ conn.connectionId + ")");
+		StartCoroutine(WaitForSceneLoad(conn, role, playerControllerId));
 	}
 
 	void SpawnPlayerForConnection(NetworkConnection conn, string role, short playerControllerId) {
@@ -122,7 +116,7 @@ public class CustomNetworkManager : NetworkManager
 	IEnumerator WaitForSceneLoad(NetworkConnection conn, string role, short playerControllerId) {
 		Debug.Log("Waiting for scene to finish loading...");
 		yield return new WaitUntil(() => !isLoadingScene);
-		Debug.Log("Scene loaded: " + isLoadingScene);
+		Debug.Log("Scene finished loading. Now spawning player " + role + " for connection " + conn.connectionId);
 		SpawnPlayerForConnection(conn, role, playerControllerId);
 	}
 
@@ -193,6 +187,7 @@ public class CustomNetworkManager : NetworkManager
 	}
 
 	private void NotifyServerSpawnPlayer(NetworkConnection conn, string playerRole) {
+		Debug.Log("We're notifying the server that we should spawn " + playerRole);
 		RoleMessage msg = new RoleMessage();
 		msg.role = playerRole;
 		ClientScene.AddPlayer(conn, 0, msg);
@@ -207,13 +202,13 @@ public class CustomNetworkManager : NetworkManager
 		if (!ClientScene.ready) {
 			ClientScene.Ready(conn);
 		}
+		NotifyServerSpawnPlayer(conn, myRole);
 
-		bool addPlayer = doesMyPlayerNeedToSpawn();
-		if (addPlayer)
-		{
-			Debug.Log("Attempting to add player with role: " + myRole);
-			NotifyServerSpawnPlayer(conn, myRole);
-		}
+		// bool addPlayer = doesMyPlayerNeedToSpawn();
+		// if (addPlayer)
+		// {
+		// 	Debug.Log("Attempting to add player with role: " + myRole);
+		// }
 	}
 
 	bool doesMyPlayerNeedToSpawn() {
