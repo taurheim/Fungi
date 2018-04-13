@@ -18,6 +18,11 @@ public class AlienAudio : MonoBehaviour {
         {
             gameObject.SetActive(false);
         }
+        else
+        {
+            AudioListener listener = GameObject.FindGameObjectWithTag("playerA").GetComponent<AudioListener>();
+            listener.enabled = false;
+        }
     }
 	
 }

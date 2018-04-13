@@ -10070,6 +10070,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 82298891937963326, guid: 2bced8e930a536344a3ccc22095c30ce,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82881212525736256, guid: 2bced8e930a536344a3ccc22095c30ce,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2bced8e930a536344a3ccc22095c30ce, type: 2}
   m_IsPrefabParent: 0
@@ -10910,6 +10920,16 @@ Prefab:
     - target: {fileID: 1358376394825790, guid: 2bced8e930a536344a3ccc22095c30ce, type: 2}
       propertyPath: m_Name
       value: Simple Button Door (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 82881212525736256, guid: 2bced8e930a536344a3ccc22095c30ce,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82298891937963326, guid: 2bced8e930a536344a3ccc22095c30ce,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2bced8e930a536344a3ccc22095c30ce, type: 2}
@@ -16007,7 +16027,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 921428311}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.716793, y: 1.1701269, z: -58.334976}
+  m_LocalPosition: {x: -41.46, y: 1.1701269, z: -58.334976}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 1332963314}
@@ -19878,7 +19898,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1148872164}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.716793, y: 1.1701269, z: -44.644978}
+  m_LocalPosition: {x: -41.46, y: 1.1701269, z: -44.644978}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 1332963314}

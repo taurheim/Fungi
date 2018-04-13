@@ -12469,6 +12469,16 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 82881212525736256, guid: 2bced8e930a536344a3ccc22095c30ce,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82298891937963326, guid: 2bced8e930a536344a3ccc22095c30ce,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2bced8e930a536344a3ccc22095c30ce, type: 2}
   m_IsPrefabParent: 0
@@ -19397,7 +19407,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -21843,6 +21853,11 @@ Prefab:
       propertyPath: guards.Array.data[0]
       value: 
       objectReference: {fileID: 1079537130}
+    - target: {fileID: 82497612793446052, guid: 926bdb68a632443b59eb5f489d8662a3,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 926bdb68a632443b59eb5f489d8662a3, type: 2}
   m_IsPrefabParent: 0
