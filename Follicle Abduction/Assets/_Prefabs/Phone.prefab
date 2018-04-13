@@ -279,7 +279,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4409628031408266}
   - component: {fileID: 33338451380991564}
-  - component: {fileID: 65395365485048062}
   - component: {fileID: 23202580563690378}
   - component: {fileID: 114992288162107260}
   - component: {fileID: 114641433194298588}
@@ -3169,18 +3168,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65395365485048062
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1186657102623848}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65421428012221310
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -3361,6 +3348,7 @@ MonoBehaviour:
   tagForHiddenObjects: 
   progressBar: {fileID: 1703145326496894}
   outline: {fileID: 1838534696611764}
+  nodeData: {fileID: 0}
   ring: {fileID: 8300000, guid: 34a5973f7144d4dcaaaf8de6d6cc00f6, type: 3}
   guards:
   - {fileID: 0}

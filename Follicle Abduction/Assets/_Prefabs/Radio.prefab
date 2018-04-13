@@ -413,7 +413,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4097959836377470}
   - component: {fileID: 33179977247209120}
-  - component: {fileID: 65872347360889368}
   - component: {fileID: 23997922351377690}
   - component: {fileID: 82886868637252410}
   - component: {fileID: 114608059626917650}
@@ -1439,18 +1438,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65872347360889368
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1829683523433832}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &82886868637252410
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1748,18 +1735,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 1
-  hackKey: 
+  isSelected: 0
+  isHeadNode: 0
   childNodes: []
   tagForHiddenObjects: 
-  data: []
-  selected: 0
   progressBar: {fileID: 0}
   outline: {fileID: 0}
+  nodeData: {fileID: 0}
   correctSongName: 
   correctSong: {fileID: 0}
   wrongSong: {fileID: 0}
   songLovingGuards: []
-  inputField: {fileID: 0}
+  songSelector: {fileID: 0}
 --- !u!114 &114862982453272314
 MonoBehaviour:
   m_ObjectHideFlags: 1

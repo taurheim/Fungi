@@ -32,6 +32,11 @@ public class Node : NetworkedObject
 	public GameObject progressBar;
 	public GameObject outline;
 
+	// Data to be displayed on the alien console when this node is completed and selected!
+	// Not required. Position the GameObject as you like on the console, set it to inactive.
+	// The methods here will activate/deactivate it appropriately.
+	public GameObject nodeData;
+
 	// True if the node is actively being hacked
 	private bool isHacking;
 
@@ -189,17 +194,13 @@ public class Node : NetworkedObject
 
 	//Moves data to console (in case it isnt already there) and sets it visible
 	private void ShowNodeDataOnConsole() {
-		Transform dataDisplay = GameObject.Find("DataDisplay").transform;
-		Transform nodeData = transform.Find("Data");
 		if (nodeData) {
 			nodeData.gameObject.SetActive(true);
-			nodeData.position = dataDisplay.position;
 		}
 	}
 
 	//Sets data to be invisible
 	private void HideNodeDataOnConsole() {
-		Transform nodeData = transform.Find("Data");
 		if (nodeData) {
 			nodeData.gameObject.SetActive(false);
 		}

@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4198445973780682}
   - component: {fileID: 33551320542941736}
-  - component: {fileID: 65835691067287892}
   - component: {fileID: 23906981444607236}
   m_Layer: 11
   m_Name: Node Outline
@@ -38,7 +37,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4463900194863838}
   - component: {fileID: 33645988960926010}
-  - component: {fileID: 65531775955966884}
   - component: {fileID: 23352697782571674}
   - component: {fileID: 114271719540790186}
   - component: {fileID: 114970297220458628}
@@ -58,7 +56,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4991305608460188}
   - component: {fileID: 33267420844660214}
-  - component: {fileID: 65671376858410812}
   - component: {fileID: 23788322875514354}
   m_Layer: 11
   m_Name: HackProgress
@@ -87,7 +84,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1900603730388790}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -6.0632296, y: 0, z: 42.26724}
+  m_LocalPosition: {x: -19, y: 0, z: 42.26724}
   m_LocalScale: {x: 4, y: 0.5, z: 4}
   m_Children:
   - {fileID: 4991305608460188}
@@ -225,42 +222,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1900603730388790}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65531775955966884
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1900603730388790}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65671376858410812
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1931950139593228}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65835691067287892
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1343954878496650}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114271719540790186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -279,6 +240,7 @@ MonoBehaviour:
   tagForHiddenObjects: 
   progressBar: {fileID: 1931950139593228}
   outline: {fileID: 1343954878496650}
+  nodeData: {fileID: 0}
   door: {fileID: 0}
 --- !u!114 &114970297220458628
 MonoBehaviour:
