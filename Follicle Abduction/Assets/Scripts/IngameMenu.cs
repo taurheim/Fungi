@@ -38,14 +38,14 @@ public class IngameMenu : NetworkedObject {
     }
 
     public void ReturnToMainMenu() {
-        Cursor.visible = true;
-        LevelManager.Load("MainMenu");
+        networkManager.NetworkLoadScene("MainMenu");
     }
 
     public void Pause() {
         Time.timeScale = 0;
         isPaused = true;
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         //check if this player is human
         CustomNetworkManager NetworkManager = GameObject.FindWithTag("networkmanager").GetComponent<CustomNetworkManager>();
         if (NetworkManager.myRole == "human") {
@@ -58,6 +58,7 @@ public class IngameMenu : NetworkedObject {
         Time.timeScale = 1;
         isPaused = false;
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         //check if this player is human?
         CustomNetworkManager NetworkManager = GameObject.FindWithTag("networkmanager").GetComponent<CustomNetworkManager>();
         if (NetworkManager.myRole == "human") {

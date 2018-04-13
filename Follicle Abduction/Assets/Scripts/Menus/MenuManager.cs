@@ -8,6 +8,24 @@ public class MenuManager : MonoBehaviour {
     public JoinScreen joinScreen;
     public LevelSelect levelSelect;
     public HostScreen hostScreen;
+
+    void Start() {
+        // HACK: Reset any pause state
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 1.0f;
+
+        CustomNetworkManager mgr = GameObject.FindGameObjectWithTag("networkmanager").GetComponent<CustomNetworkManager>();
+
+        if (mgr.IsClientConnected()) {
+            hideStartScreen();
+            displayLevelSelect();
+        }
+    }
+
+    void Update() {
+
+    }
 	
     // START SCREEN
     public void displayStartScreen()
