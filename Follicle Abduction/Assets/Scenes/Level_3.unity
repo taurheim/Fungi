@@ -881,6 +881,16 @@ Prefab:
       propertyPath: detectRange
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 82766690908159674, guid: 720132074ec4ff14caa3c877ee09a400,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82274554660676498, guid: 720132074ec4ff14caa3c877ee09a400,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 720132074ec4ff14caa3c877ee09a400, type: 2}
   m_IsPrefabParent: 0
@@ -1436,6 +1446,16 @@ Prefab:
         type: 2}
       propertyPath: navMesh.Array.data[1].y
       value: -14
+      objectReference: {fileID: 0}
+    - target: {fileID: 82766690908159674, guid: 720132074ec4ff14caa3c877ee09a400,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82274554660676498, guid: 720132074ec4ff14caa3c877ee09a400,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 720132074ec4ff14caa3c877ee09a400, type: 2}
@@ -11095,7 +11115,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &871179651
 Transform:
   m_ObjectHideFlags: 0
@@ -13246,6 +13266,16 @@ Prefab:
         type: 2}
       propertyPath: navMesh.Array.data[0].y
       value: -14
+      objectReference: {fileID: 0}
+    - target: {fileID: 82766690908159674, guid: 720132074ec4ff14caa3c877ee09a400,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82274554660676498, guid: 720132074ec4ff14caa3c877ee09a400,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 720132074ec4ff14caa3c877ee09a400, type: 2}
@@ -15586,7 +15616,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 37f3bcff8fa024aa2a5736c5d48730e5, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.652
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -15642,7 +15672,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
