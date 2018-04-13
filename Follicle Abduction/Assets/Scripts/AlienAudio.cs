@@ -21,8 +21,10 @@ public class AlienAudio : MonoBehaviour {
         else
         {
             GameObject playerA = GameObject.FindGameObjectWithTag("playerA");
-            AudioListener listener = playerA.GetComponent<AudioListener>();
-            listener.enabled = false;
+            if(playerA != null) {
+                AudioListener listener = playerA.GetComponent<AudioListener>();
+                listener.enabled = false;
+            }
         }
     }
 	
