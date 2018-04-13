@@ -48,6 +48,14 @@ public class CustomNetworkManager : NetworkManager
 		NetworkServer.RegisterHandler(LoadSceneMessage.type, HandleLoadSceneMessage);
 	}
 
+	/*
+		Used for testing levels
+	 */
+	public void debugAsRole(string role) {
+		myRole = role;
+		StartHost();
+	}
+
 	public override void OnStartHost() {
 		isHost = true;
 	}
@@ -127,10 +135,11 @@ public class CustomNetworkManager : NetworkManager
 		Debug.Log("Client connect!");
 		ClientScene.Ready(client.connection);
 
-		// This shouldn't be determined here
-		myRole = isHost ? "alien" : "human";
-
-		NotifyServerSpawnPlayer(conn, myRole);
+		if(myRole != "") {
+			NotifyServerSpawnPlayer(conn, myRole);
+		} else {
+			Debug.Log("No role selected. Not spawning.");
+		}
 	}
 
 	/*
