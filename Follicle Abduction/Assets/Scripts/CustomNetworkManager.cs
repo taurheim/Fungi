@@ -9,6 +9,11 @@ public class RoleMessage : MessageBase {
 	public string role;
 }
 
+public class LoadSceneMessage : MessageBase {
+	public static short type = MsgType.Highest + 5;
+	public string newScene;
+}
+
 /*
     Custom implementation of the NetworkManager interface. Currently used mainly as a debug tool.
  */
@@ -37,6 +42,18 @@ public class CustomNetworkManager : NetworkManager
 	// This should probably only be used by networking.
 	public GameObject getPlayerObject() {
 		return playerObject;
+	}
+
+	private void Start() {
+		NetworkServer.RegisterHandler(LoadSceneMessage.type, HandleLoadSceneMessage);
+	}
+
+	/*
+		Used for testing levels
+	 */
+	public void debugAsRole(string role) {
+		myRole = role;
+		StartHost();
 	}
 
 	public override void OnStartHost() {
@@ -105,7 +122,7 @@ public class CustomNetworkManager : NetworkManager
 	IEnumerator WaitForSceneLoad(NetworkConnection conn, string role, short playerControllerId) {
 		Debug.Log("Waiting for scene to finish loading...");
 		yield return new WaitUntil(() => !isLoadingScene);
-		Debug.Log("Scene loading: " + isLoadingScene);
+		Debug.Log("Scene loaded: " + isLoadingScene);
 		SpawnPlayerForConnection(conn, role, playerControllerId);
 	}
 
@@ -118,17 +135,38 @@ public class CustomNetworkManager : NetworkManager
 		Debug.Log("Client connect!");
 		ClientScene.Ready(client.connection);
 
-		// This shouldn't be determined here
-		myRole = isHost ? "alien" : "human";
+		if(myRole != "") {
+			NotifyServerSpawnPlayer(conn, myRole);
+		} else {
+			Debug.Log("No role selected. Not spawning.");
+		}
+	}
 
-		NotifyServerSpawnPlayer(conn, myRole);
+	/*
+		This will get called on the server if the client wants to change scenes.
+	 */
+	private void HandleLoadSceneMessage(NetworkMessage networkMessage) {
+		Debug.Log("Got a message from client to change scenes");
+		LoadSceneMessage msg = networkMessage.ReadMessage<LoadSceneMessage>();
+		NetworkLoadScene(msg.newScene);
 	}
 
 	public void NetworkLoadScene(string sceneName) {
+		if(isLoadingScene) {
+			Debug.Log("Already loading scene");
+			return;
+		}
+
 		if(isHost) {
 			Debug.Log("We're the host and we're switching scenes");
 			isLoadingScene = true;
 			ServerChangeScene(sceneName);
+		} else {
+			isLoadingScene = true;
+			Debug.Log("We want to change scenes but we're not the host!");
+			LoadSceneMessage msg = new LoadSceneMessage();
+			msg.newScene = sceneName;
+			client.Send(LoadSceneMessage.type, msg);
 		}
 	}
 
@@ -164,17 +202,27 @@ public class CustomNetworkManager : NetworkManager
 		Hack: Assume that setting client to not ready means that we need to spawn them
 	*/
 	public override void OnClientSceneChanged(NetworkConnection conn) {
+		isLoadingScene = false;
 		Debug.Log("OnClientSceneChanged");
 		if (!ClientScene.ready) {
 			ClientScene.Ready(conn);
 		}
 
-		bool addPlayer = false;
+		bool addPlayer = doesMyPlayerNeedToSpawn();
+		if (addPlayer)
+		{
+			Debug.Log("Attempting to add player with role: " + myRole);
+			NotifyServerSpawnPlayer(conn, myRole);
+		}
+	}
+
+	bool doesMyPlayerNeedToSpawn() {
+		bool answer = false;
 		if (ClientScene.localPlayers.Count == 0)
 		{
 			// no players exist
 			Debug.Log("No players found");
-			addPlayer = true;
+			answer = true;
 		}
 
 		bool foundPlayer = false;
@@ -192,13 +240,10 @@ public class CustomNetworkManager : NetworkManager
 		{
 			// there are players, but their game objects have all been deleted
 			Debug.Log("There are players but their game objects have been deleted");
-			addPlayer = true;
+			answer = true;
 		}
-		if (addPlayer)
-		{
-			Debug.Log("Attempting to add player with role: " + myRole);
-			NotifyServerSpawnPlayer(conn, myRole);
-		}
+
+		return answer;
 	}
 
 	public void setMyRole(string role) {

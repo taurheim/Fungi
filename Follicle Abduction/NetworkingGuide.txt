@@ -35,6 +35,13 @@ public class TextField : NetworkedObject {
 	// Implementation
 }
 
+NOTE: If you need a Start() method, make sure to call the base implementation as well, like this:
+
+override void Start() {
+	base.Start();
+	// Child class start methods
+}
+
 3. Override Interact(string str)
 
 protected override void Interact(string str) {
@@ -60,9 +67,9 @@ What if we want to synchronize an object's location?
 
 Note that this will only synchronize the transform, anything else will have to be done using NetworkedObject. You can use them both on the same object.
 
-+ Don't forget you have to check if we're the host or not otherwise the host and server will fight eachother
+Also note that if you have object location changing on both the client and server, they will likely conflict and cause weird shit. 
+To fix this, just make sure that you have a check so that your behaviour only happens on one of them, like this:
 
-+ If you use NetworkedObject make sure to:
-public override void Start() {
-	base.Start();
+if(customNetworkManager.isHost) {
+	// Change transform
 }
