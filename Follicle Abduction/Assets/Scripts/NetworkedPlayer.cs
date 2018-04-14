@@ -34,5 +34,10 @@ public class NetworkedPlayer : NetworkBehaviour {
 	public void CmdInteractWithStr(GameObject obj, string str) {
 		obj.GetComponent<NetworkedObject>().RpcInteractStr(str);
 	}
+
+	[Command]
+	public void CmdUpdateMyPosition(GameObject obj) {
+		obj.GetComponent<NetworkedObject>().RpcFixPosition(obj.transform.position);
+	}
 	
 }

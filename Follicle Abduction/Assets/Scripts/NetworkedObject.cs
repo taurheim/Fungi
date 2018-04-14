@@ -31,6 +31,8 @@ public class NetworkedObject : NetworkBehaviour {
 
 		if(isServer) {
 			RpcFixPosition(gameObject.transform.position);
+		} else if (playerObject) {
+			localPlayer.CmdUpdateMyPosition(this.gameObject);
 		}
 	}
 
