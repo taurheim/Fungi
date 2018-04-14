@@ -1495,7 +1495,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 870c61bee210dfd4a82d6e5fd74db63f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 940cdfb207d1aa3439e8e1707d4ca4a9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3776,8 +3776,8 @@ MonoBehaviour:
   selectedLevel: 
   roleSelectHost: {fileID: 317988669}
   roleSelectClient: {fileID: 1256865036}
-  localPlayerReady: 0
-  partnerPlayerReady: 0
+  hostPlayerReady: 0
+  clientPlayerReady: 0
   gameStarted: 0
   isHost: 0
 --- !u!1 &1128529552
