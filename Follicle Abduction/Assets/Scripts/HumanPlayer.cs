@@ -11,7 +11,7 @@ using UnityEngine;
 		- resetting position 
  */
 
-public class HumanPlayer : MonoBehaviour {
+public class HumanPlayer : NetworkedObject {
 
 	private double minYPosition; // Player out of bounds below this height!
 	public int pickups{
@@ -49,6 +49,10 @@ public class HumanPlayer : MonoBehaviour {
 	}
 
 	public void ResetPosition() {
+		NetworkInteract();
+	}
+
+	protected override void Interact(){
 		transform.position = originalPosition;
 	}
 }

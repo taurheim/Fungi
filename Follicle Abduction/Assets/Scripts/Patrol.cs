@@ -56,6 +56,7 @@ public class Patrol : NetworkedObject
 	{
 		// Only run on the server
 		if(!networkManager.isTheHost()) {
+			setAnimation();
 			return;
 		}
 
