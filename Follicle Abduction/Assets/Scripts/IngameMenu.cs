@@ -12,6 +12,7 @@ public class IngameMenu : NetworkedObject {
 
     public Transform canvas;
     public Slider volumeSlider;
+    public Slider musicSlider;
     private bool isPaused;
 
     public override void Start() {
@@ -82,5 +83,10 @@ public class IngameMenu : NetworkedObject {
     // Allows users to adjust volume via the ingame menu slider
     public void changeVolumeSlider() {
         AudioListener.volume = volumeSlider.value;
+    }
+
+    public void changeMusicVolumeSlider(){
+        AudioSource bgmSource = GameObject.FindWithTag("bgm").GetComponent<AudioSource>();
+        bgmSource.volume = musicSlider.value;
     }
 }
