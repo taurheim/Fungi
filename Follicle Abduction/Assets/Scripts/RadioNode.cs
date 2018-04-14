@@ -12,71 +12,40 @@ using UnityEngine.Networking;
 
 public class RadioNode : Node {
 
-	public string correctSongName;
-	public AudioClip correctSong;
-	public AudioClip wrongSong;
+	public string[] songNames;
+	public AudioClip[] songs;
+	public int correctSongIndex;
 	public Patrol[] songLovingGuards; // These guards get distracted (move towards the radio) when the correct song is played
-	public GameObject songSelector;
 
+	private TextMesh songTextDisplay;
 	private AudioSource source;
 	private GameObject radio;
 	private bool playing;
 	private bool choseCorrectSong;
-	private bool showingSongSelector;
+	private int currentSong;
 
 
 	public override void initializeNode () {
+
 		source = GetComponent<AudioSource> ();
+		songTextDisplay = transform.Find("SongName").GetComponent<TextMesh>();
 		playing = false;
 		choseCorrectSong = false;
-		songSelector.SetActive(false);
-		Dropdown dropDown = songSelector.GetComponentInChildren<Dropdown>();
-		dropDown.onValueChanged.AddListener(delegate {
-                DropdownValueChanged(dropDown);
-            });
-		dropDown.interactable = true;
-		showingSongSelector = false;
 	}
 	
 	protected override void Update () {
 		base.Update();
 		// Playing music
-		if (playing && !source.isPlaying) { // Temp until ray casting is implemented
+		if (playing && !source.isPlaying) {
 			StopPlayingCorrectSong ();
 		}
-		// Showing text input
-		if (isSelected && !showingSongSelector && isServer && (state == NodeState.COMPLETED)) {
-			ShowSongSelector();
-		} else if (!isSelected && showingSongSelector) {
-			Debug.Log("hide!!!");
-			HideSongSelector();
-		}
-	}
+		if (Input.GetKeyDown(KeyCode.UpArrow)) {
 
-	private void DropdownValueChanged(Dropdown dropDown) {
-		if (dropDown.options[dropDown.value].text == correctSongName) {
-			ChooseSong(true);
-		} else {
-			ChooseSong(false);
 		}
 	}
 
 	public void ChooseSong(bool correct) {
-		if(isServer) {
-			RpcChooseSong(correct);
-		} else {
-			CmdChooseSong(correct);
-		}
-	}
-
-	[ClientRpc]
-	public void RpcChooseSong(bool correct) {
-		choseCorrectSong = correct;
-	}
-
-	[Command]
-	public void CmdChooseSong(bool correct) {
-		RpcChooseSong (correct);
+		//NetworkInteract
 	}
 
 	public override void onStartAction() {
@@ -89,20 +58,6 @@ public class RadioNode : Node {
 		}
 	}
 
-	private void ShowSongSelector() {
-		songSelector.SetActive (true);
-		Dropdown dropDown = songSelector.GetComponentInChildren<Dropdown>();
-		dropDown.interactable = true;
-		showingSongSelector = true;
-	}
-
-	private void HideSongSelector() {
-		songSelector.SetActive(false);
-		Dropdown dropDown = songSelector.GetComponentInChildren<Dropdown>();
-		dropDown.interactable = false;
-		showingSongSelector = false;
-	}
-
 	public override void onEndAction() {
 		return;
 	}
@@ -113,10 +68,11 @@ public class RadioNode : Node {
 
 	public void PlayCorrectSong() {
 		if (!playing) {
-			if (source && correctSong){
-				source.Stop ();
-				source.PlayOneShot (correctSong);
-			}
+			// Actually play the song!
+			// if (source && correctSong){
+			// 	source.Stop ();
+			// 	source.PlayOneShot (correctSong);
+			// }
 			playing = true;
 			if (songLovingGuards != null) {
 				// Attract the guards to the radio!

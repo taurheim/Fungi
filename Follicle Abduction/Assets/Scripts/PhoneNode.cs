@@ -27,7 +27,7 @@ public class PhoneNode : Node
 	{
 		base.Update();
 		if (ringing && !source.isPlaying) {
-			StopRinging ();
+			NetworkInteract("stopRinging");
 		}
 		if (Input.GetKeyUp (KeyCode.P)) { //for debugging in human mode!
 			onStartAction ();
@@ -37,7 +37,11 @@ public class PhoneNode : Node
 	public override void onStartAction ()
 	{
 		if (state == NodeState.COMPLETED) {
-			Ring ();
+			if (!ringing) {
+				NetworkInteract("startRinging");
+			} else {
+				NetworkInteract("stopRinging");
+			}
 		}
 	}
 
@@ -46,38 +50,49 @@ public class PhoneNode : Node
 		return;
 	}
 
-	public void Ring ()
+	protected override void Interact(string str) {
+		if (str == "startRinging") {
+			StartRinging();
+		} else if (str == "stopRinging") {
+			StopRinging();
+		}
+	}
+
+
+	public void StartRinging ()
 	{
-		if (!ringing) {
-			//If a sound is actually set...
-			if (source && ring){
-				source.PlayOneShot (ring);
-			}
-			//Otherwise silent "ring"? Can generalize this behaviour to non-phone objects later
-			ringing = true;
-			print ("ringing");
-			if (guards != null) {
-				foreach (Patrol guard in guards) {
-					GameObject parent = transform.parent.gameObject;
-					print (guard);
-					if (parent) {
-						guard.AddSecondaryTarget (parent);
-					}
+		//If a sound is actually set...
+		if (source && ring){
+			source.PlayOneShot (ring);
+		}
+		//Otherwise silent "ring"? Can generalize this behaviour to non-phone objects later
+		ringing = true;
+		print ("ringing");
+		if (guards != null) {
+			foreach (Patrol guard in guards) {
+				GameObject parent = transform.parent.gameObject;
+				print (guard);
+				if (parent) {
+					guard.AddSecondaryTarget (parent);
 				}
 			}
 		}
 	}
 
+
+
 	public void StopRinging ()
 	{
-		if (ringing) {
-			ringing = false;
-			foreach (Patrol guard in guards) {
-				GameObject parent = transform.parent.gameObject;
-				print (parent);
-				if (parent) {
-					guard.RemoveSecondaryTarget (parent);
-				}
+		//If a sound is actually set...
+		if (source && ring){
+			source.Stop();
+		}
+		ringing = false;
+		foreach (Patrol guard in guards) {
+			GameObject parent = transform.parent.gameObject;
+			print (parent);
+			if (parent) {
+				guard.RemoveSecondaryTarget (parent);
 			}
 		}
 	}

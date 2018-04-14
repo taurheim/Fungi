@@ -31,20 +31,20 @@ public class PhoneNodeTests {
 	[Test]
 	public void PhoneRingAttractsGuard() {
 		phone.guards = guards;
-		phone.Ring();
+		phone.StartRinging();
 		Assert.True(guard.secondaryTargets.Contains(phoneObj));
 	}
 
 	[Test]
 	public void PhoneRingDoesNotAttractGuard() {
-		phone.Ring();
+		phone.StartRinging();
 		Assert.False(guard.secondaryTargets.Contains(phoneObj));
 	}
 
 	[Test]
 	public void PhoneStopsRingingNoLongerAttractsGuard() {
 		phone.guards = guards;
-		phone.Ring();
+		phone.StartRinging();
 		Assert.True(guard.secondaryTargets.Contains(phoneObj));
 		phone.StopRinging();
 		Assert.False(guard.secondaryTargets.Contains(phoneObj));
