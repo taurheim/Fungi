@@ -10,6 +10,8 @@ using UnityEngine.Networking;
 
 	This script assumes that the 'localplayer' tag has been set
  */
+
+[RequireComponent(typeof(NetworkIdentity))]
 public class NetworkedObject : NetworkBehaviour {
 
 	protected NetworkedPlayer localPlayer;
@@ -26,7 +28,25 @@ public class NetworkedObject : NetworkBehaviour {
 		if(playerObject){
 			localPlayer = playerObject.GetComponent<NetworkedPlayer>();
 		}
+
+		if(isServer) {
+			RpcFixPosition(gameObject.transform.position);
+		}
 	}
+
+	/*
+		I HATE UNITY NETWORKING
+	 */
+
+	[ClientRpc]
+	public void RpcFixPosition(Vector3 setTo) {
+		Debug.Log("Old: " + gameObject.transform.position);
+		gameObject.transform.position = setTo;
+		Debug.Log("New: " + gameObject.transform.position);
+	}
+	 /*
+	 	END I HATE UNITY NETWORKING
+	  */
 
 	public void NetworkInteract() {
 		if (isServer) {
