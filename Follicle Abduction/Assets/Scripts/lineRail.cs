@@ -18,7 +18,12 @@ public class lineRail : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.right * speed * direction * Time.deltaTime);
+        if (transform.position.z <= 37.80)
+            transform.Translate(Vector3.forward * speed * direction * Time.deltaTime);
+
+        if(transform.position.z > 37.80)
+            transform.Translate(Vector3.right * speed * direction * Time.deltaTime);
+
 
     }
 

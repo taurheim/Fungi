@@ -36,9 +36,10 @@ public class Node : NetworkedObject
 	// Not required. Position the GameObject as you like on the console, set it to inactive.
 	// The methods here will activate/deactivate it appropriately.
 	public GameObject nodeData;
+    public GameObject viewBlocker;
 
-	// True if the node is actively being hacked
-	private bool isHacking;
+    // True if the node is actively being hacked
+    private bool isHacking;
 
 	private int percentComplete = 0;
 
@@ -53,10 +54,11 @@ public class Node : NetworkedObject
 	private Dictionary<LineDirection, Node> connectedNodes;
 	private Dictionary<LineDirection, Vector3> midpoints;
 
-	/* 
+
+    /* 
 		Override these for node-specific functionality
 	 */
-	public virtual void onStartAction ()
+    public virtual void onStartAction ()
 	{
 		// Called when a node is unlocked and the action button is pressed
 	}
@@ -134,14 +136,17 @@ public class Node : NetworkedObject
 
 		if (isSelected) {
 			if (state == NodeState.UNLOCKED) {
-				if (Input.GetKeyDown(hackKey)) {
+
+                if (Input.GetKeyDown(hackKey)) {
 					// This will get the above to run
 					isHacking = true;
 				} else if (Input.GetKeyUp(hackKey)) {
 					isHacking = false;
 				}
 			} else if (state == NodeState.COMPLETED) {
-				if (Input.GetKeyDown(actionKey)) {
+                if (viewBlocker != null)
+                    viewBlocker.SetActive(false);
+                if (Input.GetKeyDown(actionKey)) {
 					// If we're completed, then we can run the action
 					onStartAction();
 				} else if (Input.GetKeyUp(actionKey)) {
@@ -363,5 +368,6 @@ public class Node : NetworkedObject
 
 		return line;
 	}
+
 
 }

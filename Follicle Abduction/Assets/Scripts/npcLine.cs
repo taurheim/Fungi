@@ -89,7 +89,7 @@ public class npcLine : MonoBehaviour
         if (Vector3.Distance(transform.position, navMesh[currentWaypoint]) < StoppingDistance)
         {
             if (currentWaypoint == 1 & !Out)
-                transform.position = new Vector3(-58, -14, 27);
+                transform.position = new Vector3(-58, -14, 11.85f);
 
             if (currentWaypoint == 1 & Out)
                 transform.position = new Vector3(-3, -14, 42);

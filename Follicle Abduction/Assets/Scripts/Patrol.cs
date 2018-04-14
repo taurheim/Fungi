@@ -14,7 +14,7 @@ public class Patrol : NetworkedObject
 	private int currentWaypoint = 0;
 	private float StoppingDistance = 0.5f;
 	public float walkSpeed = 3.5f;
-	public float runSpeed = 5.0f;
+	public float runSpeed = 7.0f;
 
 	// Cone of detection is determined by angle and length
 	public float detectAngle;
@@ -54,6 +54,8 @@ public class Patrol : NetworkedObject
 
     void Update ()
 	{
+		Debug.Log(agent.speed);
+
 		// Only run on the server
 		if(!networkManager.isTheHost()) {
 			return;
@@ -193,9 +195,8 @@ public class Patrol : NetworkedObject
 
 		// Increase agility, zoomzoom
 		agent.angularSpeed = 500;
-		agent.speed = 5f;
-		artModel.GetComponent<Animation>().Play ("run_cycle", PlayMode.StopAll);
-		//setAnimation();
+		agent.speed = runSpeed;
+		setAnimation();
 	}
 
 	void ResumePatrol()
@@ -207,28 +208,32 @@ public class Patrol : NetworkedObject
 		// Return to normal patrol speed
 		if (agent != null) {
 			agent.angularSpeed = 120;
-			agent.speed = 3.5f;
-			artModel.GetComponent<Animation>().Play ("walk_cycle", PlayMode.StopAll);
+			agent.speed = walkSpeed;
 		}
+	}
+
+	// Syncs guard animation for both players
+	protected override void Interact(string str){
+		artModel.GetComponent<Animation>().Play(str, PlayMode.StopAll);
 	}
 
 	// Sets current animation based on navMesh speed
 	void setAnimation()
 	{
-		if (agent.speed == runSpeed){
-			artModel.GetComponent<Animation>().Play("run_cycle", PlayMode.StopAll);
+		if (agent.speed > walkSpeed){
+			NetworkInteract("run_cycle");
 		}
 		else if (agent.speed == walkSpeed){
-			artModel.GetComponent<Animation>().Play("walk_cycle", PlayMode.StopAll);
+			NetworkInteract("walk_cycle");
 		}
 		else{
-			artModel.GetComponent<Animation>().Play("look_around", PlayMode.StopAll);
+			NetworkInteract("look_around");
 		}
 	}
 
 	public void AddSecondaryTarget(GameObject newTarget)
 	{
-		secondaryTargets.Add (newTarget);
+		secondaryTargets.Add(newTarget);
 	}
 
 	public void RemoveSecondaryTarget(GameObject target)
