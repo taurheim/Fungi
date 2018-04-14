@@ -38,7 +38,7 @@ public class NetworkedObject : NetworkBehaviour {
 
 	public void NetworkInteract(string str) {
 		if (isServer) {
-			RpcInteract();
+			RpcInteractStr(str);
 		} else {
 			localPlayer.CmdInteractWithStr(this.gameObject, str);
 		}
