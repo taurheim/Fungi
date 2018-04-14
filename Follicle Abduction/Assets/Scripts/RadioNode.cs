@@ -12,6 +12,8 @@ using UnityEngine.Networking;
 
 public class RadioNode : Node {
 
+	//MUST SET NODE DATA to SongSelector prefab!!!!
+
 	public string[] songNames;
 	public AudioClip[] songs;
 	public int correctSongIndex;
