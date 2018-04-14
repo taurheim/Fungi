@@ -19244,12 +19244,16 @@ MonoBehaviour:
   progressBar: {fileID: 2112011238}
   outline: {fileID: 76000317}
   nodeData: {fileID: 0}
-  correctSongName: Fur Elise
-  correctSong: {fileID: 8300000, guid: 66e9fa3f5e0c04afcb004fea621a961b, type: 3}
-  wrongSong: {fileID: 0}
+  viewBlocker: {fileID: 0}
+  songNames:
+  - Weezer - \n Say it Ain't So
+  - 
+  - 
+  - 
+  songs: []
+  correctSongIndex: 0
   songLovingGuards:
   - {fileID: 80263834}
-  songSelector: {fileID: 1101981111}
 --- !u!82 &1679844087
 AudioSource:
   m_ObjectHideFlags: 0

@@ -54,7 +54,6 @@ public class Patrol : NetworkedObject
 
     void Update ()
 	{
-		Debug.Log(agent.speed);
 
 		// Only run on the server
 		if(!networkManager.isTheHost()) {

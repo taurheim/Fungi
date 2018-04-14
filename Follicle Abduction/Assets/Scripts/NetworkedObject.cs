@@ -43,9 +43,9 @@ public class NetworkedObject : NetworkBehaviour {
 	[ClientRpc]
 	public void RpcFixPosition(Vector3 setTo) {
 		if(gameObject.transform.position != setTo) {
-			Debug.Log("Had to update position of " + gameObject.name);
-			Debug.Log("From: " + gameObject.transform.position);
-			Debug.Log("To: " + setTo);
+			Debug.Log("DING!!! Had to update position of " + gameObject.name);
+			Debug.Log("OG position: " + gameObject.transform.position);
+			Debug.Log("Set to: " + setTo);
 		}
 		gameObject.transform.position = setTo;
 	}
