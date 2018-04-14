@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.009256138, g: 0.009483897, b: 0.009256138, a: 1}
+  m_IndirectSpecularColor: {r: 0.009406347, g: 0.009492566, b: 0.009406347, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1843,38 +1843,6 @@ MonoBehaviour:
   outline: {fileID: 630575131}
   nodeData: {fileID: 610256087}
   viewBlocker: {fileID: 0}
---- !u!114 &108514361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 108514359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 163
-    i1: 59
-    i2: 194
-    i3: 178
-    i4: 173
-    i5: 162
-    i6: 181
-    i7: 148
-    i8: 74
-    i9: 67
-    i10: 109
-    i11: 166
-    i12: 19
-    i13: 108
-    i14: 218
-    i15: 173
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
 --- !u!4 &108514365 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4989385670517874, guid: a33bc2b2ada2b5944a436da6136cdaad,
@@ -32476,38 +32444,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4989385670517874, guid: a33bc2b2ada2b5944a436da6136cdaad,
     type: 2}
   m_PrefabInternal: {fileID: 909793741}
---- !u!114 &1924085674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1924085672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 163
-    i1: 59
-    i2: 194
-    i3: 178
-    i4: 173
-    i5: 162
-    i6: 181
-    i7: 148
-    i8: 74
-    i9: 67
-    i10: 109
-    i11: 166
-    i12: 19
-    i13: 108
-    i14: 218
-    i15: 173
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
 --- !u!114 &1924085675
 MonoBehaviour:
   m_ObjectHideFlags: 0
