@@ -42,15 +42,22 @@ public class NetworkedObject : NetworkBehaviour {
 
 	[ClientRpc]
 	public void RpcFixPosition(Vector3 setTo) {
-		Debug.Log("Old: " + gameObject.transform.position);
+		if(gameObject.transform.position != setTo) {
+			Debug.Log("Had to update position of " + gameObject.name);
+			Debug.Log("From: " + gameObject.transform.position);
+			Debug.Log("To: " + setTo);
+		}
 		gameObject.transform.position = setTo;
-		Debug.Log("New: " + gameObject.transform.position);
 	}
 	 /*
 	 	END I HATE UNITY NETWORKING
 	  */
 
 	public void NetworkInteract() {
+		GameObject playerObject = GameObject.FindWithTag("networkmanager").GetComponent<CustomNetworkManager>().getPlayerObject();
+		if(playerObject){
+			localPlayer = playerObject.GetComponent<NetworkedPlayer>();
+		}
 		if (isServer) {
 			RpcInteract();
 		} else {
@@ -59,6 +66,10 @@ public class NetworkedObject : NetworkBehaviour {
 	}
 
 	public void NetworkInteract(string str) {
+		GameObject playerObject = GameObject.FindWithTag("networkmanager").GetComponent<CustomNetworkManager>().getPlayerObject();
+		if(playerObject){
+			localPlayer = playerObject.GetComponent<NetworkedPlayer>();
+		}
 		if (isServer) {
 			RpcInteractStr(str);
 		} else {
