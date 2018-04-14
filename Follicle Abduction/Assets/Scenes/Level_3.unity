@@ -879,7 +879,7 @@ Prefab:
     - target: {fileID: 114654279767767806, guid: 720132074ec4ff14caa3c877ee09a400,
         type: 2}
       propertyPath: detectRange
-      value: 11
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 82766690908159674, guid: 720132074ec4ff14caa3c877ee09a400,
         type: 2}
@@ -1278,7 +1278,7 @@ Prefab:
     - target: {fileID: 114654279767767806, guid: 720132074ec4ff14caa3c877ee09a400,
         type: 2}
       propertyPath: detectRange
-      value: 8
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 195640911966357650, guid: 720132074ec4ff14caa3c877ee09a400,
         type: 2}
@@ -13103,7 +13103,7 @@ Prefab:
     - target: {fileID: 114654279767767806, guid: 720132074ec4ff14caa3c877ee09a400,
         type: 2}
       propertyPath: detectRange
-      value: 11
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 195640911966357650, guid: 720132074ec4ff14caa3c877ee09a400,
         type: 2}
@@ -19245,11 +19245,7 @@ MonoBehaviour:
   outline: {fileID: 76000317}
   nodeData: {fileID: 0}
   viewBlocker: {fileID: 0}
-  songNames:
-  - Weezer - \n Say it Ain't So
-  - 
-  - 
-  - 
+  songNames: []
   songs: []
   correctSongIndex: 0
   songLovingGuards:
