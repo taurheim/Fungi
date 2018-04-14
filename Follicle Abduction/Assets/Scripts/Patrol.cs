@@ -44,6 +44,8 @@ public class Patrol : NetworkedObject
 
 	private AnimationState lastState;
 
+    public GameOver gameOver;
+
 	void NavigateToNextWaypoint ()
 	{
 		// Choose a new waypoint
@@ -212,9 +214,12 @@ public class Patrol : NetworkedObject
 	// After successfully catching up to player, capture
 	public void Capture(GameObject target)
 	{
-		target.GetComponent<HumanPlayer>().ResetPosition();
-		currChaseTarget = null;
-	}
+        //display game over screen
+        gameOver.gameOver();
+
+        target.GetComponent<HumanPlayer>().ResetPosition();
+        currChaseTarget = null;
+    }
 
 	void Chase(GameObject target)
 	{
