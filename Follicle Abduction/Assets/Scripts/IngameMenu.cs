@@ -19,6 +19,28 @@ public class IngameMenu : NetworkedObject {
         base.Start();
         canvas.gameObject.SetActive(false);
         isPaused = false;
+
+        // Load master volume settings from playerprefs
+        if (PlayerPrefs.HasKey("masterVolume")){
+            volumeSlider.value = PlayerPrefs.GetFloat("masterVolume");
+            AudioListener.volume = volumeSlider.value;
+        }
+        else{
+            // Default to current scene master volume
+            PlayerPrefs.SetFloat("masterVolume", 1.0f);
+        }
+
+        // Load music volume settings from playerprefs
+        AudioSource bgmSource = GameObject.FindWithTag("bgm").GetComponent<AudioSource>();
+        if (PlayerPrefs.HasKey("musicVolume")){
+            musicSlider.value = PlayerPrefs.GetFloat("musicVolume");
+            bgmSource.volume = musicSlider.value;
+        }
+        else{
+            // Default to current scene music volume
+            PlayerPrefs.SetFloat("musicVolume", 1.0f);
+        }
+
     }
 
     void Update() {
@@ -29,12 +51,12 @@ public class IngameMenu : NetworkedObject {
 
     // Allows user to view the ingame menu (also pauses the game when opened)
     public void ViewMenu() {
-        if (!canvas.gameObject.activeInHierarchy) {
-            canvas.gameObject.SetActive(true);
-        }
-        else {
-            canvas.gameObject.SetActive(false);
-        }
+        // if (!canvas.gameObject.activeInHierarchy) {
+        //     canvas.gameObject.SetActive(true);
+        // }
+        // else {
+        //     canvas.gameObject.SetActive(false);
+        // }
         NetworkInteract();
     }
 
@@ -60,6 +82,7 @@ public class IngameMenu : NetworkedObject {
         isPaused = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        PlayerPrefs.Save();
         //check if this player is human?
         CustomNetworkManager NetworkManager = GameObject.FindWithTag("networkmanager").GetComponent<CustomNetworkManager>();
         if (NetworkManager.myRole == "human") {
@@ -72,10 +95,12 @@ public class IngameMenu : NetworkedObject {
     protected override void Interact(){
         if (isPaused){
             Unpause();
+            canvas.gameObject.SetActive(false);
             Debug.Log("Game unpaused");
         }
         else{
             Pause();
+            canvas.gameObject.SetActive(true);
             Debug.Log("Game Paused");
         }
     }
@@ -83,10 +108,12 @@ public class IngameMenu : NetworkedObject {
     // Allows users to adjust volume via the ingame menu slider
     public void changeVolumeSlider() {
         AudioListener.volume = volumeSlider.value;
+        PlayerPrefs.SetFloat("masterVolume", volumeSlider.value);
     }
 
     public void changeMusicVolumeSlider(){
         AudioSource bgmSource = GameObject.FindWithTag("bgm").GetComponent<AudioSource>();
         bgmSource.volume = musicSlider.value;
+        PlayerPrefs.SetFloat("musicVolume", musicSlider.value);
     }
 }
