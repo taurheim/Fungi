@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
+
+public enum AnimationState {
+	STOPPED,
+	WALKING,
+	RUNNING,
+}
 
 /*
 	Attach to guards to detect player and attempt to follow them when detected.
@@ -32,6 +39,10 @@ public class Patrol : NetworkedObject
 	public GameObject artModel;
 	public Vector3 sendToOnCapture;
 
+	[SyncVar]
+	public AnimationState currentState;
+
+	private AnimationState lastState;
 
 	void NavigateToNextWaypoint ()
 	{
@@ -54,11 +65,31 @@ public class Patrol : NetworkedObject
 
     void Update ()
 	{
-		Debug.Log(agent.speed);
+		if(currentState != lastState) {
+			switch(currentState) {
+				case AnimationState.STOPPED:
+					artModel.GetComponent<Animation>().Play("look_around", PlayMode.StopAll);
+				break;
+				case AnimationState.WALKING:
+					artModel.GetComponent<Animation>().Play("run_cycle", PlayMode.StopAll);
+				break;
+				case AnimationState.RUNNING:
+					artModel.GetComponent<Animation>().Play("walk_cycle", PlayMode.StopAll);
+				break;
+			}
+			lastState = currentState;
+		}
 
 		// Only run on the server
 		if(!networkManager.isTheHost()) {
 			return;
+		}
+
+		// Update animation state
+		if (agent.speed > 0.0f) {
+			currentState = AnimationState.RUNNING;
+		} else {
+			currentState = AnimationState.STOPPED;
 		}
 
 		// Check if the guard is currently waiting, if so, do not proceed
