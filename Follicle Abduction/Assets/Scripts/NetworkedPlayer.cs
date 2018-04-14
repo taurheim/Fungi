@@ -12,11 +12,15 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class NetworkedPlayer : NetworkBehaviour {
 
 	public override void OnStartLocalPlayer() {
-		Debug.Log("It's our local player!");
 		GameObject.FindWithTag("networkmanager").GetComponent<CustomNetworkManager>().registerPlayerObject(this.gameObject);
+
 		FirstPersonController controller = GetComponentInChildren<FirstPersonController>();
 		if(controller) {
 			controller.enabled = true;
+			// If our local player is the human, disable AlienPlayer script as well.
+			foreach(AlienPlayer alien in Object.FindObjectsOfTypeAll(typeof(AlienPlayer))) {
+				alien.enabled = false;
+			}
 		}
 		GetComponentInChildren<Camera>().enabled = true;
 	}
