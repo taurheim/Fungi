@@ -14,6 +14,7 @@ public class PhoneNode : Node
 	private AudioSource source;
 	private GameObject phone;
 	private bool ringing;
+    public bool continuous;
 
 	// Use this for initialization
 	public override void initializeNode ()
@@ -26,9 +27,10 @@ public class PhoneNode : Node
 	protected override void Update ()
 	{
 		base.Update();
-		if (ringing && !source.isPlaying) {
+		if (ringing && !source.isPlaying && !continuous) {
 			NetworkInteract("stopRinging");
 		}
+
 		if (Input.GetKeyUp (KeyCode.P)) { //for debugging in human mode!
 			onStartAction ();
 		}
