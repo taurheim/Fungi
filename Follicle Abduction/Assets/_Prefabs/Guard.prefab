@@ -1477,6 +1477,7 @@ MonoBehaviour:
   progressBar: {fileID: 0}
   outline: {fileID: 1230380321994674}
   nodeData: {fileID: 0}
+  viewBlocker: {fileID: 0}
 --- !u!114 &114180109630474650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1582,9 +1583,9 @@ MonoBehaviour:
   - {x: 1.51, y: -14, z: 29.01}
   - {x: 16.37, y: -14, z: 29.01}
   walkSpeed: 3.5
-  runSpeed: 7
+  runSpeed: 8.5
   detectAngle: 90
-  detectRange: 8
+  detectRange: 14
   detectTargets:
   - {fileID: 0}
   secondaryTargets: []
@@ -1593,6 +1594,7 @@ MonoBehaviour:
   lastKnownTargetLoc: {x: 0, y: 0, z: 0}
   artModel: {fileID: 1117661218583082}
   sendToOnCapture: {x: -9.79, y: -14, z: 43.12}
+  currentState: 0
 --- !u!136 &136953431858332254
 CapsuleCollider:
   m_ObjectHideFlags: 1

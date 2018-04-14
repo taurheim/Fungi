@@ -49,7 +49,6 @@ public class Patrol : NetworkedObject
 		// Choose a new waypoint
 		currentWaypoint = (currentWaypoint + 1) % navMesh.Length;
 		currDestination = navMesh [currentWaypoint];
-        artModel.GetComponent<Animation>().Play("walk_cycle", PlayMode.StopAll);
     }
 
 	public override void Start ()
@@ -58,7 +57,6 @@ public class Patrol : NetworkedObject
 		agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
 		secondaryTargets = new List<GameObject>();
 		NavigateToNextWaypoint ();
-        artModel.GetComponent<Animation>().Play("look_around", PlayMode.StopAll);
         originalFaceDirection = this.transform.rotation;
         remainingWaitDuration = 0.0f;
     }
@@ -71,25 +69,29 @@ public class Patrol : NetworkedObject
 					artModel.GetComponent<Animation>().Play("look_around", PlayMode.StopAll);
 				break;
 				case AnimationState.WALKING:
-					artModel.GetComponent<Animation>().Play("run_cycle", PlayMode.StopAll);
+					artModel.GetComponent<Animation>().Play("walk_cycle", PlayMode.StopAll);
 				break;
 				case AnimationState.RUNNING:
-					artModel.GetComponent<Animation>().Play("walk_cycle", PlayMode.StopAll);
+					artModel.GetComponent<Animation>().Play("run_cycle", PlayMode.StopAll);
 				break;
 			}
 			lastState = currentState;
 		}
-
+		
 		// Only run on the server
 		if(!networkManager.isTheHost()) {
 			return;
 		}
 
 		// Update animation state
-		if (agent.speed > 0.0f) {
-			currentState = AnimationState.RUNNING;
-		} else {
+		if (agent.velocity.magnitude == 0.0f) {
 			currentState = AnimationState.STOPPED;
+		} 
+		else if (agent.speed == walkSpeed){
+			currentState = AnimationState.WALKING;
+		}
+		else if (agent.speed > walkSpeed) {
+			currentState = AnimationState.RUNNING;
 		}
 
 		// Check if the guard is currently waiting, if so, do not proceed
@@ -110,7 +112,7 @@ public class Patrol : NetworkedObject
 		if (currChaseTarget != null) {
 
 			if (currChaseTarget.tag == ("playerA")) {
-				if (Vector3.Distance (this.transform.position, currChaseTarget.transform.position) < 2.5f) {
+				if (Vector3.Distance (this.transform.position, currChaseTarget.transform.position) < 3.5f) {
 					Capture (currChaseTarget);
 					ResumePatrol();
 				}
@@ -133,7 +135,6 @@ public class Patrol : NetworkedObject
 			} else {
 				//If a secondaryTarget (not player) we assume it is a sound? so dont need detect... will clean up this later
 				if (Vector3.Distance (this.transform.position, currChaseTarget.transform.position) < 5.0f) {
-					print ("REACHED DESTINATION!");
 					agent.isStopped = true;
 					agent.speed = 0.0f;
 					WaitAtDestination(6.0f);
@@ -149,11 +150,9 @@ public class Patrol : NetworkedObject
 			if (Vector3.Distance (transform.position, navMesh [currentWaypoint]) < StoppingDistance) {
                 // If this guard is meant to stay in one position (rather than patrolling)
                 if (navMesh.Length == 1) {
-                    artModel.GetComponent<Animation>().Play("look_around", PlayMode.StopAll);
                     this.transform.rotation = originalFaceDirection;
                 }
                 else {
-                    artModel.GetComponent<Animation>().Play("look_around", PlayMode.StopAll);
                     NavigateToNextWaypoint();
                 }
 			}
@@ -186,8 +185,6 @@ public class Patrol : NetworkedObject
 		if (agent != null) {
 			agent.isStopped = false;
 			agent.SetDestination (currDestination);
-
-			setAnimation();
 		}
 	}
 
@@ -227,7 +224,6 @@ public class Patrol : NetworkedObject
 		// Increase agility, zoomzoom
 		agent.angularSpeed = 500;
 		agent.speed = runSpeed;
-		setAnimation();
 	}
 
 	void ResumePatrol()
@@ -243,24 +239,6 @@ public class Patrol : NetworkedObject
 		}
 	}
 
-	// Syncs guard animation for both players
-	protected override void Interact(string str){
-		artModel.GetComponent<Animation>().Play(str, PlayMode.StopAll);
-	}
-
-	// Sets current animation based on navMesh speed
-	void setAnimation()
-	{
-		if (agent.speed > walkSpeed){
-			NetworkInteract("run_cycle");
-		}
-		else if (agent.speed == walkSpeed){
-			NetworkInteract("walk_cycle");
-		}
-		else{
-			NetworkInteract("look_around");
-		}
-	}
 
 	public void AddSecondaryTarget(GameObject newTarget)
 	{
@@ -279,7 +257,6 @@ public class Patrol : NetworkedObject
 	public void WaitAtDestination(float duration){
 		remainingWaitDuration = duration;
 		agent.Stop();
-		artModel.GetComponent<Animation>().Play ("look_around", PlayMode.StopAll);
 	}
 
 }
