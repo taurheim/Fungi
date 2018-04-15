@@ -25,7 +25,7 @@ public class HumanPlayer : NetworkedObject {
 		pickups = 0;
 		originalPosition = transform.position;
 		GameObject floor = GameObject.Find("Floor");
-		minYPosition = floor.transform.position.y - 5.0;
+		minYPosition = floor.transform.position.y - 100.0;
 
         gameOver = FindObjectOfType<GameOver>();
 	}
