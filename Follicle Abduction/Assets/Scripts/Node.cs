@@ -161,7 +161,6 @@ public class Node : NetworkedObject
 				}
 			}
 		}
-
 	}
 
 	public void unlockNode ()
@@ -375,5 +374,9 @@ public class Node : NetworkedObject
 		return line;
 	}
 
+	public void pulseOutline() {
+		outline.SetActive(true);
+		outline.GetComponent<NodeOutline>().pulse();
+	}
 
 }

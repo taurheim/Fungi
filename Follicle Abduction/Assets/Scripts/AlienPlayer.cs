@@ -90,6 +90,12 @@ public class AlienPlayer : MonoBehaviour
 		if (!currentNode) return;
 		Node nextNode = currentNode.getNode(direction);
 		if(nextNode) {
+			if (nextNode.state == NodeState.LOCKED) {
+				// Can't move there - it's locked! Pulse and don't move
+				currentNode.pulseOutline();
+				return;
+			}
+
 			currentNode.Deselect();
 			movePositions.Add(currentNode.getMidPoint(direction));
 			movePositions.Add(nextNode.transform.position);
