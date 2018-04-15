@@ -22,6 +22,7 @@ public class Patrol : NetworkedObject
 	private float StoppingDistance = 0.5f;
 	public float walkSpeed = 3.5f;
 	public float runSpeed = 7.0f;
+	public float waitTime = 10.0f;
 
 	// Cone of detection is determined by angle and length
 	public float detectAngle;
@@ -139,7 +140,7 @@ public class Patrol : NetworkedObject
 				if (Vector3.Distance (this.transform.position, currChaseTarget.transform.position) < 5.0f) {
 					agent.isStopped = true;
 					agent.speed = 0.0f;
-					WaitAtDestination(6.0f);
+					WaitAtDestination(waitTime);
 				} else {
 					lastKnownTargetLoc = currChaseTarget.transform.position;
 					currDestination = currChaseTarget.transform.position;
@@ -261,7 +262,7 @@ public class Patrol : NetworkedObject
 
 	public void WaitAtDestination(float duration){
 		remainingWaitDuration = duration;
-		agent.Stop();
+		agent.isStopped = true;
 	}
 
 }

@@ -10,8 +10,8 @@ public class NodeOutline : MonoBehaviour {
 
   private Vector3 normalScale;
 
-  public float pulseSpeed = 1.0f;
-  public float pulseAmount = 1.5f;
+  public float pulseSpeed = 1.5f;
+  public float pulseAmount = 1.4f;
   private float pulseStartTime;
   private float journeyLength;
 

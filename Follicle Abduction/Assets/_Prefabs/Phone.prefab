@@ -1197,6 +1197,7 @@ GameObject:
   - component: {fileID: 33429100265669032}
   - component: {fileID: 65373599957645404}
   - component: {fileID: 23998873601892152}
+  - component: {fileID: 114634862965457384}
   m_Layer: 11
   m_Name: Node Outline
   m_TagString: Untagged
@@ -2379,7 +2380,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1237708580411750}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 39.03, y: -11.64, z: 52.55}
+  m_LocalPosition: {x: -18.593618, y: 105.47831, z: 44.729263}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4878539645102218}
@@ -3298,6 +3299,19 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
+--- !u!114 &114634862965457384
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1838534696611764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d729f7605b9b43d4e8417d5fea38eb99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pulseSpeed: 1.5
+  pulseAmount: 1.4
 --- !u!114 &114641433194298588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3349,9 +3363,12 @@ MonoBehaviour:
   progressBar: {fileID: 1703145326496894}
   outline: {fileID: 1838534696611764}
   nodeData: {fileID: 0}
+  viewBlocker: {fileID: 0}
+  timeToHack: 1
   ring: {fileID: 8300000, guid: 34a5973f7144d4dcaaaf8de6d6cc00f6, type: 3}
   guards:
   - {fileID: 0}
+  continuous: 0
 --- !u!135 &135313213222620400
 SphereCollider:
   m_ObjectHideFlags: 1
