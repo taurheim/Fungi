@@ -29,11 +29,11 @@ public class NetworkedObject : NetworkBehaviour {
 			localPlayer = playerObject.GetComponent<NetworkedPlayer>();
 		}
 
-		if(isServer) {
-			RpcFixPosition(gameObject.transform.position);
-		} else if (playerObject) {
-			localPlayer.CmdUpdateMyPosition(this.gameObject);
-		}
+		// if(isServer) {
+		// 	RpcFixPosition(gameObject.transform.position);
+		// } else if (playerObject) {
+		// 	localPlayer.CmdUpdateMyPosition(this.gameObject);
+		// }
 	}
 
 	/*

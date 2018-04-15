@@ -64,7 +64,7 @@ public class CustomNetworkManager : NetworkManager
 		isHost = false;
 		clientConnected = false;
 		myRole = "";
-		Debug.Log("Host stopped.");
+		Debug.Log("[Server] Stopped hosting server.");
 	}
 
 	// Called when someone joins the unity server
@@ -76,7 +76,7 @@ public class CustomNetworkManager : NetworkManager
 	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader) {
 		RoleMessage msg = extraMessageReader.ReadMessage<RoleMessage>();
 		string role = msg.role;
-		Debug.Log("OnServerAddPlayer: " + role + "(Connection: "+ conn.connectionId + ")");
+		Debug.Log("[Server] Got a message to add a player: " + role + "(Connection: "+ conn.connectionId + ", controller: " + playerControllerId + ")");
 		StartCoroutine(WaitForSceneLoad(conn, role, playerControllerId));
 	}
 
@@ -88,7 +88,7 @@ public class CustomNetworkManager : NetworkManager
 				GameObject humanSpawn = GameObject.Find("HumanSpawn");
 				if (!humanSpawn) {
 					// Probably on the main menu
-					Debug.Log("Couldn't find a human spawn - not spawning");
+					Debug.Log("[Server] Couldn't find a human spawn - not spawning");
 					return;
 				}
 				Transform humanSpawnLocation = humanSpawn.GetComponent<Transform>();
@@ -99,14 +99,14 @@ public class CustomNetworkManager : NetworkManager
 				GameObject alienSpawn = GameObject.Find("AlienSpawn");
 				if (!alienSpawn) {
 					// Probably on the main menu
-					Debug.Log("Couldn't find an alien spawn - not spawning");
+					Debug.Log("[Server] Couldn't find an alien spawn - not spawning");
 					return;
 				}
 				Transform alienSpawnLocation = alienSpawn.GetComponent<Transform>();
 				playerObject = Instantiate(alienPrefab, alienSpawnLocation);
 				break;
 			default:
-				Debug.Log("Invalid role: " + role);
+				Debug.Log("[Server] Invalid role: " + role + " for Client #" + conn.connectionId + "(controller: " + playerControllerId + ")");
 				return;
 		}
 
@@ -114,9 +114,9 @@ public class CustomNetworkManager : NetworkManager
 	}
 
 	IEnumerator WaitForSceneLoad(NetworkConnection conn, string role, short playerControllerId) {
-		Debug.Log("Waiting for scene to finish loading...");
+		Debug.Log("[Server] Waiting for scene to finish loading. Then spawning " + role + " for Client " + conn.connectionId);
 		yield return new WaitUntil(() => !isLoadingScene);
-		Debug.Log("Scene finished loading. Now spawning player " + role + " for connection " + conn.connectionId);
+		Debug.Log("[Server] Scene finished loading. Now spawning player " + role + " for connection " + conn.connectionId);
 		SpawnPlayerForConnection(conn, role, playerControllerId);
 	}
 
@@ -126,7 +126,7 @@ public class CustomNetworkManager : NetworkManager
 	}
 
 	public override void OnClientConnect(NetworkConnection conn){
-		Debug.Log("Client connect!");
+		Debug.Log("[Client] Connected to server. Setting ready then spawning if role set");
 		ClientScene.Ready(client.connection);
 
 		if(myRole != "") {
@@ -140,24 +140,33 @@ public class CustomNetworkManager : NetworkManager
 		This will get called on the server if the client wants to change scenes.
 	 */
 	private void HandleLoadSceneMessage(NetworkMessage networkMessage) {
-		Debug.Log("Got a message from client to change scenes");
+		Debug.Log("[Server] Got a message from client to change scenes");
 		LoadSceneMessage msg = networkMessage.ReadMessage<LoadSceneMessage>();
 		NetworkLoadScene(msg.newScene);
 	}
 
 	public void NetworkLoadScene(string sceneName) {
 		if(isLoadingScene) {
-			Debug.Log("Already loading scene");
+			Debug.Log("[Server] Tried to load scene, but we're already loading it");
 			return;
 		}
 
 		if(isHost) {
-			Debug.Log("We're the host and we're switching scenes");
+			Debug.Log("[Server] Switching scenes");
 			isLoadingScene = true;
+			
+			// Preload the scene
+			SceneManager.LoadScene(sceneName);
+
+			// Load the scene on all connected clients
 			ServerChangeScene(sceneName);
+
+			// Spawn ourselves
+			Debug.Log("[Server] Trying to spawn ourselves with role: " + myRole);
+			NotifyServerSpawnPlayer(client.connection, myRole);
 		} else {
 			isLoadingScene = true;
-			Debug.Log("We want to change scenes but we're not the host!");
+			Debug.Log("[Client] Sending message to host to change scenes");
 			LoadSceneMessage msg = new LoadSceneMessage();
 			msg.newScene = sceneName;
 			client.Send(LoadSceneMessage.type, msg);
@@ -165,13 +174,13 @@ public class CustomNetworkManager : NetworkManager
 	}
 
 	public override void OnServerSceneChanged(string sceneName) {
-		Debug.Log("Server scene changed!");
+		Debug.Log("[Server] Scene changed!");
 		isLoadingScene = false;
 	}
 
 	// Called when we're the server and the client disconnects
 	public override void OnServerDisconnect(NetworkConnection conn) {
-		Debug.Log("OnServerDisconnect");
+		Debug.Log("[Server] Client disconnected");
 		if (conn.connectionId < maxConnectedPlayers) {
 			// Kick everyone to the main menu if a player leaves
 			NetworkLoadScene(mainMenuSceneName);
@@ -181,13 +190,13 @@ public class CustomNetworkManager : NetworkManager
 
 	// Called when we're the client and the server disconnects
 	public override void OnClientDisconnect(NetworkConnection conn) {
-		Debug.Log("OnClientDisconnect");
+		Debug.Log("[Client] Disconnected from server.");
 		StopClient();
 		SceneManager.LoadScene(mainMenuSceneName);
 	}
 
 	private void NotifyServerSpawnPlayer(NetworkConnection conn, string playerRole) {
-		Debug.Log("We're notifying the server that we should spawn " + playerRole);
+		Debug.Log("[Client] We're notifying the server that we should spawn " + playerRole);
 		RoleMessage msg = new RoleMessage();
 		msg.role = playerRole;
 		ClientScene.AddPlayer(conn, 0, msg);
@@ -198,51 +207,11 @@ public class CustomNetworkManager : NetworkManager
 	*/
 	public override void OnClientSceneChanged(NetworkConnection conn) {
 		isLoadingScene = false;
-		Debug.Log("OnClientSceneChanged");
+		Debug.Log("[Client] Our scene changed! Spawn us!");
 		if (!ClientScene.ready) {
 			ClientScene.Ready(conn);
 		}
 		NotifyServerSpawnPlayer(conn, myRole);
-
-		// bool addPlayer = doesMyPlayerNeedToSpawn();
-		// if (addPlayer)
-		// {
-		// 	Debug.Log("Attempting to add player with role: " + myRole);
-		// }
-	}
-
-	bool doesMyPlayerNeedToSpawn() {
-		bool answer = false;
-		if (ClientScene.localPlayers.Count == 0)
-		{
-			// no players exist
-			Debug.Log("No players found");
-			answer = true;
-		}
-
-		bool foundPlayer = false;
-		foreach (var playerController in ClientScene.localPlayers)
-		{
-			if (playerController.gameObject != null)
-			{
-				Debug.Log("Found a player object");
-				foundPlayer = true;
-				break;
-			}
-		}
-
-		if (!foundPlayer)
-		{
-			// there are players, but their game objects have all been deleted
-			Debug.Log("There are players but their game objects have been deleted");
-			answer = true;
-		}
-
-		return answer;
-	}
-
-	public void setMyRole(string role) {
-		myRole = role;
 	}
 
 	// Called when someone joins the server
@@ -256,7 +225,7 @@ public class CustomNetworkManager : NetworkManager
 			}
 		} else if (conn.connectionId >= maxConnectedPlayers) {
 			// Disconnect this player, we have too many
-			Debug.Log("Disconnecting extra player");
+			Debug.Log("[Server] Disconnecting extra player");
 			conn.Disconnect();
 		}
 	}

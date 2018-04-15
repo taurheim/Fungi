@@ -128,6 +128,10 @@ public class LevelSelect : MonoBehaviour {
             setReady(isHost, true);
         });
 
+
+        // HACK - set to human by default because that's the original value
+        manager.myRole = "human";
+
         if(isHost)
         {
             roleSelectClient.interactable = false;
@@ -136,6 +140,7 @@ public class LevelSelect : MonoBehaviour {
                 RoleSelectMessage msg = new RoleSelectMessage();
                 msg.host = true;
                 msg.role = roleSelectHost.value == 0 ? "human" : "alien";
+                manager.myRole = msg.role;
                 sendSyncMessage(RoleSelectMessage.type, msg);
             });
         }
@@ -146,6 +151,7 @@ public class LevelSelect : MonoBehaviour {
                 RoleSelectMessage msg = new RoleSelectMessage();
                 msg.host = false;
                 msg.role = roleSelectClient.value == 0 ? "human" : "alien";
+                manager.myRole = msg.role;
                 sendSyncMessage(RoleSelectMessage.type, msg);
             });
         }
@@ -256,32 +262,6 @@ public class LevelSelect : MonoBehaviour {
     {
         gameStarted = true;
         Cursor.visible = false;
-
-        string role = "";
-        if (isHost)
-        { 
-            if (roleSelectHost.value == 0)
-            {
-                role = "human";
-            }
-            else if (roleSelectHost.value == 1)
-            {
-                role = "alien";
-            }
-        }
-        else
-        {
-            if (roleSelectClient.value == 0)
-            {
-                role = "human";
-            }
-            else if (roleSelectClient.value == 1)
-            {
-                role = "alien";
-            }
-        }
-
-        manager.myRole = role;
         loadScene();
     }
 
