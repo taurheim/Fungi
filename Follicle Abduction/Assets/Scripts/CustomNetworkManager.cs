@@ -81,6 +81,11 @@ public class CustomNetworkManager : NetworkManager
 	}
 
 	void SpawnPlayerForConnection(NetworkConnection conn, string role, short playerControllerId) {
+		if (role == "") {
+			Debug.Log("[Server] Got a request to spawn without a role. Rejecting: Client #" + conn.connectionId + " (controller: " + playerControllerId + ")");
+			return;
+		}
+
 		GameObject playerObject;
 		switch (role) {
 			case "human":
@@ -156,14 +161,12 @@ public class CustomNetworkManager : NetworkManager
 			isLoadingScene = true;
 			
 			// Preload the scene
+			Debug.Log("[Server] Preloading scene.");
 			SceneManager.LoadScene(sceneName);
 
 			// Load the scene on all connected clients
+			Debug.Log("[Server] Network loading scene.");
 			ServerChangeScene(sceneName);
-
-			// Spawn ourselves
-			Debug.Log("[Server] Trying to spawn ourselves with role: " + myRole);
-			NotifyServerSpawnPlayer(client.connection, myRole);
 		} else {
 			isLoadingScene = true;
 			Debug.Log("[Client] Sending message to host to change scenes");
