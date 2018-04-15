@@ -107,6 +107,8 @@ public class RadioNode : Node {
 		playing = true;
 		currentPlayingSong = currentSelectedSong;
 		audioSource.PlayOneShot(songs[currentPlayingSong]);
+		AudioSource bgm = GameObject.FindWithTag("bgm").GetComponent<AudioSource>();
+		bgm.Pause();
 		if ((currentPlayingSong == correctSongIndex) && (songLovingGuards != null)) {
 			// Attract the guards to the radio!
 			foreach (Patrol guard in songLovingGuards) {
@@ -127,6 +129,8 @@ public class RadioNode : Node {
 	public void StopSong () {
 		playing = false;
 		audioSource.Stop();
+		AudioSource bgm = GameObject.FindWithTag("bgm").GetComponent<AudioSource>();
+		bgm.UnPause();
 		if (currentPlayingSong == correctSongIndex){
 			foreach (Patrol guard in songLovingGuards) {
 				GameObject parent = transform.parent.gameObject;
