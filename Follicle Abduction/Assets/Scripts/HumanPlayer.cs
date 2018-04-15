@@ -19,16 +19,21 @@ public class HumanPlayer : NetworkedObject {
 	}
 	private Vector3 originalPosition;
 
+    GameOver gameOver;
+
 	void Awake () {
 		pickups = 0;
 		originalPosition = transform.position;
 		GameObject floor = GameObject.Find("Floor");
 		minYPosition = floor.transform.position.y - 5.0;
+
+        gameOver = FindObjectOfType<GameOver>();
 	}
 	
 	void Update () {
 		if (transform.position.y < minYPosition){
-			ResetPosition();
+            gameOver.gameOver();
+			//ResetPosition();
 		}
 	}
 

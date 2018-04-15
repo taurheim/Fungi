@@ -9,7 +9,6 @@ public class boost : MonoBehaviour {
 
     public GameObject button;
 
-
     // Use this for initialization
     void Start () {
 
@@ -22,8 +21,10 @@ public class boost : MonoBehaviour {
         if (button.GetComponentInParent<ButtonPress>().getButtonStatus())
             hit2 = true;
 
-        if(hit2)
+
+        if (hit2)
             transform.Translate(Vector3.back * 10 * 1 * Time.deltaTime);
+
 
 
 
