@@ -54,6 +54,8 @@ public class Node : NetworkedObject
 	private Dictionary<LineDirection, Node> connectedNodes;
 	private Dictionary<LineDirection, Vector3> midpoints;
 
+	public float timeToHack = 1.0f; // In seconds, feel free to change this on any individual node/node type
+
 
     /* 
 		Override these for node-specific functionality
@@ -110,6 +112,23 @@ public class Node : NetworkedObject
 			HideNodeDataOnConsole();
 		}
 	}
+
+	protected virtual void FixedUpdate() {
+		if (isHacking && state == NodeState.UNLOCKED) {
+			if (percentComplete < 100f) {
+
+				float ticksToFinish = timeToHack / Time.fixedDeltaTime;
+				float percentToAdd = 100 / ticksToFinish;
+				percentComplete += (int) percentToAdd;
+				float amt = percentComplete / 100f;
+
+				progressBar.transform.localPosition = new Vector3 (amt / 2 - 0.5f, progressBar.transform.localPosition.y, progressBar.transform.localPosition.z);
+				progressBar.transform.localScale = new Vector3 (amt, 1, 1);
+			} else {
+				completeNode();
+			}
+		}
+	}
 	
 	protected virtual void Update ()
 	{
@@ -122,31 +141,18 @@ public class Node : NetworkedObject
 			}
 		}
 
-		if (isHacking && state == NodeState.UNLOCKED) {
-			if (percentComplete < 100f) {
-				percentComplete++;
-				float amt = percentComplete / 100f;
-
-				progressBar.transform.localPosition = new Vector3 (amt / 2 - 0.5f, progressBar.transform.localPosition.y, progressBar.transform.localPosition.z);
-				progressBar.transform.localScale = new Vector3 (amt, 1, 1);
-			} else {
-				completeNode();
-			}
-		}
-
 		if (isSelected) {
 			if (state == NodeState.UNLOCKED) {
-
-                if (Input.GetKeyDown(hackKey)) {
+				if (Input.GetKeyDown(hackKey)) {
 					// This will get the above to run
 					isHacking = true;
 				} else if (Input.GetKeyUp(hackKey)) {
 					isHacking = false;
 				}
 			} else if (state == NodeState.COMPLETED) {
-                if (viewBlocker != null)
-                    viewBlocker.SetActive(false);
-                if (Input.GetKeyDown(actionKey)) {
+				if (viewBlocker != null)
+					viewBlocker.SetActive(false);
+				if (Input.GetKeyDown(actionKey)) {
 					// If we're completed, then we can run the action
 					onStartAction();
 				} else if (Input.GetKeyUp(actionKey)) {
