@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.009406347, g: 0.009492566, b: 0.009406347, a: 1}
+  m_IndirectSpecularColor: {r: 0.009256138, g: 0.009483897, b: 0.009256138, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1882,6 +1882,7 @@ MonoBehaviour:
   outline: {fileID: 630575131}
   nodeData: {fileID: 610256087}
   viewBlocker: {fileID: 0}
+  timeToHack: 1
 --- !u!4 &108514365 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4989385670517874, guid: a33bc2b2ada2b5944a436da6136cdaad,
@@ -6832,8 +6833,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 079559c13840ed840a46e1ae519f8b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hit1: 0
+  hit2: 0
+  hit3: 0
   button: {fileID: 1812895310}
   player: {fileID: 0}
+  door: {fileID: 0}
 --- !u!23 &431469270
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19920,7 +19925,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -25620,8 +25625,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 079559c13840ed840a46e1ae519f8b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hit1: 0
+  hit2: 0
+  hit3: 0
   button: {fileID: 1646282895}
   player: {fileID: 0}
+  door: {fileID: 2098286883}
 --- !u!23 &1516537819
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -33092,6 +33101,7 @@ MonoBehaviour:
   outline: {fileID: 185926972}
   nodeData: {fileID: 2047119115}
   viewBlocker: {fileID: 762536307}
+  timeToHack: 1
 --- !u!4 &1924264564 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4870868212864786, guid: 2bced8e930a536344a3ccc22095c30ce,
@@ -36826,6 +36836,11 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400042, guid: 8ee4da2f96aeb7a4d85ec6275e8d49ef, type: 3}
   m_PrefabInternal: {fileID: 2089213805}
+--- !u!1 &2098286883 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1015855119111918, guid: 2bced8e930a536344a3ccc22095c30ce,
+    type: 2}
+  m_PrefabInternal: {fileID: 495090150}
 --- !u!1 &2098759549 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100010, guid: a191a4074020646b4a0afd1729166717, type: 3}
